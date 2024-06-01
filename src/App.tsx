@@ -1,13 +1,14 @@
-import './App.css'
-
+import './App.css';
+import { Header } from './Components/header/header';
+import { Main } from './Components/main/main';
 
 function App() {
   return (
-<>
-<h1 className="text-3xl font-bold underline">dsdsfsdf</h1>
-<span>sdds</span>
-</>
-  )
+    <div>
+      <Header />
+      <Main />
+    </div>
+  );
 }
 
-export default App
+export default App;
