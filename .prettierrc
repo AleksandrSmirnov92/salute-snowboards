@@ -1,7 +1,13 @@
 {
   "singleQuote": true,
-  "plugins": ["prettier-plugins-tailwindcss"],
+  "plugins": ["prettier-plugin-tailwindcss"],
   "trailingComma": "es5",
-  "tabWidth": 2,
-  "semi": false
+  "tabWidth": 1,
+  "semi": false,
+    "overrides": [
+    {
+      "files": ".prettierrc",
+      "options": { "parser": "json" }
+    }
+  ]
 }
