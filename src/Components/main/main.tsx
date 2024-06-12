@@ -1,10 +1,10 @@
 export const Main = () => {
   return (
-    <div className="border-solid border border-warm-gray grid grid-cols-2 gap-1 content-center">
-      <div className="border-solid border border-warm-gray mb-2">
-        <span className="text-warm-gray">Тут будет доска</span>
+    <div className="grid grid-cols-2 gap-1 ">
+      <div className="h-full border-solid border border-warm-gray mb-2">
+        <img src="../../assets/shapes-layer/слой__Слой 1.png" alt="" />
       </div>
-      <div className="border-solid border border-warm-gray mb-2">
+      <div className="h-full border-solid border border-warm-gray mb-2">
         <span className="text-warm-gray">Тут будут опции</span>
       </div>
     </div>
