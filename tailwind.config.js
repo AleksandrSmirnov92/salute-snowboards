@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         'eerie-black': '#111d23',
+        '#232729': '#232729',
         'warm-gray': '#b3b2a0',
       },
     },
