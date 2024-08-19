@@ -4,7 +4,7 @@ import { Main } from './components/main/main';
 
 function App() {
   return (
-    <div className="bg-eerie-black grid grid-cols-1 grid-rows-[100px_1fr] h-screen">
+    <div className="bg-#0b1318 min-w-[430px] flex flex-col ">
       <Header />
       <Main />
     </div>
