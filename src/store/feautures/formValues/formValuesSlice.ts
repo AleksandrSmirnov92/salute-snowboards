@@ -1,23 +1,19 @@
-import { createSlice, isAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { IStraightLines, ISnowboardColor, ILegent, ModelsSnowboards } from '../../contracts';
-import { IColorPallete } from '../../data/colorPalette';
+import { IFigures, ILegent, ModelsSnowboards, IModelSize as IModelSize } from '../../contracts';
+import { colorPalette, IColorPallete } from '../../data/colorPalette';
+import { boardLengthBCFR } from '../../data/boardBCFRData';
+import { hasNotFigure } from '../../data/figures';
 
 const initialState: IInitialState = {
   model: {
     id: 4,
     title: ModelsSnowboards.BCFR,
   },
-  color: {
-    id: 1,
-    title: 'Light Beige',
-    bgColor: 'bg-#f3e3cc',
-    hex: '#f3e3cc',
-  },
-  straightLines: {
-    straightLineTop: {
-      isActive: false,
-      colorLine: {
+  colorModel: {
+    colorOut: {
+      isActive: true,
+      color: {
         id: 1,
         cmyk: '9/6/0/8',
         hex: '#D2DAE9',
@@ -25,9 +21,9 @@ const initialState: IInitialState = {
         bgColor: 'bg-#D2DAE9',
       },
     },
-    straightLineBottom: {
+    colorIn: {
       isActive: false,
-      colorLine: {
+      color: {
         id: 1,
         cmyk: '9/6/0/8',
         hex: '#D2DAE9',
@@ -36,14 +32,28 @@ const initialState: IInitialState = {
       },
     },
   },
+  figures: hasNotFigure,
+  boardLength: boardLengthBCFR[1],
   legend: {
     id: 1,
     pos: 'Position1',
     title: 'Position1',
     colorLegend: {
-      top: { id: 1, cmyk: '9/6/0/8', hex: '#D2DAE9', title: 'Alice Blue', bgColor: 'bg-#D2DAE9' },
-      middle: { id: 1, cmyk: '9/6/0/8', hex: '#D2DAE9', title: 'Alice Blue', bgColor: 'bg-#D2DAE9' },
-      bottom: { id: 1, cmyk: '9/6/0/8', hex: '#D2DAE9', title: 'Alice Blue', bgColor: 'bg-#D2DAE9' },
+      top: {
+        name: 'ColorLegendTop',
+        positionColor: 'Color legend Top',
+        colorPallete: colorPalette[1],
+      },
+      middle: {
+        name: 'ColorLegendMiddle',
+        positionColor: 'Color legend middle',
+        colorPallete: colorPalette[1],
+      },
+      bottom: {
+        name: 'ColorLegendBottom',
+        positionColor: 'Color legend Bottom',
+        colorPallete: colorPalette[1],
+      },
     },
   },
 };
@@ -53,78 +63,104 @@ const selectedFormValues = createSlice({
   reducers: {
     setModelValue(state, action: PayloadAction<any>) {
       state.model = action.payload;
-      // console.log('this is model', state.model);
     },
-    setColorValue(state, action: PayloadAction<any>) {
-      state.color = action.payload;
-      // console.log('this is color', state.color);
+    setOuterColorValue(state, action: PayloadAction<any>) {
+      state.colorModel.colorOut.color = action.payload;
     },
-    setStraightLineTopActive(state, action: PayloadAction<boolean>) {
-      state.straightLines.straightLineTop.isActive = action.payload;
+    setOuterColorValueToActive(state, action: PayloadAction<boolean>) {
+      state.colorModel.colorOut.isActive = action.payload;
     },
-    setStraightLineTopColor(state, action: PayloadAction<IColorPallete>) {
-      state.straightLines.straightLineTop.colorLine = action.payload;
+    setInnerColorValue(state, action: PayloadAction<any>) {
+      state.colorModel.colorIn.color = action.payload;
     },
-    setStraightLineBottomActive(state, action: PayloadAction<boolean>) {
-      state.straightLines.straightLineBottom.isActive = action.payload;
+    setInnerColorValueToActive(state, action: PayloadAction<boolean>) {
+      state.colorModel.colorOut.isActive = action.payload;
+    },
+    setFigureTopActive(state, action: PayloadAction<boolean>) {
+      state.figures.figureTop.isActive = action.payload;
+    },
+    setFigureTopColor(state, action: PayloadAction<IColorPallete>) {
+      state.figures.figureTop.colorFigure = action.payload;
+    },
+    setFigureBottomActive(state, action: PayloadAction<boolean>) {
+      state.figures.figureBottom.isActive = action.payload;
       // console.log('this is  Straight line', state.straightLines.straightLineTop.isActive);
     },
-    setStraightLineBottomColor(state, action: PayloadAction<IColorPallete>) {
-      state.straightLines.straightLineBottom.colorLine = action.payload;
+    setFigureBottomColor(state, action: PayloadAction<IColorPallete>) {
+      state.figures.figureBottom.colorFigure = action.payload;
+    },
+    setHasFigureTop(state, action: PayloadAction<boolean>) {
+      state.figures.figureTop.hasFigure = action.payload;
+    },
+    setHasFigureBottom(state, action: PayloadAction<boolean>) {
+      state.figures.figureBottom.hasFigure = action.payload;
     },
     setLegendValue(state, action: PayloadAction<any>) {
-      // console.log('legend', action);
       state.legend = action.payload;
-      // console.log('this is legend', state.legend);
     },
     setLegendTopColor(state, action: PayloadAction<IColorPallete>) {
-      console.log('legendTop');
-      state.legend.colorLegend.top = action.payload;
-      // console.log('this is legend', state.legend);
+      state.legend.colorLegend.top!.colorPallete = action.payload;
     },
     setLegendMiddleColor(state, action: PayloadAction<IColorPallete>) {
-      console.log('legendMeddle', action);
-      state.legend.colorLegend.middle = action.payload;
-      // console.log('legend', action);
-      // state.legend = action.payload;
-      // console.log('this is legend', state.legend);
+      state.legend.colorLegend.middle!.colorPallete = action.payload;
     },
     setLegendBottomColor(state, action: PayloadAction<IColorPallete>) {
-      state.legend.colorLegend.bottom = action.payload;
-      console.log('legendBottom', action);
-      // console.log('legend', action);
-      // state.legend = action.payload;
-      // console.log('this is legend', state.legend);
+      state.legend.colorLegend.bottom!.colorPallete = action.payload;
+    },
+    setSize(state, action: PayloadAction<IModelSize>) {
+      state.boardLength = action.payload;
     },
   },
 });
 export const {
   setModelValue,
-  setColorValue,
-  setStraightLineTopActive,
-  setStraightLineTopColor,
+  setOuterColorValue,
+  setOuterColorValueToActive,
+  setInnerColorValue,
+  setInnerColorValueToActive,
+  setFigureTopActive,
+  setFigureTopColor,
   setLegendValue,
   setLegendTopColor,
   setLegendMiddleColor,
   setLegendBottomColor,
-  setStraightLineBottomActive,
-  setStraightLineBottomColor,
+  setFigureBottomActive,
+  setFigureBottomColor,
+  setHasFigureTop,
+  setHasFigureBottom,
+  setSize,
 } = selectedFormValues.actions;
 export default selectedFormValues.reducer;
 export type SelectedFormValuesActionCreator =
   | typeof setModelValue
-  | typeof setColorValue
-  | typeof setStraightLineTopActive
-  | typeof setStraightLineTopColor
-  | typeof setStraightLineBottomActive
-  | typeof setStraightLineBottomColor
-  | typeof setLegendValue;
+  | typeof setOuterColorValue
+  | typeof setOuterColorValueToActive
+  | typeof setInnerColorValue
+  | typeof setInnerColorValueToActive
+  | typeof setFigureTopActive
+  | typeof setFigureTopColor
+  | typeof setFigureBottomActive
+  | typeof setFigureBottomColor
+  | typeof setLegendValue
+  | typeof setHasFigureTop
+  | typeof setHasFigureBottom
+  | typeof setSize;
 export interface IInitialState {
   model: {
     id: number;
     title: ModelsSnowboards;
   };
-  color: ISnowboardColor;
-  straightLines: IStraightLines;
+  colorModel: {
+    colorOut: {
+      isActive: boolean;
+      color: IColorPallete;
+    };
+    colorIn: {
+      isActive: boolean;
+      color: IColorPallete;
+    };
+  };
+  figures: IFigures;
   legend: ILegent;
+  boardLength: IModelSize;
 }

@@ -6,20 +6,32 @@ import { LegendTop } from './top/legend-top';
 export interface IPropsLegend {
   backgroundColor: string;
   colorLegend: {
-    top: IColorPallete;
-    middle: IColorPallete;
-    bottom: IColorPallete;
+    top?: {
+      name: string;
+      positionColor: string;
+      colorPallete: IColorPallete;
+    };
+    middle?: {
+      name: string;
+      positionColor: string;
+      colorPallete: IColorPallete;
+    };
+    bottom?: {
+      name: string;
+      positionColor: string;
+      colorPallete: IColorPallete;
+    };
   };
   width: number;
   height: number;
 }
 export const LegendPositionOne = ({ colorLegend, width, height }: IPropsLegend) => {
   // top options
-  const colorTop = colorLegend.top.hex;
+  const colorTop = colorLegend.top?.colorPallete.hex;
   //middle options
-  const colorMiddle = colorLegend.middle.hex;
+  const colorMiddle = colorLegend.middle?.colorPallete.hex;
   // bottom options
-  const colorBottom = colorLegend.bottom.hex;
+  const colorBottom = colorLegend.bottom?.colorPallete.hex;
   return (
     <svg
       version="1.1"
@@ -30,9 +42,9 @@ export const LegendPositionOne = ({ colorLegend, width, height }: IPropsLegend) 
       xmlns="http://www.w3.org/2000/svg"
     >
       {/* <rect width="600" height="600" fill="blue" /> */}
-      <LegendTop width={width} height={height} color={colorTop} />
-      <LegendMiddle width={width} height={height} color={colorMiddle} />
-      <LegendBottom width={width} height={height} color={colorBottom} />
+      {colorLegend.top ? <LegendTop width={width} height={height} color={colorTop!} /> : ''}
+      {colorLegend.middle ? <LegendMiddle width={width} height={height} color={colorMiddle!} /> : ''}
+      {colorLegend.bottom ? <LegendBottom width={width} height={height} color={colorBottom!} /> : ''}
     </svg>
   );
 };

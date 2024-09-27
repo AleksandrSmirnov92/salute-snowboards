@@ -649,7 +649,6 @@ export const LegendBottom = ({ color, width, height }: IPropsLegendBottom) => {
           <rect
             x={825.83 + positionLegendBottomX + 19}
             y={3550.85 + positionLegentBottomY + 9.7}
-            // transform="matrix(5.289642e-11 -1 1 5.289642e-11 -2744.2085 4398.1323)"
             width="2.8"
             height="22"
             fill={colorBottom}

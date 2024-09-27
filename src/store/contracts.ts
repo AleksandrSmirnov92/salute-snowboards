@@ -1,4 +1,3 @@
-import { modelsSnowboards } from './data/snowboardsData';
 import { IColorPallete } from './data/colorPalette';
 export interface ISnowboard {
   id: number;
@@ -7,22 +6,46 @@ export interface ISnowboard {
 }
 
 export interface ISnowboardDetails {
-  colors: ISnowboardColor[];
-  straightLines: IStraightLines;
+  colorModel: {
+    colorOut: {
+      isActive: boolean;
+      color: IColorPallete[];
+    };
+    colorIn: {
+      isActive: boolean;
+      color: IColorPallete[];
+    };
+  };
+  figures: IFigures;
   legentPositions: ILegent[];
+  boardLength: IModelSize[];
 }
-
+export interface IModelSize {
+  id: number;
+  title: string;
+  size: number;
+}
 export interface ILegent {
   id: number;
   title: string;
   pos: string;
-  colorLegend: { top: IColorPallete; middle: IColorPallete; bottom: IColorPallete };
-}
-export interface ISnowboardColor {
-  id: number;
-  title: string;
-  bgColor?: string;
-  hex?: string;
+  colorLegend: {
+    top?: {
+      name: string;
+      positionColor: string;
+      colorPallete: IColorPallete;
+    };
+    middle?: {
+      name: string;
+      positionColor: string;
+      colorPallete: IColorPallete;
+    };
+    bottom?: {
+      name: string;
+      positionColor: string;
+      colorPallete: IColorPallete;
+    };
+  };
 }
 
 export interface ISelectOptions {
@@ -32,14 +55,20 @@ export interface ISelectOptions {
   colorHex?: string;
   typeLegent?: string;
 }
-export interface IStraightLines {
-  straightLineTop: {
+export interface IFigures {
+  figureTop: {
+    nameFigure: string;
+    colorLabel: string;
+    hasFigure: boolean;
     isActive: boolean;
-    colorLine: IColorPallete;
+    colorFigure: IColorPallete;
   };
-  straightLineBottom: {
+  figureBottom: {
+    nameFigure: string;
+    colorLabel: string;
+    hasFigure: boolean;
     isActive: boolean;
-    colorLine: IColorPallete;
+    colorFigure: IColorPallete;
   };
 }
 export enum ModelsSnowboards {
@@ -48,4 +77,5 @@ export enum ModelsSnowboards {
   AMFish = 'AM Fish',
   BCFR = 'BCFR',
   Unit = 'Unit',
+  Fae = 'Fae',
 }

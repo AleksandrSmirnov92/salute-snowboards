@@ -11,10 +11,9 @@ export const LegendTop = ({ color, width, height }: IPropsLegendTop) => {
   const positionLegentTopY = 120;
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
-      {/* <path transform="translate(0)" d="m0 0h960v1360h-960z" fill="#FDFEFD" /> */}
-      {/* <rect width="600" height="600" fill="#756373" /> */}
       <g transform={`scale(${scale})`}>
         <path
+          fill={colorTop}
           transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendTopX},${positionLegentTopY})`}
           d="M130.34,950.47v-38.29h4.51c0.19,0,0.48,0.01,0.89,0.02c0.41,0.01,0.8,0.06,1.17,0.14
 				c1.13,0.24,2.07,0.89,2.82,1.95c0.74,1.05,1.3,2.39,1.66,4.01c0.36,1.62,0.55,18.74,0.55,20.69c0,1.97-0.18,3.76-0.55,5.38
@@ -22,7 +21,6 @@ export const LegendTop = ({ color, width, height }: IPropsLegendTop) => {
 				H130.34z M131.3,949.13h3.55c0.34,0,0.69-0.02,1.03-0.05c0.35-0.03,0.64-0.08,0.87-0.14c1.01-0.26,1.83-0.84,2.44-1.75
 				c0.62-0.91,1.07-2.07,1.35-3.48c0.28-1.41,0.42-2.98,0.42-4.73s-0.14-18.65-0.42-20.06c-0.28-1.41-0.73-2.57-1.35-3.48
 				c-0.62-0.91-1.43-1.49-2.44-1.75c-0.24-0.06-0.53-0.11-0.89-0.14c-0.36-0.03-0.69-0.05-1.02-0.05h-3.55V949.13z"
-          fill={colorTop}
         />
         <path
           transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendTopX},${positionLegentTopY})`}

@@ -2,23 +2,29 @@ import type { RootState } from '../../../store/store';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Label, Checkbox, Field } from '@headlessui/react';
-import { ISelectOptions } from '../../../store/contracts';
+import { ISelectOptions, ModelsSnowboards } from '../../../store/contracts';
 import { useAppDispatch } from '../../../store/hooks/hooks';
 
 import {
   setModelValue,
-  setColorValue,
+  setOuterColorValue,
+  setOuterColorValueToActive,
+  setInnerColorValue,
+  setInnerColorValueToActive,
   setLegendValue,
-  setStraightLineTopActive,
-  setStraightLineTopColor,
-  setStraightLineBottomActive,
-  setStraightLineBottomColor,
+  setFigureTopActive,
+  setFigureTopColor,
+  setFigureBottomActive,
+  setFigureBottomColor,
   setLegendTopColor,
   setLegendMiddleColor,
   setLegendBottomColor,
+  setHasFigureTop,
+  setHasFigureBottom,
+  setSize,
 } from '../../../store/feautures/formValues/formValuesSlice';
-import { colorPalette } from '../../../store/data/colorPalette';
-import Select from '../../custom/select/select--legend-position';
+import { colorPalette, IColorPallete } from '../../../store/data/colorPalette';
+import Select from '../../custom/select/select-legend-position';
 
 export const Options = () => {
   const dispatch = useAppDispatch();
@@ -31,37 +37,78 @@ export const Options = () => {
   const getBoardDetails = (modelId: number) => selectOptions.find((item) => item.id === modelId)!.boardDetails;
   const initialDetails = getBoardDetails(selectedModel.id);
 
-  const initialColors = initialDetails.colors;
   const initialLegends = initialDetails.legentPositions;
+  const initialLengths = initialDetails.boardLength;
 
-  const [modelColors, setModelColors] = useState(initialColors);
+  const [modelColorOut, setModelColorsOut] = useState<null | string>(null);
+  const [modelColorInner, setModelColorsInner] = useState<null | string>(null);
+  const [modelColorInnerToActive, setModelColorsInnerToActive] = useState<boolean>(false);
+  // const [modelColors, setModelColors] = useState<null | string>(null);
   const [legends, setLegends] = useState(initialLegends);
+  const [modelSizes, setModelSizes] = useState(initialLengths);
+  const [nameFigureTop, setNameFigureTop] = useState('');
+  const [nameFigureBottom, setNameFigureBottom] = useState('');
+  const [colorNameFigureTop, setColorNameFigureTop] = useState('');
+  const [colorNameFigureBottom, setColorNameFigureBottom] = useState('');
 
   useEffect(() => {
     // Если модель изменилась мы поменяли цвета модели и поставили цвет по умолчанию первый в списке или (базовый)
     // Так же мы выставили настройки расположений линий
-    const actualModelColors = selectOptions.find((item) => item.id === selectedModel.id)!.boardDetails.colors;
+    const actualModelColors = selectOptions.find((item) => item.id === selectedModel.id)!.boardDetails.colorModel;
     const actualLegentPositions = selectOptions.find((item) => item.id === selectedModel.id)!.boardDetails
       .legentPositions;
+    const actualHasFigure = selectOptions.find((item) => item.id === selectedModel.id)!.boardDetails.figures;
+    const actualSizeModel = selectOptions.find((item) => item.id === selectedModel.id)!.boardDetails.boardLength;
     dispatch(setModelValue(selectedModel));
-    if (actualModelColors) {
-      setModelColors(actualModelColors);
-      dispatch(setColorValue(actualModelColors[0]));
+    if (actualModelColors.colorOut.isActive) {
+      dispatch(setInnerColorValueToActive(actualModelColors.colorIn.isActive));
+      setModelColorsInnerToActive(actualModelColors.colorIn.isActive);
+      setModelColorsOut(actualModelColors.colorOut.color[0].bgColor);
+      dispatch(setOuterColorValue(actualModelColors.colorOut.color[0]));
+      dispatch(setOuterColorValueToActive(actualModelColors.colorOut.isActive));
+      switch (selectedModel.title) {
+        case ModelsSnowboards.Fae: {
+          setModelColorsOut(actualModelColors.colorOut.color[5].bgColor);
+          dispatch(setOuterColorValue(actualModelColors.colorOut.color[5]));
+          dispatch(setOuterColorValueToActive(actualModelColors.colorOut.isActive));
+          setModelColorsInner(actualModelColors.colorIn.color[2].bgColor);
+          dispatch(setInnerColorValue(actualModelColors.colorIn.color[2]));
+          break;
+        }
+        case ModelsSnowboards.Unit: {
+          setModelColorsOut(actualModelColors.colorOut.color[9].bgColor);
+          dispatch(setOuterColorValue(actualModelColors.colorOut.color[9]));
+          dispatch(setOuterColorValueToActive(actualModelColors.colorOut.isActive));
+          setModelColorsInner(actualModelColors.colorIn.color[16].bgColor);
+          dispatch(setInnerColorValue(actualModelColors.colorIn.color[16]));
+          break;
+        }
+      }
     }
     if (actualLegentPositions) {
       setLegends(actualLegentPositions);
       dispatch(setLegendValue(actualLegentPositions[0]));
     }
+    if (actualSizeModel) {
+      setModelSizes(actualSizeModel);
+      dispatch(setSize(actualSizeModel[0]));
+    }
+    setNameFigureTop(actualHasFigure.figureTop.nameFigure);
+    setNameFigureBottom(actualHasFigure.figureBottom.nameFigure);
+    setColorNameFigureTop(actualHasFigure.figureTop.colorLabel);
+    setColorNameFigureBottom(actualHasFigure.figureBottom.colorLabel);
+    dispatch(setFigureTopColor(actualHasFigure.figureTop.colorFigure));
 
-    dispatch(setStraightLineTopActive(false));
-    dispatch(setStraightLineBottomActive(false));
-    dispatch(setStraightLineTopColor(colorPalette[0]));
-    dispatch(setStraightLineBottomColor(colorPalette[0]));
+    dispatch(setFigureTopActive(actualHasFigure.figureTop.isActive));
+    dispatch(setFigureBottomActive(actualHasFigure.figureBottom.isActive));
+    dispatch(setFigureBottomColor(actualHasFigure.figureBottom.colorFigure));
+    dispatch(setHasFigureTop(actualHasFigure.figureTop.hasFigure));
+    dispatch(setHasFigureBottom(actualHasFigure.figureBottom.hasFigure));
   }, [selectedModel]);
 
   return (
     <div className="relative h-full overflow-y-auto overflow-x-hidden ">
-      <div className="bg-eerie-black h-12 mb-7 mt-3 pl-4 flex items-center w-full">
+      <div className="bg-eerie-black h-12 mb-7 mt-3 md:pl-4 flex justify-center md:justify-start items-center w-full">
         <span className="text-warm-gray text-lg">Детали доски</span>
       </div>
       <form className="relative ">
@@ -82,104 +129,139 @@ export const Options = () => {
           }}
         />
         <Select
-          name={'ColorsModel'}
-          label={'Colors model'}
+          name={'ModelSize'}
+          label={'Size model'}
           labelContentPosition={'justify-start'}
-          options={modelColors.map((item) => {
-            return {
-              bgColor: item.bgColor!,
-              title: item.title,
-              hex: item.hex,
-              id: item.id,
-            };
-          })}
-          onChange={(e) => dispatch(setColorValue(e))}
+          options={modelSizes}
+          onChange={(e) => {
+            console.log(e);
+            dispatch(setSize(e));
+            // dispatch(setColorValue(e));
+          }}
           valueTest={{
-            title: formValues.color.title,
-            bgColor: formValues.color.bgColor!,
-            value: formValues.color,
+            title: formValues.boardLength.title,
+            value: formValues.boardLength,
           }}
         />
-        <div className="flex w-full gap-3 mt-2">
-          <div className="flex flex-col w-1/2">
-            <Field className="flex justify-center items-center pl-4 py-1.5 gap-2">
-              <Label className="text-nowrap text-base font-medium leading-6 text-warm-gray">Straight Line Top</Label>
-              <Checkbox
-                checked={formValues.straightLines.straightLineTop.isActive}
-                onChange={(e: boolean) => dispatch(setStraightLineTopActive(e))}
-                name={'lineTop'}
-                className="group block size-4 ml-2 border border-#b3b2a0 bg-eerie-black shadow-sm  hover:border-#9c9b7c data-[checked]:bg-eerie-black cursor-pointer"
-              >
-                <svg
-                  className="stroke-#b3b2a0 opacity-0 group-data-[checked]:opacity-100"
-                  viewBox="0 0 14 14"
-                  fill="none"
+        <Select
+          name={'ColorsModel'}
+          label={`Colors model ${modelColorInnerToActive ? 'outer' : ''}`}
+          labelContentPosition={'justify-start'}
+          options={colorPalette.map((item) => {
+            return { ...item, title: item.cmyk! };
+          })}
+          onChange={(e: IColorPallete) => {
+            setModelColorsOut(e.bgColor);
+            dispatch(setOuterColorValue(e));
+          }}
+          valueTest={{
+            title: formValues.colorModel.colorOut.color.cmyk!,
+            bgColor: formValues.colorModel.colorOut.color.bgColor!,
+            value: formValues.colorModel.colorOut.color,
+          }}
+          boardColorInner={modelColorInner}
+        />
+        {modelColorInnerToActive ? (
+          <Select
+            name={'ColorsModelIn'}
+            label={'Colors model inner'}
+            labelContentPosition={'justify-start'}
+            options={colorPalette.map((item) => {
+              return { ...item, title: item.cmyk! };
+            })}
+            onChange={(e: IColorPallete) => {
+              setModelColorsInner(e.bgColor);
+              dispatch(setInnerColorValue(e));
+            }}
+            valueTest={{
+              title: formValues.colorModel.colorIn.color.cmyk!,
+              bgColor: formValues.colorModel.colorIn.color.bgColor!,
+              value: formValues.colorModel.colorIn.color,
+            }}
+            boardColorOut={modelColorOut}
+          />
+        ) : (
+          ''
+        )}
+
+        {formValues.figures.figureTop.hasFigure && formValues.figures.figureBottom.hasFigure ? (
+          <div className="flex flex-col md:flex-row w-full gap-3 mt-2">
+            <div className="flex flex-col w-full md:w-1/2">
+              <Field className="flex justify-center items-center md:pl-4 py-1.5 gap-2">
+                <Label className="text-nowrap text-base font-medium leading-6 text-warm-gray">{nameFigureTop}</Label>
+                <Checkbox
+                  checked={formValues.figures.figureTop.isActive}
+                  onChange={(e: boolean) => dispatch(setFigureTopActive(e))}
+                  name={'CheckboxFigureTop'}
+                  className="group block size-4 ml-2 border border-#b3b2a0 bg-eerie-black shadow-sm  hover:border-#9c9b7c data-[checked]:bg-eerie-black cursor-pointer"
                 >
-                  <path d="M3 8L6 11L11 3.5" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Checkbox>
-            </Field>
-            <Select
-              disabled={!formValues.straightLines.straightLineTop.isActive}
-              name={'LineTop'}
-              label="Color line top"
-              labelContentPosition="justify-center"
-              options={colorPalette.map((item) => {
-                return {
-                  bgColor: item.bgColor!,
-                  title: item.title,
-                  hex: item.hex,
-                  id: item.id,
-                };
-              })}
-              onChange={(e) => dispatch(setStraightLineTopColor(e))}
-              valueTest={{
-                title: formValues.straightLines.straightLineTop.colorLine.title,
-                bgColor: formValues.straightLines.straightLineTop.colorLine.bgColor,
-                value: formValues.straightLines.straightLineTop.colorLine,
-              }}
-            />
-          </div>
-          <div className="flex flex-col w-1/2">
-            <Field className="flex justify-center items-center pl-4 py-1.5 gap-2">
-              <Label className="text-nowrap text-base font-medium leading-6 text-warm-gray">Straight Line Bottom</Label>
-              <Checkbox
-                checked={formValues.straightLines.straightLineBottom.isActive}
-                onChange={(e) => dispatch(setStraightLineBottomActive(e))}
-                name={'lineBottom'}
-                className="group block size-4 ml-2 border border-#b3b2a0 bg-eerie-black shadow-sm  hover:border-#9c9b7c data-[checked]:bg-eerie-black cursor-pointer"
-              >
-                <svg
-                  className="stroke-#b3b2a0 opacity-0 group-data-[checked]:opacity-100"
-                  viewBox="0 0 14 14"
-                  fill="none"
+                  <svg
+                    className="stroke-#b3b2a0 opacity-0 group-data-[checked]:opacity-100"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                  >
+                    <path d="M3 8L6 11L11 3.5" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Checkbox>
+              </Field>
+              <Select
+                disabled={!formValues.figures.figureTop.isActive}
+                name={'FigureTop'}
+                label={colorNameFigureTop}
+                labelContentPosition="justify-center"
+                options={colorPalette.map((item) => {
+                  return { ...item, title: item.cmyk! };
+                })}
+                onChange={(e) => dispatch(setFigureTopColor(e))}
+                valueTest={{
+                  title: formValues.figures.figureTop.colorFigure.cmyk!,
+                  bgColor: formValues.figures.figureTop.colorFigure.bgColor,
+                  value: formValues.figures.figureTop.colorFigure,
+                }}
+                boardColorOut={modelColorOut}
+                boardColorInner={modelColorInner}
+              />
+            </div>
+            <div className="flex   flex-col w-full md:w-1/2">
+              <Field className="flex justify-center items-center md:pl-4 py-1.5 gap-2">
+                <Label className="text-nowrap text-base font-medium leading-6 text-warm-gray">{nameFigureBottom}</Label>
+                <Checkbox
+                  checked={formValues.figures.figureBottom.isActive}
+                  onChange={(e) => dispatch(setFigureBottomActive(e))}
+                  name={'CheckboxFigureBottom'}
+                  className="group block size-4 ml-2 border border-#b3b2a0 bg-eerie-black shadow-sm  hover:border-#9c9b7c data-[checked]:bg-eerie-black cursor-pointer"
                 >
-                  <path d="M3 8L6 11L11 3.5" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Checkbox>
-            </Field>
-            <Select
-              disabled={!formValues.straightLines.straightLineBottom.isActive}
-              name={'LineBottom'}
-              label="Color line bottom"
-              labelContentPosition="justify-center"
-              options={colorPalette.map((item) => {
-                return {
-                  bgColor: item.bgColor!,
-                  title: item.title,
-                  hex: item.hex,
-                  id: item.id,
-                };
-              })}
-              onChange={(e) => dispatch(setStraightLineBottomColor(e))}
-              valueTest={{
-                title: formValues.straightLines.straightLineBottom.colorLine.title,
-                bgColor: formValues.straightLines.straightLineBottom.colorLine.bgColor,
-                value: formValues.straightLines.straightLineBottom.colorLine,
-              }}
-            />
+                  <svg
+                    className="stroke-#b3b2a0 opacity-0 group-data-[checked]:opacity-100"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                  >
+                    <path d="M3 8L6 11L11 3.5" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Checkbox>
+              </Field>
+              <Select
+                disabled={!formValues.figures.figureBottom.isActive}
+                name={'FigureBottom'}
+                label={colorNameFigureBottom}
+                labelContentPosition="justify-center"
+                options={colorPalette.map((item) => {
+                  return { ...item, title: item.cmyk! };
+                })}
+                onChange={(e) => dispatch(setFigureBottomColor(e))}
+                valueTest={{
+                  title: formValues.figures.figureBottom.colorFigure.cmyk!,
+                  bgColor: formValues.figures.figureBottom.colorFigure.bgColor,
+                  value: formValues.figures.figureBottom.colorFigure,
+                }}
+                boardColorOut={modelColorOut}
+                boardColorInner={modelColorInner}
+              />
+            </div>
           </div>
-        </div>
+        ) : (
+          ''
+        )}
 
         {/* legent position */}
         {/* Listbox with adjusted positioning */}
@@ -202,67 +284,70 @@ export const Options = () => {
             value: formValues.legend,
           }}
         />
-        <div className="grid grid-cols-2 grid-rows-1  grid-flow-row">
-          <Select
-            disabled={formValues.legend.pos === 'Not selected'}
-            name={'ColorLegendTop'}
-            label={'Color legend top'}
-            labelContentPosition={'justify-start'}
-            options={colorPalette.map((item) => {
-              return {
-                bgColor: item.bgColor!,
-                title: item.title,
-                hex: item.hex,
-                id: item.id,
-              };
-            })}
-            onChange={(e) => dispatch(setLegendTopColor(e))}
-            valueTest={{
-              title: formValues.legend.colorLegend.top.title,
-              bgColor: formValues.legend.colorLegend.top.bgColor,
-              value: formValues.legend.colorLegend.top,
-            }}
-          />
-          <Select
-            name={'ColorLegendMiddle'}
-            disabled={formValues.legend.pos === 'Not selected'}
-            label={'Color legend middle'}
-            labelContentPosition={'justify-start'}
-            options={colorPalette.map((item) => {
-              return {
-                bgColor: item.bgColor!,
-                title: item.title,
-                hex: item.hex,
-                id: item.id,
-              };
-            })}
-            onChange={(e) => dispatch(setLegendMiddleColor(e))}
-            valueTest={{
-              title: formValues.legend.colorLegend.middle.title,
-              bgColor: formValues.legend.colorLegend.middle.bgColor,
-              value: formValues.legend.colorLegend.middle,
-            }}
-          />
-          <Select
-            name={'ColorLegendBottom'}
-            disabled={formValues.legend.pos === 'Not selected'}
-            label={'Color legend bottom'}
-            labelContentPosition={'justify-start'}
-            options={colorPalette.map((item) => {
-              return {
-                bgColor: item.bgColor!,
-                title: item.title,
-                hex: item.hex,
-                id: item.id,
-              };
-            })}
-            onChange={(e) => dispatch(setLegendBottomColor(e))}
-            valueTest={{
-              title: formValues.legend.colorLegend.bottom.title,
-              bgColor: formValues.legend.colorLegend.bottom.bgColor,
-              value: formValues.legend.colorLegend.bottom,
-            }}
-          />
+        <div className="md:grid md:grid-cols-2   md:grid-flow-row">
+          {formValues.legend.colorLegend.top ? (
+            <Select
+              disabled={formValues.legend.pos === 'Not selected'}
+              name={'ColorLegendTop'}
+              label={'Color legend top'}
+              labelContentPosition={'justify-start'}
+              options={colorPalette.map((item) => {
+                return { ...item, title: item.cmyk! };
+              })}
+              onChange={(e) => dispatch(setLegendTopColor(e))}
+              valueTest={{
+                title: formValues.legend.colorLegend.top.colorPallete.cmyk!,
+                bgColor: formValues.legend.colorLegend.top.colorPallete.bgColor,
+                value: formValues.legend.colorLegend.top.colorPallete,
+              }}
+              boardColorOut={modelColorOut}
+              boardColorInner={modelColorInner}
+            />
+          ) : (
+            ''
+          )}
+          {formValues.legend.colorLegend.middle ? (
+            <Select
+              name={'ColorLegendMiddle'}
+              disabled={formValues.legend.pos === 'Not selected'}
+              label={'Color legend middle'}
+              labelContentPosition={'justify-start'}
+              options={colorPalette.map((item) => {
+                return { ...item, title: item.cmyk! };
+              })}
+              onChange={(e) => dispatch(setLegendMiddleColor(e))}
+              valueTest={{
+                title: formValues.legend.colorLegend.middle.colorPallete.cmyk!,
+                bgColor: formValues.legend.colorLegend.middle.colorPallete.bgColor,
+                value: formValues.legend.colorLegend.middle.colorPallete,
+              }}
+              boardColorOut={modelColorOut}
+              boardColorInner={modelColorInner}
+            />
+          ) : (
+            ''
+          )}
+          {formValues.legend.colorLegend.bottom ? (
+            <Select
+              name={'ColorLegendBottom'}
+              disabled={formValues.legend.pos === 'Not selected'}
+              label={'Color legend bottom'}
+              labelContentPosition={'justify-start'}
+              options={colorPalette.map((item) => {
+                return { ...item, title: item.cmyk! };
+              })}
+              onChange={(e) => dispatch(setLegendBottomColor(e))}
+              valueTest={{
+                title: formValues.legend.colorLegend.bottom.colorPallete.cmyk!,
+                bgColor: formValues.legend.colorLegend.bottom.colorPallete.bgColor,
+                value: formValues.legend.colorLegend.bottom.colorPallete,
+              }}
+              boardColorOut={modelColorOut}
+              boardColorInner={modelColorInner}
+            />
+          ) : (
+            ''
+          )}
         </div>
       </form>
     </div>
