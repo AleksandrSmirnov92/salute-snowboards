@@ -5,6 +5,13 @@ import { colorPalette, IColorPallete } from '../../data/colorPalette';
 import { boardLengthBCFR } from '../../data/boardBCFRData';
 import { hasNotFigure } from '../../data/figures';
 
+const defaultColor = {
+  id: 1,
+  cmyk: '9/6/0/8',
+  hex: '#D2DAE9',
+  title: 'Alice Blue',
+  bgColor: 'bg-#D2DAE9',
+};
 const initialState: IInitialState = {
   model: {
     id: 4,
@@ -13,23 +20,11 @@ const initialState: IInitialState = {
   colorModel: {
     colorOut: {
       isActive: true,
-      color: {
-        id: 1,
-        cmyk: '9/6/0/8',
-        hex: '#D2DAE9',
-        title: 'Alice Blue',
-        bgColor: 'bg-#D2DAE9',
-      },
+      color: defaultColor,
     },
     colorIn: {
       isActive: false,
-      color: {
-        id: 1,
-        cmyk: '9/6/0/8',
-        hex: '#D2DAE9',
-        title: 'Alice Blue',
-        bgColor: 'bg-#D2DAE9',
-      },
+      color: defaultColor,
     },
   },
   figures: hasNotFigure,

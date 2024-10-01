@@ -52,60 +52,75 @@ export const Options = () => {
   const [colorNameFigureBottom, setColorNameFigureBottom] = useState('');
 
   useEffect(() => {
-    // Если модель изменилась мы поменяли цвета модели и поставили цвет по умолчанию первый в списке или (базовый)
-    // Так же мы выставили настройки расположений линий
-    const actualModelColors = selectOptions.find((item) => item.id === selectedModel.id)!.boardDetails.colorModel;
-    const actualLegentPositions = selectOptions.find((item) => item.id === selectedModel.id)!.boardDetails
-      .legentPositions;
-    const actualHasFigure = selectOptions.find((item) => item.id === selectedModel.id)!.boardDetails.figures;
-    const actualSizeModel = selectOptions.find((item) => item.id === selectedModel.id)!.boardDetails.boardLength;
+    const actualModel = selectOptions.find((item) => item.id === selectedModel.id);
+    if (!actualModel) return;
+
     dispatch(setModelValue(selectedModel));
-    if (actualModelColors.colorOut.isActive) {
-      dispatch(toggleInnerColorActive(actualModelColors.colorIn.isActive));
-      setModelColorsInnerToActive(actualModelColors.colorIn.isActive);
-      setModelColorsOut(actualModelColors.colorOut.color[0].bgColor);
-      dispatch(updateOuterColor(actualModelColors.colorOut.color[0]));
-      dispatch(toggleOuterColorActive(actualModelColors.colorOut.isActive));
+    setModelSizes(actualModel.boardDetails.boardLength);
+    setLegends(actualModel.boardDetails.legentPositions);
+  }, [selectedModel, selectOptions, dispatch]);
+
+  useEffect(() => {
+    const actualModel = selectOptions.find((item) => item.id === selectedModel.id);
+    if (!actualModel || !actualModel.boardDetails.legentPositions) return;
+
+    const actualLegends = actualModel.boardDetails.legentPositions;
+    setLegends(actualLegends);
+    dispatch(setLegendValue(actualLegends[0]));
+  }, [selectedModel, selectOptions, dispatch]);
+
+  useEffect(() => {
+    const actualModel = selectOptions.find((item) => item.id === selectedModel.id);
+    if (!actualModel || !actualModel.boardDetails.figures) return;
+
+    const { figureTop, figureBottom } = actualModel.boardDetails.figures;
+
+    setNameFigureTop(figureTop.nameFigure);
+    setNameFigureBottom(figureBottom.nameFigure);
+    setColorNameFigureTop(figureTop.colorLabel);
+    setColorNameFigureBottom(figureBottom.colorLabel);
+
+    dispatch(setFigureTopColor(figureTop.colorFigure));
+    dispatch(setFigureTopActive(figureTop.isActive));
+    dispatch(setFigureBottomColor(figureBottom.colorFigure));
+    dispatch(setFigureBottomActive(figureBottom.isActive));
+    dispatch(setHasFigureTop(figureTop.hasFigure));
+    dispatch(setHasFigureBottom(figureBottom.hasFigure));
+  }, [selectedModel, selectOptions, dispatch]);
+
+  useEffect(() => {
+    const actualModel = selectOptions.find((item) => item.id === selectedModel.id);
+    if (!actualModel || !actualModel.boardDetails.colorModel) return;
+
+    const { colorOut, colorIn } = actualModel.boardDetails.colorModel;
+
+    if (colorOut.isActive) {
+      setModelColorsOut(colorOut.color[0].bgColor);
+      dispatch(updateOuterColor(colorOut.color[0]));
+      dispatch(toggleOuterColorActive(colorOut.isActive));
+      dispatch(toggleInnerColorActive(colorIn.isActive));
+      setModelColorsInnerToActive(colorIn.isActive);
+
       switch (selectedModel.title) {
         case ModelsSnowboards.Fae: {
-          setModelColorsOut(actualModelColors.colorOut.color[5].bgColor);
-          dispatch(updateOuterColor(actualModelColors.colorOut.color[5]));
-          dispatch(toggleOuterColorActive(actualModelColors.colorOut.isActive));
-          setModelColorsInner(actualModelColors.colorIn.color[2].bgColor);
-          dispatch(updateInnerColor(actualModelColors.colorIn.color[2]));
+          setModelColorsOut(colorOut.color[5].bgColor);
+          dispatch(updateOuterColor(colorOut.color[5]));
+          dispatch(toggleOuterColorActive(colorOut.isActive));
+          setModelColorsInner(colorIn.color[2].bgColor);
+          dispatch(updateInnerColor(colorIn.color[2]));
           break;
         }
         case ModelsSnowboards.Unit: {
-          setModelColorsOut(actualModelColors.colorOut.color[9].bgColor);
-          dispatch(updateOuterColor(actualModelColors.colorOut.color[9]));
-          dispatch(toggleOuterColorActive(actualModelColors.colorOut.isActive));
-          setModelColorsInner(actualModelColors.colorIn.color[16].bgColor);
-          dispatch(updateInnerColor(actualModelColors.colorIn.color[16]));
+          setModelColorsOut(colorOut.color[9].bgColor);
+          dispatch(updateOuterColor(colorOut.color[9]));
+          dispatch(toggleOuterColorActive(colorOut.isActive));
+          setModelColorsInner(colorIn.color[16].bgColor);
+          dispatch(updateInnerColor(colorIn.color[16]));
           break;
         }
       }
     }
-    if (actualLegentPositions) {
-      setLegends(actualLegentPositions);
-      dispatch(setLegendValue(actualLegentPositions[0]));
-    }
-    if (actualSizeModel) {
-      setModelSizes(actualSizeModel);
-      dispatch(setSize(actualSizeModel[0]));
-    }
-    setNameFigureTop(actualHasFigure.figureTop.nameFigure);
-    setNameFigureBottom(actualHasFigure.figureBottom.nameFigure);
-    setColorNameFigureTop(actualHasFigure.figureTop.colorLabel);
-    setColorNameFigureBottom(actualHasFigure.figureBottom.colorLabel);
-    dispatch(setFigureTopColor(actualHasFigure.figureTop.colorFigure));
-
-    dispatch(setFigureTopActive(actualHasFigure.figureTop.isActive));
-    dispatch(setFigureBottomActive(actualHasFigure.figureBottom.isActive));
-    dispatch(setFigureBottomColor(actualHasFigure.figureBottom.colorFigure));
-    dispatch(setHasFigureTop(actualHasFigure.figureTop.hasFigure));
-    dispatch(setHasFigureBottom(actualHasFigure.figureBottom.hasFigure));
-  }, [selectedModel]);
-
+  }, [selectedModel, selectOptions, dispatch]);
   return (
     <div className="relative h-full overflow-y-auto overflow-x-hidden ">
       <div className="bg-eerie-black h-12 mb-7 mt-3 md:pl-4 flex justify-center md:justify-start items-center w-full">
