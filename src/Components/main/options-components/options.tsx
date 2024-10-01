@@ -8,9 +8,9 @@ import { useAppDispatch } from '../../../store/hooks/hooks';
 import {
   setModelValue,
   updateOuterColor,
-  setOuterColorValueToActive,
+  toggleOuterColorActive,
   updateInnerColor,
-  setInnerColorValueToActive,
+  toggleInnerColorActive,
   setLegendValue,
   setFigureTopActive,
   setFigureTopColor,
@@ -61,16 +61,16 @@ export const Options = () => {
     const actualSizeModel = selectOptions.find((item) => item.id === selectedModel.id)!.boardDetails.boardLength;
     dispatch(setModelValue(selectedModel));
     if (actualModelColors.colorOut.isActive) {
-      dispatch(setInnerColorValueToActive(actualModelColors.colorIn.isActive));
+      dispatch(toggleInnerColorActive(actualModelColors.colorIn.isActive));
       setModelColorsInnerToActive(actualModelColors.colorIn.isActive);
       setModelColorsOut(actualModelColors.colorOut.color[0].bgColor);
       dispatch(updateOuterColor(actualModelColors.colorOut.color[0]));
-      dispatch(setOuterColorValueToActive(actualModelColors.colorOut.isActive));
+      dispatch(toggleOuterColorActive(actualModelColors.colorOut.isActive));
       switch (selectedModel.title) {
         case ModelsSnowboards.Fae: {
           setModelColorsOut(actualModelColors.colorOut.color[5].bgColor);
           dispatch(updateOuterColor(actualModelColors.colorOut.color[5]));
-          dispatch(setOuterColorValueToActive(actualModelColors.colorOut.isActive));
+          dispatch(toggleOuterColorActive(actualModelColors.colorOut.isActive));
           setModelColorsInner(actualModelColors.colorIn.color[2].bgColor);
           dispatch(updateInnerColor(actualModelColors.colorIn.color[2]));
           break;
@@ -78,7 +78,7 @@ export const Options = () => {
         case ModelsSnowboards.Unit: {
           setModelColorsOut(actualModelColors.colorOut.color[9].bgColor);
           dispatch(updateOuterColor(actualModelColors.colorOut.color[9]));
-          dispatch(setOuterColorValueToActive(actualModelColors.colorOut.isActive));
+          dispatch(toggleOuterColorActive(actualModelColors.colorOut.isActive));
           setModelColorsInner(actualModelColors.colorIn.color[16].bgColor);
           dispatch(updateInnerColor(actualModelColors.colorIn.color[16]));
           break;

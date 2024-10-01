@@ -67,13 +67,13 @@ const selectedFormValues = createSlice({
     updateOuterColor(state, action: PayloadAction<IColorPallete>) {
       state.colorModel.colorOut.color = action.payload;
     },
-    setOuterColorValueToActive(state, action: PayloadAction<boolean>) {
+    toggleOuterColorActive(state, action: PayloadAction<boolean>) {
       state.colorModel.colorOut.isActive = action.payload;
     },
     updateInnerColor(state, action: PayloadAction<IColorPallete>) {
       state.colorModel.colorIn.color = action.payload;
     },
-    setInnerColorValueToActive(state, action: PayloadAction<boolean>) {
+    toggleInnerColorActive(state, action: PayloadAction<boolean>) {
       state.colorModel.colorIn.isActive = action.payload;
     },
     setFigureTopActive(state, action: PayloadAction<boolean>) {
@@ -114,9 +114,9 @@ const selectedFormValues = createSlice({
 export const {
   setModelValue,
   updateOuterColor,
-  setOuterColorValueToActive,
+  toggleOuterColorActive,
   updateInnerColor,
-  setInnerColorValueToActive,
+  toggleInnerColorActive,
   setFigureTopActive,
   setFigureTopColor,
   setLegendValue,
@@ -134,9 +134,9 @@ export default selectedFormValues.reducer;
 export type SelectedFormValuesActionCreator =
   | ReturnType<typeof setModelValue>
   | ReturnType<typeof updateOuterColor>
-  | ReturnType<typeof setOuterColorValueToActive>
+  | ReturnType<typeof toggleOuterColorActive>
   | ReturnType<typeof updateInnerColor>
-  | ReturnType<typeof setInnerColorValueToActive>
+  | ReturnType<typeof toggleInnerColorActive>
   | ReturnType<typeof setFigureTopActive>
   | ReturnType<typeof setFigureTopColor>
   | ReturnType<typeof setFigureBottomActive>
