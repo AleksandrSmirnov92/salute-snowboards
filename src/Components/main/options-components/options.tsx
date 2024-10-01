@@ -7,9 +7,9 @@ import { useAppDispatch } from '../../../store/hooks/hooks';
 
 import {
   setModelValue,
-  setOuterColorValue,
+  updateOuterColor,
   setOuterColorValueToActive,
-  setInnerColorValue,
+  updateInnerColor,
   setInnerColorValueToActive,
   setLegendValue,
   setFigureTopActive,
@@ -64,23 +64,23 @@ export const Options = () => {
       dispatch(setInnerColorValueToActive(actualModelColors.colorIn.isActive));
       setModelColorsInnerToActive(actualModelColors.colorIn.isActive);
       setModelColorsOut(actualModelColors.colorOut.color[0].bgColor);
-      dispatch(setOuterColorValue(actualModelColors.colorOut.color[0]));
+      dispatch(updateOuterColor(actualModelColors.colorOut.color[0]));
       dispatch(setOuterColorValueToActive(actualModelColors.colorOut.isActive));
       switch (selectedModel.title) {
         case ModelsSnowboards.Fae: {
           setModelColorsOut(actualModelColors.colorOut.color[5].bgColor);
-          dispatch(setOuterColorValue(actualModelColors.colorOut.color[5]));
+          dispatch(updateOuterColor(actualModelColors.colorOut.color[5]));
           dispatch(setOuterColorValueToActive(actualModelColors.colorOut.isActive));
           setModelColorsInner(actualModelColors.colorIn.color[2].bgColor);
-          dispatch(setInnerColorValue(actualModelColors.colorIn.color[2]));
+          dispatch(updateInnerColor(actualModelColors.colorIn.color[2]));
           break;
         }
         case ModelsSnowboards.Unit: {
           setModelColorsOut(actualModelColors.colorOut.color[9].bgColor);
-          dispatch(setOuterColorValue(actualModelColors.colorOut.color[9]));
+          dispatch(updateOuterColor(actualModelColors.colorOut.color[9]));
           dispatch(setOuterColorValueToActive(actualModelColors.colorOut.isActive));
           setModelColorsInner(actualModelColors.colorIn.color[16].bgColor);
-          dispatch(setInnerColorValue(actualModelColors.colorIn.color[16]));
+          dispatch(updateInnerColor(actualModelColors.colorIn.color[16]));
           break;
         }
       }
@@ -152,7 +152,7 @@ export const Options = () => {
           })}
           onChange={(e: IColorPallete) => {
             setModelColorsOut(e.bgColor);
-            dispatch(setOuterColorValue(e));
+            dispatch(updateOuterColor(e));
           }}
           valueTest={{
             title: formValues.colorModel.colorOut.color.cmyk!,
@@ -171,7 +171,7 @@ export const Options = () => {
             })}
             onChange={(e: IColorPallete) => {
               setModelColorsInner(e.bgColor);
-              dispatch(setInnerColorValue(e));
+              dispatch(updateInnerColor(e));
             }}
             valueTest={{
               title: formValues.colorModel.colorIn.color.cmyk!,

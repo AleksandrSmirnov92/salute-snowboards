@@ -50,7 +50,7 @@ export interface ILegent {
 
 export interface ISelectOptions {
   id: number;
-  title: string;
+  title: ModelsSnowboards;
   bgColor?: string;
   colorHex?: string;
   typeLegent?: string;

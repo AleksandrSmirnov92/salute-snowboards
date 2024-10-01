@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { IFigures, ILegent, ModelsSnowboards, IModelSize as IModelSize } from '../../contracts';
+import { IFigures, ILegent, ModelsSnowboards, IModelSize as IModelSize, ISelectOptions } from '../../contracts';
 import { colorPalette, IColorPallete } from '../../data/colorPalette';
 import { boardLengthBCFR } from '../../data/boardBCFRData';
 import { hasNotFigure } from '../../data/figures';
@@ -61,20 +61,20 @@ const selectedFormValues = createSlice({
   name: 'form',
   initialState,
   reducers: {
-    setModelValue(state, action: PayloadAction<any>) {
+    setModelValue(state, action: PayloadAction<ISelectOptions>) {
       state.model = action.payload;
     },
-    setOuterColorValue(state, action: PayloadAction<any>) {
+    updateOuterColor(state, action: PayloadAction<IColorPallete>) {
       state.colorModel.colorOut.color = action.payload;
     },
     setOuterColorValueToActive(state, action: PayloadAction<boolean>) {
       state.colorModel.colorOut.isActive = action.payload;
     },
-    setInnerColorValue(state, action: PayloadAction<any>) {
+    updateInnerColor(state, action: PayloadAction<IColorPallete>) {
       state.colorModel.colorIn.color = action.payload;
     },
     setInnerColorValueToActive(state, action: PayloadAction<boolean>) {
-      state.colorModel.colorOut.isActive = action.payload;
+      state.colorModel.colorIn.isActive = action.payload;
     },
     setFigureTopActive(state, action: PayloadAction<boolean>) {
       state.figures.figureTop.isActive = action.payload;
@@ -84,7 +84,6 @@ const selectedFormValues = createSlice({
     },
     setFigureBottomActive(state, action: PayloadAction<boolean>) {
       state.figures.figureBottom.isActive = action.payload;
-      // console.log('this is  Straight line', state.straightLines.straightLineTop.isActive);
     },
     setFigureBottomColor(state, action: PayloadAction<IColorPallete>) {
       state.figures.figureBottom.colorFigure = action.payload;
@@ -95,7 +94,7 @@ const selectedFormValues = createSlice({
     setHasFigureBottom(state, action: PayloadAction<boolean>) {
       state.figures.figureBottom.hasFigure = action.payload;
     },
-    setLegendValue(state, action: PayloadAction<any>) {
+    setLegendValue(state, action: PayloadAction<ILegent>) {
       state.legend = action.payload;
     },
     setLegendTopColor(state, action: PayloadAction<IColorPallete>) {
@@ -114,9 +113,9 @@ const selectedFormValues = createSlice({
 });
 export const {
   setModelValue,
-  setOuterColorValue,
+  updateOuterColor,
   setOuterColorValueToActive,
-  setInnerColorValue,
+  updateInnerColor,
   setInnerColorValueToActive,
   setFigureTopActive,
   setFigureTopColor,
@@ -131,20 +130,24 @@ export const {
   setSize,
 } = selectedFormValues.actions;
 export default selectedFormValues.reducer;
+
 export type SelectedFormValuesActionCreator =
-  | typeof setModelValue
-  | typeof setOuterColorValue
-  | typeof setOuterColorValueToActive
-  | typeof setInnerColorValue
-  | typeof setInnerColorValueToActive
-  | typeof setFigureTopActive
-  | typeof setFigureTopColor
-  | typeof setFigureBottomActive
-  | typeof setFigureBottomColor
-  | typeof setLegendValue
-  | typeof setHasFigureTop
-  | typeof setHasFigureBottom
-  | typeof setSize;
+  | ReturnType<typeof setModelValue>
+  | ReturnType<typeof updateOuterColor>
+  | ReturnType<typeof setOuterColorValueToActive>
+  | ReturnType<typeof updateInnerColor>
+  | ReturnType<typeof setInnerColorValueToActive>
+  | ReturnType<typeof setFigureTopActive>
+  | ReturnType<typeof setFigureTopColor>
+  | ReturnType<typeof setFigureBottomActive>
+  | ReturnType<typeof setFigureBottomColor>
+  | ReturnType<typeof setLegendValue>
+  | ReturnType<typeof setLegendTopColor>
+  | ReturnType<typeof setLegendMiddleColor>
+  | ReturnType<typeof setLegendBottomColor>
+  | ReturnType<typeof setHasFigureTop>
+  | ReturnType<typeof setHasFigureBottom>
+  | ReturnType<typeof setSize>;
 export interface IInitialState {
   model: {
     id: number;

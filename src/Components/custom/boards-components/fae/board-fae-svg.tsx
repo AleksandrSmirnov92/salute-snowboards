@@ -95,7 +95,7 @@ export const BoardFaeSvg = ({
           numberOfColumns={2}
           viewBoxWidth={viewBoxWidth}
           viewBoxHeight={viewBoxHeight}
-          bcfr={false}
+          powMode={false}
         />
         {isFigureTopActive && <StarsTop width={width} height={height} color={figureTopColor} />}
         {isFigureBottomActive && <StarsBottom width={width} height={height} color={figureBottomColor} />}

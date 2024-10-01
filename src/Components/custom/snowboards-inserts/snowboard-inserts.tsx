@@ -7,7 +7,7 @@ interface ICircleParams {
   numberOfColumns: number;
   viewBoxWidth: number;
   viewBoxHeight: number;
-  bcfr: boolean;
+  powMode: boolean;
 }
 export const SnowboardInserts = (data: ICircleParams) => {
   const {
@@ -19,7 +19,7 @@ export const SnowboardInserts = (data: ICircleParams) => {
     numberOfColumns,
     viewBoxWidth,
     viewBoxHeight,
-    bcfr,
+    powMode,
   } = data;
 
   const scaleCircle = 0.4;
@@ -36,7 +36,7 @@ export const SnowboardInserts = (data: ICircleParams) => {
   const circles = [];
   const circles2 = [];
   // Генерация позиций кругов
-  if (bcfr) {
+  if (powMode) {
     for (let row = 0; row <= numberOfRows; row++) {
       for (let col = 0; col < numberOfColumns; col++) {
         let circle1cx: number;

@@ -89,7 +89,7 @@ export const BoardUnderdogSvg = ({
           numberOfColumns={2}
           viewBoxWidth={viewBoxWidth}
           viewBoxHeight={viewBoxHeight}
-          bcfr={false}
+          powMode={false}
         />
         {isStraightLineTopActive && <StraightLineTop width={width} height={height} color={straightLineTopColor} />}
         {isStraightLineBottomActive && (

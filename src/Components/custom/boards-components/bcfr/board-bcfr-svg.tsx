@@ -140,7 +140,7 @@ export const BoardBcfrSvg = ({ colorShape, legend }: IProps) => {
           numberOfColumns={2}
           viewBoxWidth={viewBoxWidth}
           viewBoxHeight={viewBoxHeight}
-          bcfr={true}
+          powMode={true}
         />
         {currentLegend()}
       </g>

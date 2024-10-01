@@ -96,7 +96,7 @@ export const BoardUnitSvg = ({
           numberOfColumns={2}
           viewBoxWidth={viewBoxWidth}
           viewBoxHeight={viewBoxHeight}
-          bcfr={false}
+          powMode={false}
         />
         {isFigureTopActive && <LightningTop width={width} height={height} color={figureTopColor} />}
         {isFigureBottomActive && <LightningBottom width={width} height={height} color={figureBottomColor} />}

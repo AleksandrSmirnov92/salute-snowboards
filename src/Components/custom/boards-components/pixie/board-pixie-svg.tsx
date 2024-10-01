@@ -77,7 +77,7 @@ export const BoardPixieSvg = ({
           numberOfColumns={2}
           viewBoxWidth={viewBoxWidth}
           viewBoxHeight={viewBoxHeight}
-          bcfr={false}
+          powMode={false}
         />
         {isFigureTopActive && <StraightLineTop width={width} height={height} color={straightLineTopColor} />}
         {isFigureBottomActive && <StraightLineBottom width={width} height={height} color={straightLineBottomColor} />}

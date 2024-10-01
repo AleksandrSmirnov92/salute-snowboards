@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useAppSelector } from '../../../store/hooks/hooks';
-import { BoardUnderdogSvg } from '../boards-components/underdog/board-underdog-svg';
 import { IInitialState } from '../../../store/feautures/formValues/formValuesSlice';
 import { ModelsSnowboards } from '../../../store/contracts';
-import { BoardPixieSvg } from '../boards-components/pixie/board-pixie-svg';
-import { BoardBcfrSvg } from '../boards-components/bcfr/board-bcfr-svg';
-import { BoardFaeSvg } from '../boards-components/fae/board-fae-svg';
-import { BoardUnitSvg } from '../boards-components/unit/board-unit-svg';
+import { BoardPixieSvg } from '../../custom/boards-components/pixie/board-pixie-svg';
+import { BoardUnderdogSvg } from '../../custom/boards-components/underdog/board-underdog-svg';
+import { BoardBcfrSvg } from '../../custom/boards-components/bcfr/board-bcfr-svg';
+import { BoardUnitSvg } from '../../custom/boards-components/unit/board-unit-svg';
+import { BoardFaeSvg } from '../../custom/boards-components/fae/board-fae-svg';
 
 interface IProps {}
 export const BoardDisplay = ({}: IProps) => {
