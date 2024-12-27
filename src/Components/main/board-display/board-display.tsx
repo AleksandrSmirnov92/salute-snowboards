@@ -105,6 +105,8 @@ export const BoardDisplay = ({}: IProps) => {
       model: formValues.model.title,
       modelSize: formValues.boardLength.title,
       exteriorColor: formValues.colorModel.colorOut.isActive ? formValues.colorModel.colorOut.color.cmyk : '',
+      interiorColor: formValues.colorModel.colorIn.isActive ? formValues.colorModel.colorIn.color.cmyk : '',
+      edgingColor: formValues.colorModel.colorEdging.isActive ? formValues.colorModel.colorEdging.color.cmyk : '',
     };
     sendMessageToParent('updateForm', values);
     console.log('formValuesInDisplayComponent', formValues);
@@ -115,4 +117,6 @@ interface SendMessageValue {
   model: string;
   modelSize: string;
   exteriorColor: string;
+  interiorColor: string;
+  edgingColor: string;
 }
