@@ -245,7 +245,7 @@ export const colorPalette: IColorPallete[] = [
 
 export interface IColorPallete {
   id: number;
-  cmyk?: string;
+  cmyk: string;
   hex: string;
   title: string;
   bgColor: string;
