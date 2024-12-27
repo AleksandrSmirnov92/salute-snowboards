@@ -1,5 +1,6 @@
 import { ILegent } from '../../../../store/contracts';
-import { SnowboardInserts } from '../../../custom/snowboards-inserts/snowboard-inserts';
+import { SnowboardInserts } from '../../snowboards-inserts/snowboard-inserts';
+
 import { StarsBottom } from './figure/stars/stars-bottom';
 import { StarsTop } from './figure/stars/stars-top';
 import { LegendPositionOne } from './legend/legend-position-one/legend';
@@ -12,6 +13,8 @@ interface IProps {
   isFigureBottomActive: boolean;
   figureTopColor: string;
   figureBottomColor: string;
+  edgingColor: string;
+  modelSize: number | string;
 }
 
 export const BoardFaeSvg = ({
@@ -22,11 +25,13 @@ export const BoardFaeSvg = ({
   figureTopColor,
   isFigureBottomActive,
   figureBottomColor,
+  edgingColor,
+  modelSize,
 }: IProps) => {
   const scaleBoard = 0.116;
   const width = 600;
   const height = 600;
-  const strokeWidthBoard = 1;
+  const strokeWidthBoard = 5;
   const translateX = 240;
   const translateY = 30;
   const viewBoxWidth = 600;
@@ -38,7 +43,9 @@ export const BoardFaeSvg = ({
         return;
       }
       case 'Position1': {
-        return <LegendPositionOne width={width} height={height} colorLegend={legend.colorLegend} />;
+        return (
+          <LegendPositionOne width={width} height={height} colorLegend={legend.colorLegend} modelSize={modelSize} />
+        );
       }
       default: {
         return;
@@ -48,14 +55,14 @@ export const BoardFaeSvg = ({
   return (
     <svg
       version="1.1"
-      className="w-full h-screen min-h-[500px]"
+      className="w-full h-screen"
       xmlns="http://www.w3.org/2000/svg"
       width={'100%'}
       height={'100%'}
       viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
       preserveAspectRatio="xMidYMid slice"
     >
-      <g transform={`translate(${0}, ${0}) `}>
+      <g transform={`translate(${0}, ${40}) `}>
         <g transform={`translate(${translateX}, ${translateY}) scale(${scaleBoard})`}>
           <path
             fill={colorShapeOut}
@@ -74,7 +81,7 @@ export const BoardFaeSvg = ({
         <g transform={`translate(${translateX}, ${translateY}) scale(${scaleBoard})`}>
           <path
             fill={colorShapeInner}
-            stroke="black"
+            stroke={edgingColor}
             strokeWidth={strokeWidthBoard}
             d="M768.79,2093.26c6.41,367.31,26.55,759.23,52.4,1125.28c1.22,41.73,1.04,85.33-0.72,127.05
 		c-1.75,39.28-7.83,78.47-18.57,115.92c-11.62,40.61-28,79.65-45.04,117.69c-15.02,32.33-30.78,64.97-51.25,93.41
@@ -89,9 +96,9 @@ export const BoardFaeSvg = ({
         <SnowboardInserts
           color="black"
           translateCircleX={179}
-          translateCircleY={60}
-          translateCircle2Y={215}
-          numberOfRows={5}
+          translateCircleY={65}
+          translateCircle2Y={210}
+          numberOfRows={4}
           numberOfColumns={2}
           viewBoxWidth={viewBoxWidth}
           viewBoxHeight={viewBoxHeight}

@@ -11,6 +11,8 @@ import {
   toggleOuterColorActive,
   updateInnerColor,
   toggleInnerColorActive,
+  updateEdgingColor,
+  toggleEdgingColorActive,
   setLegendValue,
   setFigureTopActive,
   setFigureTopColor,
@@ -32,6 +34,11 @@ export const Options = () => {
   const modelsOptions = useSelector((state: RootState) => state.selectOptions.modelsSnowboards);
   const formValues = useSelector((state: RootState) => state.selectedValuesForm);
 
+  const sendMessageToParent = (action: string, value: string) => {
+    const data = { action: action, value: value };
+    window.parent.postMessage(data, 'https://salutmfg.co/constructorultramegasalutconstructor');
+  };
+
   const [selectedModel, setSelectedModel] = useState<ISelectOptions>(modelsOptions[3]);
 
   const getBoardDetails = (modelId: number) => selectOptions.find((item) => item.id === modelId)!.boardDetails;
@@ -43,6 +50,8 @@ export const Options = () => {
   const [modelColorOut, setModelColorsOut] = useState<null | string>(null);
   const [modelColorInner, setModelColorsInner] = useState<null | string>(null);
   const [modelColorInnerToActive, setModelColorsInnerToActive] = useState<boolean>(false);
+  // const [modelColorEdging, setModelColorEdging] = useState<null | string>(null);
+  const [colorEdgingActive, setColorEdgingActive] = useState<boolean>(false);
   // const [modelColors, setModelColors] = useState<null | string>(null);
   const [legends, setLegends] = useState(initialLegends);
   const [modelSizes, setModelSizes] = useState(initialLengths);
@@ -57,6 +66,7 @@ export const Options = () => {
 
     dispatch(setModelValue(selectedModel));
     setModelSizes(actualModel.boardDetails.boardLength);
+    dispatch(setSize(actualModel.boardDetails.boardLength[0]));
     setLegends(actualModel.boardDetails.legentPositions);
   }, [selectedModel, selectOptions, dispatch]);
 
@@ -121,12 +131,37 @@ export const Options = () => {
       }
     }
   }, [selectedModel, selectOptions, dispatch]);
+  useEffect(() => {
+    const actualModel = selectOptions.find((item) => item.id === selectedModel.id);
+    if (!actualModel || !actualModel.boardDetails.colorModel) return;
+
+    const { colorEdging } = actualModel.boardDetails.colorModel;
+
+    if (colorEdging.isActive) {
+      // setModelColorEdging(colorEdging.color[0].bgColor);
+      setColorEdgingActive(colorEdging.isActive);
+      dispatch(toggleEdgingColorActive(colorEdging.isActive));
+      switch (selectedModel.title) {
+        case ModelsSnowboards.Fae: {
+          break;
+        }
+        case ModelsSnowboards.Unit: {
+          dispatch(updateEdgingColor(colorEdging.color[1]));
+          break;
+        }
+        case ModelsSnowboards.AMFish: {
+          break;
+        }
+      }
+    }
+  }, [selectedModel, selectOptions, dispatch]);
+
   return (
-    <div className="relative h-full overflow-y-auto overflow-x-hidden ">
+    <div className="relative h-full overflow-y-auto overflow-x-hidden scroll-options">
       <div className="bg-eerie-black h-12 mb-7 mt-3 md:pl-4 flex justify-center md:justify-start items-center w-full">
         <span className="text-warm-gray text-lg">Детали доски</span>
       </div>
-      <form className="relative ">
+      <form className="relative">
         <Select
           name={'SnowboardsModel'}
           label={'Snowboards model'}
@@ -137,7 +172,10 @@ export const Options = () => {
               id: item.id,
             };
           })}
-          onChange={(e) => setSelectedModel(e)}
+          onChange={(e) => {
+            setSelectedModel(e);
+            sendMessageToParent('model', e.title);
+          }}
           valueTest={{
             title: selectedModel.title,
             value: selectedModel,
@@ -149,9 +187,8 @@ export const Options = () => {
           labelContentPosition={'justify-start'}
           options={modelSizes}
           onChange={(e) => {
-            console.log(e);
             dispatch(setSize(e));
-            // dispatch(setColorValue(e));
+            sendMessageToParent('size', e.title);
           }}
           valueTest={{
             title: formValues.boardLength.title,
@@ -198,7 +235,30 @@ export const Options = () => {
         ) : (
           ''
         )}
-
+        {colorEdgingActive ? (
+          <Select
+            name={'ColorsModelEdging'}
+            label={'Colors model Edging'}
+            labelContentPosition={'justify-start'}
+            options={colorPalette.map((item) => {
+              return { ...item, title: item.cmyk! };
+            })}
+            onChange={(e: IColorPallete) => {
+              // setModelColorEdging(e.bgColor);
+              dispatch(updateEdgingColor(e));
+            }}
+            valueTest={{
+              title: formValues.colorModel.colorEdging.color.cmyk!,
+              bgColor: formValues.colorModel.colorEdging.color.bgColor!,
+              value: formValues.colorModel.colorEdging.color,
+            }}
+            boardColorOut={modelColorOut}
+            boardColorInner={modelColorInner}
+            excludeBothColors={true}
+          />
+        ) : (
+          ''
+        )}
         {formValues.figures.figureTop.hasFigure && formValues.figures.figureBottom.hasFigure ? (
           <div className="flex flex-col md:flex-row w-full gap-3 mt-2">
             <div className="flex flex-col w-full md:w-1/2">

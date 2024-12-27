@@ -24,8 +24,9 @@ export interface IPropsLegend {
   };
   width: number;
   height: number;
+  modelSize: number | string;
 }
-export const LegendPositionOne = ({ colorLegend, width, height }: IPropsLegend) => {
+export const LegendPositionOne = ({ colorLegend, width, height, modelSize }: IPropsLegend) => {
   // top options
   const colorTop = colorLegend.top?.colorPallete.hex;
   //middle options
@@ -42,9 +43,13 @@ export const LegendPositionOne = ({ colorLegend, width, height }: IPropsLegend) 
       xmlns="http://www.w3.org/2000/svg"
     >
       {/* <rect width="600" height="600" fill="blue" /> */}
-      {colorLegend.top ? <LegendTop width={width} height={height} color={colorTop!} /> : ''}
+      {colorLegend.top ? <LegendTop width={width} height={height} color={colorTop!} modelSize={modelSize} /> : ''}
       {colorLegend.middle ? <LegendMiddle width={width} height={height} color={colorMiddle!} /> : ''}
-      {colorLegend.bottom ? <LegendBottom width={width} height={height} color={colorBottom!} /> : ''}
+      {colorLegend.bottom ? (
+        <LegendBottom width={width} height={height} color={colorBottom!} modelSize={modelSize} />
+      ) : (
+        ''
+      )}
     </svg>
   );
 };

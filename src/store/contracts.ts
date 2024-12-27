@@ -15,6 +15,10 @@ export interface ISnowboardDetails {
       isActive: boolean;
       color: IColorPallete[];
     };
+    colorEdging: {
+      isActive: boolean;
+      color: IColorPallete[];
+    };
   };
   figures: IFigures;
   legentPositions: ILegent[];

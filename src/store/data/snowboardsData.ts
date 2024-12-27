@@ -1,4 +1,5 @@
 import { ISnowboard, ModelsSnowboards } from '../contracts';
+import { boardLengthAmFish } from './boardAmFishData';
 import { boardLengthBCFR } from './boardBCFRData';
 import { boardLengthFae, positionsFae } from './boardFaeData';
 import { boardLengthPixie, positionsPixie } from './boardPixieData';
@@ -21,6 +22,10 @@ export const modelsSnowboards: ISnowboard[] = [
           isActive: false,
           color: colorPalette,
         },
+        colorEdging: {
+          isActive: false,
+          color: colorPalette,
+        },
       },
       figures: hasStraightLines,
       legentPositions: positionsPixie,
@@ -37,6 +42,10 @@ export const modelsSnowboards: ISnowboard[] = [
           color: colorPalette,
         },
         colorIn: {
+          isActive: false,
+          color: colorPalette,
+        },
+        colorEdging: {
           isActive: false,
           color: colorPalette,
         },
@@ -59,10 +68,14 @@ export const modelsSnowboards: ISnowboard[] = [
           isActive: false,
           color: colorPalette,
         },
+        colorEdging: {
+          isActive: true,
+          color: colorPalette,
+        },
       },
       figures: hasStraightLines,
       legentPositions: positionsUnderdog,
-      boardLength: boardLengthPixie,
+      boardLength: boardLengthAmFish,
     },
   },
   {
@@ -75,6 +88,10 @@ export const modelsSnowboards: ISnowboard[] = [
           color: colorPalette,
         },
         colorIn: {
+          isActive: false,
+          color: colorPalette,
+        },
+        colorEdging: {
           isActive: false,
           color: colorPalette,
         },
@@ -97,6 +114,10 @@ export const modelsSnowboards: ISnowboard[] = [
           isActive: true,
           color: colorPalette,
         },
+        colorEdging: {
+          isActive: true,
+          color: colorPalette,
+        },
       },
       figures: hasLightning,
       legentPositions: positionsUnit,
@@ -113,6 +134,10 @@ export const modelsSnowboards: ISnowboard[] = [
           color: colorPalette,
         },
         colorIn: {
+          isActive: true,
+          color: colorPalette,
+        },
+        colorEdging: {
           isActive: true,
           color: colorPalette,
         },

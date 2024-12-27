@@ -1,0 +1,27 @@
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.scroll-fix {
+  overflow: hidden;
+  height: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  /* Условия для Safari */
+  @supports (-webkit-overflow-scrolling: touch) {
+    .scroll-options {
+      -webkit-overflow-scrolling: touch; /* Включение "плавного" скроллинга */
+      overflow-y: auto; /* Включение прокрутки */
+    }
+    .scroll-options::after {
+      content: '';
+      display: block;
+      height: 70px; /* Отступ снизу */
+    }
+  }
+}

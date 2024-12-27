@@ -11,6 +11,7 @@ interface IProps {
   isStraightLineBottomActive: boolean;
   straightLineBottomColor: string;
   legend: ILegent;
+  modelSize: number | string;
 }
 export const BoardUnderdogSvg = ({
   colorShape,
@@ -19,6 +20,7 @@ export const BoardUnderdogSvg = ({
   isStraightLineBottomActive,
   straightLineBottomColor,
   legend,
+  modelSize,
 }: IProps) => {
   //Board
   const scaleBoard = 0.012;
@@ -42,6 +44,7 @@ export const BoardUnderdogSvg = ({
             height={height}
             colorLegend={legend.colorLegend}
             backgroundColor={colorShape}
+            modelSize={modelSize}
           />
         );
       }
@@ -54,13 +57,13 @@ export const BoardUnderdogSvg = ({
     <svg
       version="1.0"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-full  h-screen min-h-[500px]"
-      width={width}
-      height={height}
+      className="w-full h-screen"
+      width={'100%'}
+      height={'100%'}
       viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
       preserveAspectRatio="xMidYMid slice"
     >
-      <g transform={`translate(${0}, ${-30})`}>
+      <g transform={`translate(${0}, ${10})`}>
         <g transform={`translate(${translateX}, ${translateY}) scale(${scaleBoard})`}>
           <path
             d="M22265 41340 c-579 -27 -1176 -171 -1651 -400 -236 -114 -414 -255
@@ -85,7 +88,7 @@ export const BoardUnderdogSvg = ({
           translateCircleX={180}
           translateCircleY={85}
           translateCircle2Y={255}
-          numberOfRows={5}
+          numberOfRows={6}
           numberOfColumns={2}
           viewBoxWidth={viewBoxWidth}
           viewBoxHeight={viewBoxHeight}

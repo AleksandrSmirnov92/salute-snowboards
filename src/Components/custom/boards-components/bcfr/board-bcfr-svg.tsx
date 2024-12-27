@@ -5,8 +5,9 @@ import { LegendPositionOne } from './legend/legend-position-one/legend';
 interface IProps {
   colorShape: string;
   legend: ILegent;
+  modelSize: number | string;
 }
-export const BoardBcfrSvg = ({ colorShape, legend }: IProps) => {
+export const BoardBcfrSvg = ({ colorShape, legend, modelSize }: IProps) => {
   const scaleBoard = 0.1009;
 
   const width = 600;
@@ -28,6 +29,7 @@ export const BoardBcfrSvg = ({ colorShape, legend }: IProps) => {
             height={height}
             colorLegend={legend.colorLegend}
             backgroundColor={colorShape}
+            modelSize={modelSize}
           />
         );
       }
@@ -40,13 +42,13 @@ export const BoardBcfrSvg = ({ colorShape, legend }: IProps) => {
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-screen min-h-[500px] "
+      className="w-full h-full"
       width={'100%'}
       height={'100%'}
       viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
       preserveAspectRatio="xMidYMid slice"
     >
-      <g transform={`translate(${0}, ${0}) `}>
+      <g transform={`translate(${0}, ${40}) `}>
         <g transform={`translate(${translateX}, ${translateY}) scale(${scaleBoard}) rotate(${90})`}>
           <polyline
             fill={colorShape}

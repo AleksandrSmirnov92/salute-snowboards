@@ -27,10 +27,11 @@ export const Main = () => {
       }
     }
   };
+
   return (
-    <div className="flex justify-between min-h-[500px]  h-screen overflow-hidden">
-      <div className="flex w-4/6 md:w-1/2 h-full justify-center mb-2 relative">
-        <div className="w-full  min-h-screen overflow-y-auto flex align-bottom justify-center">
+    <div className="flex justify-between overflow-hidden">
+      <div className="flex w-[66%] md:w-[50%]  h-screen justify-center mb-2 relative">
+        <div className="w-full h-full  min-w-[180px] overflow-hidden flex align-center justify-center ">
           {/* <div className="flex1 justify-center"> */}
           <TransformWrapper
             ref={transformRef}
@@ -41,7 +42,7 @@ export const Main = () => {
             maxScale={4}
             minScale={1}
           >
-            <TransformComponent>
+            <TransformComponent wrapperStyle={{ height: '100%', overflow: 'hidden' }} contentStyle={{ height: '100%' }}>
               <BoardDisplay />
             </TransformComponent>
           </TransformWrapper>
@@ -84,11 +85,9 @@ export const Main = () => {
           </Button>
         </div>
       </div>
-      <div className="relative w-5/6 md:w-1/2 h-full  mb-10 p-3  border-l-[1px] border-solid border-warm-gray overflow-hidden">
+      <div className="relative  w-full md:w-[50%] p-3 h-screen border-l-[1px] border-solid border-warm-gray overflow-hidden">
         <Options />
       </div>
     </div>
   );
 };
-// border-solid border
-// border-warm-gray

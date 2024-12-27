@@ -5,10 +5,10 @@ interface IPropsLegend {
 }
 export const LegendBottomBCFR = ({ color, width, height }: IPropsLegend) => {
   const scaleText = 1.0;
-  const scale = 0.105;
+  const scale = 0.1;
 
-  const positionLegendBottomX = 2365;
-  const positionLegentBottomY = 10;
+  const positionLegendBottomX = 2510;
+  const positionLegentBottomY = 200;
   const colorBottom = color;
   return (
     <svg

@@ -5,13 +5,13 @@ interface IPropsLegendMiddle {
 }
 export const LegendMiddle = ({ color, width, height }: IPropsLegendMiddle) => {
   const scaleText = 1.0;
-  const scaleS = 0.12;
-  const scaleTextUnderS = 0.13;
-  const positionLegendMiddleX = 1815;
-  const positionLegentMiddleY = -270;
+  const scaleS = 0.11;
+  const scaleTextUnderS = 0.11;
+  const positionLegendMiddleX = 2240;
+  const positionLegentMiddleY = 450;
 
-  const positionLegendMiddleSX = 2010;
-  const positionLegentMiddleSY = 0;
+  const positionLegendMiddleSX = 2240;
+  const positionLegentMiddleSY = 250;
   const colorMiddle = color;
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
@@ -54,6 +54,7 @@ export const LegendMiddle = ({ color, width, height }: IPropsLegendMiddle) => {
           fill={colorMiddle}
         />
         <path
+          fill={colorMiddle}
           transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendMiddleX},${positionLegentMiddleY})`}
           d="M451.06,2655.82c0,0.29-0.08,0.56-0.23,0.8c-0.15,0.24-0.35,0.43-0.61,0.57c-0.25,0.14-0.54,0.21-0.84,0.21
           c-0.3,0-0.59-0.07-0.84-0.22c-0.26-0.14-0.46-0.34-0.61-0.57c-0.15-0.24-0.23-0.5-0.23-0.79c0-0.29,0.07-0.55,0.23-0.79
@@ -61,7 +62,6 @@ export const LegendMiddle = ({ color, width, height }: IPropsLegendMiddle) => {
           C450.98,2655.26,451.06,2655.53,451.06,2655.82 M450.42,2655.82c0-0.28-0.1-0.52-0.3-0.71c-0.2-0.19-0.45-0.29-0.74-0.29
           c-0.29,0-0.54,0.1-0.74,0.3c-0.2,0.2-0.3,0.43-0.3,0.71c0,0.27,0.1,0.51,0.31,0.71c0.21,0.2,0.45,0.3,0.74,0.3
           c0.29,0,0.54-0.1,0.74-0.29C450.32,2656.34,450.42,2656.1,450.42,2655.82"
-          fill={colorMiddle}
         />
         <path
           transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendMiddleX},${positionLegentMiddleY})`}

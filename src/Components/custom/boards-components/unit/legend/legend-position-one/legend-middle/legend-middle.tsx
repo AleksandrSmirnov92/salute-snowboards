@@ -5,13 +5,13 @@ interface IPropsLegendMiddle {
 }
 export const LegendMiddleUnit = ({ color, width, height }: IPropsLegendMiddle) => {
   const scaleText = 1.0;
-  const scaleS = 0.12;
-  const scaleTextUnderS = 0.13;
-  const positionLegendMiddleSX = 3085;
-  const positionLegentMiddleSY = 50;
+  const scaleS = 0.11;
+  const scaleTextUnderS = 0.11;
+  const positionLegendMiddleSX = 3310;
+  const positionLegentMiddleSY = 250;
 
-  const positionLegendMiddleX = 2895;
-  const positionLegentMiddleY = -210;
+  const positionLegendMiddleX = 3310;
+  const positionLegentMiddleY = 380;
   const colorMiddle = color;
   return (
     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox={`0 0 ${width} ${height}`}>

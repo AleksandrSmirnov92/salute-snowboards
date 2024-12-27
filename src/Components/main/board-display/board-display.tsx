@@ -7,6 +7,7 @@ import { BoardUnderdogSvg } from '../../custom/boards-components/underdog/board-
 import { BoardBcfrSvg } from '../../custom/boards-components/bcfr/board-bcfr-svg';
 import { BoardUnitSvg } from '../../custom/boards-components/unit/board-unit-svg';
 import { BoardFaeSvg } from '../../custom/boards-components/fae/board-fae-svg';
+import { BoardAmFishSvg } from '../../custom/boards-components/amf/board-am-fish-svg';
 
 interface IProps {}
 export const BoardDisplay = ({}: IProps) => {
@@ -22,6 +23,7 @@ export const BoardDisplay = ({}: IProps) => {
             straightLineBottomColor={value.figures.figureBottom.colorFigure.hex}
             colorShape={value.colorModel.colorOut.color.hex!}
             legend={value.legend}
+            modelSize={value.boardLength.size}
           />
         );
       case ModelsSnowboards.Underdog:
@@ -33,12 +35,30 @@ export const BoardDisplay = ({}: IProps) => {
             straightLineBottomColor={value.figures.figureBottom.colorFigure.hex}
             colorShape={value.colorModel.colorOut.color.hex!}
             legend={value.legend}
+            modelSize={value.boardLength.title}
           />
         );
       case ModelsSnowboards.AMFish:
-        return <></>;
+        return (
+          <BoardAmFishSvg
+            colorShape={value.colorModel.colorOut.color.hex!}
+            isFigureBottomActive={value.figures.figureBottom.isActive}
+            isFigureTopActive={value.figures.figureTop.isActive}
+            figureTopColor={value.figures.figureTop.colorFigure.hex}
+            figureBottomColor={value.figures.figureBottom.colorFigure.hex}
+            edgingColor={value.colorModel.colorEdging.color.hex}
+            legend={value.legend}
+            modelSize={value.boardLength.size}
+          />
+        );
       case ModelsSnowboards.BCFR:
-        return <BoardBcfrSvg colorShape={value.colorModel.colorOut.color.hex!} legend={value.legend} />;
+        return (
+          <BoardBcfrSvg
+            colorShape={value.colorModel.colorOut.color.hex!}
+            legend={value.legend}
+            modelSize={value.boardLength.title}
+          />
+        );
       case ModelsSnowboards.Unit: {
         return (
           <BoardUnitSvg
@@ -49,6 +69,8 @@ export const BoardDisplay = ({}: IProps) => {
             colorShapeInner={value.colorModel.colorIn.color.hex!}
             colorShapeOut={value.colorModel.colorOut.color.hex!}
             legend={value.legend}
+            edgingColor={value.colorModel.colorEdging.color.hex}
+            modelSize={value.boardLength.size}
           />
         );
       }
@@ -63,6 +85,8 @@ export const BoardDisplay = ({}: IProps) => {
             colorShapeInner={value.colorModel.colorIn.color.hex!}
             colorShapeOut={value.colorModel.colorOut.color.hex!}
             legend={value.legend}
+            edgingColor={value.colorModel.colorEdging.color.hex}
+            modelSize={value.boardLength.size}
           />
         );
       }

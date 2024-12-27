@@ -26,6 +26,10 @@ const initialState: IInitialState = {
       isActive: false,
       color: defaultColor,
     },
+    colorEdging: {
+      isActive: false,
+      color: defaultColor,
+    },
   },
   figures: hasNotFigure,
   boardLength: boardLengthBCFR[1],
@@ -71,6 +75,12 @@ const selectedFormValues = createSlice({
     toggleInnerColorActive(state, action: PayloadAction<boolean>) {
       state.colorModel.colorIn.isActive = action.payload;
     },
+    updateEdgingColor(state, action: PayloadAction<IColorPallete>) {
+      state.colorModel.colorEdging.color = action.payload;
+    },
+    toggleEdgingColorActive(state, action: PayloadAction<boolean>) {
+      state.colorModel.colorEdging.isActive = action.payload;
+    },
     setFigureTopActive(state, action: PayloadAction<boolean>) {
       state.figures.figureTop.isActive = action.payload;
     },
@@ -112,6 +122,8 @@ export const {
   toggleOuterColorActive,
   updateInnerColor,
   toggleInnerColorActive,
+  updateEdgingColor,
+  toggleEdgingColorActive,
   setFigureTopActive,
   setFigureTopColor,
   setLegendValue,
@@ -132,6 +144,8 @@ export type SelectedFormValuesActionCreator =
   | ReturnType<typeof toggleOuterColorActive>
   | ReturnType<typeof updateInnerColor>
   | ReturnType<typeof toggleInnerColorActive>
+  | ReturnType<typeof updateEdgingColor>
+  | ReturnType<typeof toggleEdgingColorActive>
   | ReturnType<typeof setFigureTopActive>
   | ReturnType<typeof setFigureTopColor>
   | ReturnType<typeof setFigureBottomActive>
@@ -157,8 +171,33 @@ export interface IInitialState {
       isActive: boolean;
       color: IColorPallete;
     };
+    colorEdging: {
+      isActive: boolean;
+      color: IColorPallete;
+    };
   };
   figures: IFigures;
   legend: ILegent;
   boardLength: IModelSize;
 }
+
+/*
+id=form829695528
+name=form829695528
+role="form"
+action="#"
+data-formactiontype="2"
+data-inputbox=".t-input-group"
+data-success-callback="t678_onSuccess"
+url=https://forms.tildaapi.com/procces/
+Remote Address:178.248.235.12:443
+'formservices[]': [
+    '679fabec04f12e85da07b1afeb2ddc3c',
+    '986b9677cbf2cf3fa031139dc4118597',
+    '11ad007f998709df9ea1d03526f534dc',
+  ]
+  tildaspec-projectid: 7795673,
+  tildaspec-formskey: e8aca28af9896c41e6c6f46457795673,
+  tildaspec-formid: form829695528
+
+*/

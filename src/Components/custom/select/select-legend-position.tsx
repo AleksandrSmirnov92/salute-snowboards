@@ -21,6 +21,7 @@ interface IPropsLegendPosition {
   disabled?: boolean;
   boardColorOut?: string | null;
   boardColorInner?: string | null;
+  excludeBothColors?: boolean;
 }
 const Select = ({
   onChange,
@@ -32,6 +33,7 @@ const Select = ({
   disabled = false,
   boardColorOut = null,
   boardColorInner = null,
+  excludeBothColors = false,
 }: IPropsLegendPosition) => {
   const [dropdownPosition, setDropdownPosition] = useState<{ top: number; left: number; width: number | string }>({
     top: 0,
@@ -95,7 +97,7 @@ const Select = ({
                     <div className={`h-5 w-5 flex-shrink-0 rounded-full ${valueTest.bgColor}`}></div>
                   )}
                   <span
-                    className={`ml-3 block ${checkingForInnerColor(boardColorInner, boardColorOut, valueTest.bgColor) ? 'line-through' : ''} truncate`}
+                    className={`ml-3 block ${checkingForInnerColor(boardColorInner, boardColorOut, valueTest.bgColor, excludeBothColors) ? 'line-through' : ''} truncate`}
                   >
                     {valueTest.title}
                   </span>
@@ -131,7 +133,7 @@ const Select = ({
                                 <div className={`h-5 w-5 flex-shrink-0 rounded-full ${item.bgColor}`}></div>
                               )}
                               <span
-                                className={`ml-3 ${checkingForInnerColor(boardColorInner, boardColorOut, item.bgColor) ? 'line-through' : ''} truncate ${selected ? 'font-semibold' : 'font-normal'}`}
+                                className={`ml-3 ${checkingForInnerColor(boardColorInner, boardColorOut, item.bgColor, excludeBothColors) ? 'line-through' : ''} truncate ${selected ? 'font-semibold' : 'font-normal'}`}
                               >
                                 {item.title}
                               </span>
@@ -161,7 +163,11 @@ const checkingForInnerColor = (
   boardColorInner: string | null,
   boardColorOut: string | null,
   bgColor: string | undefined,
+  excludeBothColors: boolean,
 ) => {
+  if (excludeBothColors) {
+    return boardColorOut === bgColor || boardColorInner === bgColor;
+  }
   if (boardColorInner === null) {
     return boardColorOut === bgColor || boardColorInner === bgColor;
   }

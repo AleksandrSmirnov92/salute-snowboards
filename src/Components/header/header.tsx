@@ -2,7 +2,7 @@ import { SaluteShapesSvg } from '../../assets/svg/salute-shapes.svg';
 
 export const Header = () => {
   return (
-    <div className="flex h-[100px] justify-center items-center  border-b-[1px] border-solid border-warm-gray">
+    <div className="fixed top-0 left-0 w-full h-[100px] md:h-[120px] flex justify-center items-center border-b border-warm-gray p-4 bg-[#0b1318] z-10">
       <SaluteShapesSvg />
     </div>
   );
