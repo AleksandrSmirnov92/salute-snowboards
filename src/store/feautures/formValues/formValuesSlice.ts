@@ -180,24 +180,3 @@ export interface IInitialState {
   legend: ILegent;
   boardLength: IModelSize;
 }
-
-/*
-id=form829695528
-name=form829695528
-role="form"
-action="#"
-data-formactiontype="2"
-data-inputbox=".t-input-group"
-data-success-callback="t678_onSuccess"
-url=https://forms.tildaapi.com/procces/
-Remote Address:178.248.235.12:443
-'formservices[]': [
-    '679fabec04f12e85da07b1afeb2ddc3c',
-    '986b9677cbf2cf3fa031139dc4118597',
-    '11ad007f998709df9ea1d03526f534dc',
-  ]
-  tildaspec-projectid: 7795673,
-  tildaspec-formskey: e8aca28af9896c41e6c6f46457795673,
-  tildaspec-formid: form829695528
-
-*/

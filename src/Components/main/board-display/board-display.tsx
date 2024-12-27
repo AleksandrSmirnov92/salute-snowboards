@@ -101,11 +101,10 @@ export const BoardDisplay = ({}: IProps) => {
 
   const result = getAlertMessage(formValues);
   useEffect(() => {
-    const model = formValues.model.title;
-    const modelSize = formValues.boardLength.title;
     const values = {
-      model: model,
-      modelSize: modelSize,
+      model: formValues.model.title,
+      modelSize: formValues.boardLength.title,
+      colorOut: formValues.colorModel.colorOut.isActive ? formValues.colorModel.colorOut.color.title : '',
     };
     sendMessageToParent('updateForm', values);
     console.log('formValuesInDisplayComponent', formValues);
@@ -115,4 +114,5 @@ export const BoardDisplay = ({}: IProps) => {
 interface SendMessageValue {
   model: string;
   modelSize: string;
+  colorOut: string;
 }
