@@ -33,12 +33,6 @@ export const Options = () => {
   const selectOptions = useSelector((state: RootState) => state.selectOptions.snowboards);
   const modelsOptions = useSelector((state: RootState) => state.selectOptions.modelsSnowboards);
   const formValues = useSelector((state: RootState) => state.selectedValuesForm);
-
-  const sendMessageToParent = (action: string, value: string) => {
-    const data = { action: action, value: value };
-    window.parent.postMessage(data, 'https://salutmfg.co/constructorultramegasalutconstructor');
-  };
-
   const [selectedModel, setSelectedModel] = useState<ISelectOptions>(modelsOptions[3]);
 
   const getBoardDetails = (modelId: number) => selectOptions.find((item) => item.id === modelId)!.boardDetails;
@@ -174,7 +168,6 @@ export const Options = () => {
           })}
           onChange={(e) => {
             setSelectedModel(e);
-            sendMessageToParent('model', e.title);
           }}
           valueTest={{
             title: selectedModel.title,
@@ -188,7 +181,6 @@ export const Options = () => {
           options={modelSizes}
           onChange={(e) => {
             dispatch(setSize(e));
-            sendMessageToParent('size', e.title);
           }}
           valueTest={{
             title: formValues.boardLength.title,

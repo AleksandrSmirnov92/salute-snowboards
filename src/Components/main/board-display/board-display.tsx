@@ -94,9 +94,25 @@ export const BoardDisplay = ({}: IProps) => {
         return <></>;
     }
   };
+  const sendMessageToParent = (action: string, value: SendMessageValue) => {
+    const data = { action: action, value: value };
+    window.parent.postMessage(data, 'https://salutmfg.co/constructorultramegasalutconstructor');
+  };
+
   const result = getAlertMessage(formValues);
   useEffect(() => {
+    const model = formValues.model.title;
+    const modelSize = formValues.boardLength.title;
+    const values = {
+      model: model,
+      modelSize: modelSize,
+    };
+    sendMessageToParent('updateForm', values);
     console.log('formValuesInDisplayComponent', formValues);
   }, [formValues]);
   return <>{result}</>;
 };
+interface SendMessageValue {
+  model: string;
+  modelSize: string;
+}
