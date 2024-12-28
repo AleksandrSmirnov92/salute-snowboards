@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
 import { useAppSelector } from '../../../store/hooks/hooks';
 import { IInitialState } from '../../../store/feautures/formValues/formValuesSlice';
-import { ModelsSnowboards } from '../../../store/contracts';
+import { ISendMessageValue, ModelsSnowboards } from '../../../store/contracts';
 import { BoardPixieSvg } from '../../custom/boards-components/pixie/board-pixie-svg';
 import { BoardUnderdogSvg } from '../../custom/boards-components/underdog/board-underdog-svg';
 import { BoardBcfrSvg } from '../../custom/boards-components/bcfr/board-bcfr-svg';
 import { BoardUnitSvg } from '../../custom/boards-components/unit/board-unit-svg';
 import { BoardFaeSvg } from '../../custom/boards-components/fae/board-fae-svg';
 import { BoardAmFishSvg } from '../../custom/boards-components/amf/board-am-fish-svg';
+import { createDataForTilde } from '../../../utils/creator-data-for-tilda';
 
 interface IProps {}
 export const BoardDisplay = ({}: IProps) => {
@@ -94,40 +95,15 @@ export const BoardDisplay = ({}: IProps) => {
         return <></>;
     }
   };
-  const sendMessageToParent = (action: string, value: SendMessageValue) => {
+  const sendMessageToParent = (action: string, value: ISendMessageValue) => {
     const data = { action: action, value: value };
     window.parent.postMessage(data, 'https://salutmfg.co/constructorultramegasalutconstructor');
   };
 
   const result = getAlertMessage(formValues);
   useEffect(() => {
-    const values: SendMessageValue = {
-      model: formValues.model.title,
-      modelSize: formValues.boardLength.title,
-      exteriorColor: formValues.colorModel.colorOut.isActive
-        ? `CMYK: ${formValues.colorModel.colorOut.color.cmyk}`
-        : 'No data',
-      interiorColor: formValues.colorModel.colorIn.isActive
-        ? `CMYK: ${formValues.colorModel.colorIn.color.cmyk}`
-        : 'No data',
-      edgingColor: formValues.colorModel.colorEdging.isActive
-        ? `CMYK: ${formValues.colorModel.colorEdging.color.cmyk}`
-        : 'No data',
-      figureTop: formValues.figures.figureTop.isActive ? `${formValues.figures.figureTop.nameFigure} - yes` : 'No data',
-      figureBottom: formValues.figures.figureTop.isActive
-        ? `${formValues.figures.figureTop.nameFigure} - yes`
-        : 'No data',
-    };
+    const values: ISendMessageValue = createDataForTilde(formValues);
     sendMessageToParent('updateForm', values);
   }, [formValues]);
   return <>{result}</>;
 };
-interface SendMessageValue {
-  model: string;
-  modelSize: string;
-  exteriorColor: string;
-  interiorColor: string;
-  edgingColor: string;
-  figureTop: string;
-  figureBottom: string;
-}

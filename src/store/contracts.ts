@@ -83,3 +83,17 @@ export enum ModelsSnowboards {
   Unit = 'Unit',
   Fae = 'Fae',
 }
+export interface ISendMessageValue {
+  model: string;
+  modelSize: string;
+  exteriorColor: string;
+  interiorColor: string;
+  edgingColor: string;
+  figureTop: string;
+  figureBottom: string;
+  legend: {
+    top: string;
+    middle: string;
+    bottom: string;
+  };
+}
