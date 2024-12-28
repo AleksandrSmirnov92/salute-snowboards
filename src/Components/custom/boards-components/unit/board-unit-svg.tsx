@@ -2,7 +2,7 @@ import { ILegent } from '../../../../store/contracts';
 import { SnowboardInserts } from '../../snowboards-inserts/snowboard-inserts';
 import { LightningBottom } from './figure/lightning-bottom';
 import { LightningTop } from './figure/lightning-top';
-import { LegendPositionOne } from './legend/legend-position-one/legend';
+import { LegendVersionOne } from './legend/legend-position-one/legend';
 
 interface IProps {
   colorShapeOut: string;
@@ -42,9 +42,9 @@ export const BoardUnitSvg = ({
       case 'Not selected': {
         return;
       }
-      case 'Position1': {
+      case 'Version1': {
         return (
-          <LegendPositionOne width={width} height={height} colorLegend={legend.colorLegend} modelSize={modelSize} />
+          <LegendVersionOne width={width} height={height} colorLegend={legend.colorLegend} modelSize={modelSize} />
         );
       }
       default: {

@@ -14,22 +14,23 @@ export const createDataForTilde = (formValues: IInitialState): ISendMessageValue
     ? `CMYK: ${formValues.colorModel.colorEdging.color.cmyk}`
     : 'No data';
   const figureTop = formValues.figures.figureTop.isActive
-    ? `${formValues.figures.figureTop.nameFigure} - yes`
+    ? `${formValues.figures.figureTop.nameFigure} Color - CMYK: ${formValues.figures.figureTop.colorFigure.cmyk}`
     : 'No data';
-  const figureBottom = formValues.figures.figureTop.isActive
-    ? `${formValues.figures.figureTop.nameFigure} - yes`
+  const figureBottom = formValues.figures.figureBottom.isActive
+    ? `${formValues.figures.figureBottom.nameFigure} Color - CMYK: ${formValues.figures.figureBottom.colorFigure.cmyk}`
     : 'No data';
   const legend = {
+    versionPosition: formValues.legend.pos,
     top:
-      formValues.legend.pos !== 'No selected'
+      formValues.legend.pos !== 'Not selected'
         ? `CMYK: ${formValues.legend.colorLegend.top!.colorPallete.cmyk}`
         : 'No data',
     middle:
-      formValues.legend.pos !== 'No selected'
+      formValues.legend.pos !== 'Not selected'
         ? `CMYK: ${formValues.legend.colorLegend.middle!.colorPallete.cmyk}`
         : 'No data',
     bottom:
-      formValues.legend.pos !== 'No selected'
+      formValues.legend.pos !== 'Not selected'
         ? `CMYK: ${formValues.legend.colorLegend.bottom!.colorPallete.cmyk}`
         : 'No data',
   };

@@ -85,9 +85,9 @@ export const Options = () => {
     setColorNameFigureBottom(figureBottom.colorLabel);
 
     dispatch(setFigureTopColor(figureTop.colorFigure));
-    dispatch(setFigureTopActive(figureTop.isActive));
+    dispatch(setFigureTopActive({ flag: figureTop.isActive, nameFigure: figureTop.nameFigure }));
     dispatch(setFigureBottomColor(figureBottom.colorFigure));
-    dispatch(setFigureBottomActive(figureBottom.isActive));
+    dispatch(setFigureBottomActive({ flag: figureBottom.isActive, nameFigure: figureBottom.nameFigure }));
     dispatch(setHasFigureTop(figureTop.hasFigure));
     dispatch(setHasFigureBottom(figureBottom.hasFigure));
   }, [selectedModel, selectOptions, dispatch]);
@@ -130,13 +130,13 @@ export const Options = () => {
     if (!actualModel || !actualModel.boardDetails.colorModel) return;
 
     const { colorEdging } = actualModel.boardDetails.colorModel;
-
+    setColorEdgingActive(colorEdging.isActive);
     if (colorEdging.isActive) {
       // setModelColorEdging(colorEdging.color[0].bgColor);
-      setColorEdgingActive(colorEdging.isActive);
       dispatch(toggleEdgingColorActive(colorEdging.isActive));
       switch (selectedModel.title) {
         case ModelsSnowboards.Fae: {
+          dispatch(updateEdgingColor(colorEdging.color[1]));
           break;
         }
         case ModelsSnowboards.Unit: {
@@ -258,7 +258,7 @@ export const Options = () => {
                 <Label className="text-nowrap text-base font-medium leading-6 text-warm-gray">{nameFigureTop}</Label>
                 <Checkbox
                   checked={formValues.figures.figureTop.isActive}
-                  onChange={(e: boolean) => dispatch(setFigureTopActive(e))}
+                  onChange={(e: boolean) => dispatch(setFigureTopActive({ flag: e, nameFigure: nameFigureTop }))}
                   name={'CheckboxFigureTop'}
                   className="group block size-4 ml-2 border border-#b3b2a0 bg-eerie-black shadow-sm  hover:border-#9c9b7c data-[checked]:bg-eerie-black cursor-pointer"
                 >
@@ -294,7 +294,7 @@ export const Options = () => {
                 <Label className="text-nowrap text-base font-medium leading-6 text-warm-gray">{nameFigureBottom}</Label>
                 <Checkbox
                   checked={formValues.figures.figureBottom.isActive}
-                  onChange={(e) => dispatch(setFigureBottomActive(e))}
+                  onChange={(e) => dispatch(setFigureBottomActive({ flag: e, nameFigure: nameFigureBottom }))}
                   name={'CheckboxFigureBottom'}
                   className="group block size-4 ml-2 border border-#b3b2a0 bg-eerie-black shadow-sm  hover:border-#9c9b7c data-[checked]:bg-eerie-black cursor-pointer"
                 >

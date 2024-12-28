@@ -92,6 +92,7 @@ export interface ISendMessageValue {
   figureTop: string;
   figureBottom: string;
   legend: {
+    versionPosition: string;
     top: string;
     middle: string;
     bottom: string;

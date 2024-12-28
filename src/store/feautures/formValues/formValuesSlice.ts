@@ -35,8 +35,8 @@ const initialState: IInitialState = {
   boardLength: boardLengthBCFR[1],
   legend: {
     id: 1,
-    pos: 'Position1',
-    title: 'Position1',
+    pos: 'Version1',
+    title: 'Version1',
     colorLegend: {
       top: {
         name: 'ColorLegendTop',
@@ -81,14 +81,16 @@ const selectedFormValues = createSlice({
     toggleEdgingColorActive(state, action: PayloadAction<boolean>) {
       state.colorModel.colorEdging.isActive = action.payload;
     },
-    setFigureTopActive(state, action: PayloadAction<boolean>) {
-      state.figures.figureTop.isActive = action.payload;
+    setFigureTopActive(state, action: PayloadAction<{ flag: boolean; nameFigure: string }>) {
+      state.figures.figureTop.isActive = action.payload.flag;
+      state.figures.figureTop.nameFigure = action.payload.nameFigure;
     },
     setFigureTopColor(state, action: PayloadAction<IColorPallete>) {
       state.figures.figureTop.colorFigure = action.payload;
     },
-    setFigureBottomActive(state, action: PayloadAction<boolean>) {
-      state.figures.figureBottom.isActive = action.payload;
+    setFigureBottomActive(state, action: PayloadAction<{ flag: boolean; nameFigure: string }>) {
+      state.figures.figureBottom.isActive = action.payload.flag;
+      state.figures.figureBottom.nameFigure = action.payload.nameFigure;
     },
     setFigureBottomColor(state, action: PayloadAction<IColorPallete>) {
       state.figures.figureBottom.colorFigure = action.payload;

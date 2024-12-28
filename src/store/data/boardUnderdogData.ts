@@ -26,8 +26,8 @@ export const positionsUnderdog: ILegent[] = [
   },
   {
     id: 2,
-    pos: 'Position1',
-    title: 'Position1',
+    pos: 'Version1',
+    title: 'Version1',
     colorLegend: {
       top: {
         name: 'ColorLegendTop',

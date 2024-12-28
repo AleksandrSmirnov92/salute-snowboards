@@ -27,7 +27,7 @@ export interface IPropsLegend {
   height: number;
   modelSize: number | string;
 }
-export const LegendPositionOne = ({ colorLegend, width, height, modelSize }: IPropsLegend) => {
+export const LegendVersionOne = ({ colorLegend, width, height, modelSize }: IPropsLegend) => {
   // top options
   const colorTop = colorLegend.top?.colorPallete.hex;
   //middle options

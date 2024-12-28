@@ -3,7 +3,7 @@ import { SnowboardInserts } from '../../snowboards-inserts/snowboard-inserts';
 
 import { StraightLineBottom } from './figure/straight-line/straight-line-bottom';
 import { StraightLineTop } from './figure/straight-line/straight-line-top';
-import { LegendPositionOne } from './legend/legend-position-one/legend';
+import { LegendVersionOne } from './legend/legend-position-one/legend';
 
 interface IProps {
   colorShape: string;
@@ -44,9 +44,9 @@ export const BoardAmFishSvg = ({
       case 'Not selected': {
         return;
       }
-      case 'Position1': {
+      case 'Version1': {
         return (
-          <LegendPositionOne
+          <LegendVersionOne
             width={width}
             height={height}
             colorLegend={legend.colorLegend}
@@ -228,17 +228,17 @@ export const BoardAmFishSvg = ({
               y2="2462.7122"
               gradientTransform="matrix(3.267949e-07 -1 1 3.267949e-07 -1972.5607 -2116.9702)"
             >
-              <stop offset="0" stop-color={edgingColor} stop-opacity="1" />
-              <stop offset="0.0566" stop-color={edgingColor} stop-opacity="0.95" />
-              <stop offset="0.1471" stop-color={edgingColor} stop-opacity="0.85" />
-              <stop offset="0.1501" stop-color={edgingColor} stop-opacity="0.7" />
-              <stop offset="0.2000" stop-color={edgingColor} stop-opacity="0.3" />
-              <stop offset="0.3500" stop-color={edgingColor} stop-opacity="0" />
-              <stop offset="0.5900" stop-color={edgingColor} stop-opacity="0" />
-              <stop offset="0.7039" stop-color={edgingColor} stop-opacity="0.3" />
-              <stop offset="0.8057" stop-color={edgingColor} stop-opacity="0.7" />
-              <stop offset="0.9424" stop-color={edgingColor} stop-opacity="0.9" />
-              <stop offset="1" stop-color={edgingColor} stop-opacity="1" />
+              <stop offset="0" stopColor={edgingColor} stopOpacity="1" />
+              <stop offset="0.0566" stopColor={edgingColor} stopOpacity="0.95" />
+              <stop offset="0.1471" stopColor={edgingColor} stopOpacity="0.85" />
+              <stop offset="0.1501" stopColor={edgingColor} stopOpacity="0.7" />
+              <stop offset="0.2000" stopColor={edgingColor} stopOpacity="0.3" />
+              <stop offset="0.3500" stopColor={edgingColor} stopOpacity="0" />
+              <stop offset="0.5900" stopColor={edgingColor} stopOpacity="0" />
+              <stop offset="0.7039" stopColor={edgingColor} stopOpacity="0.3" />
+              <stop offset="0.8057" stopColor={edgingColor} stopOpacity="0.7" />
+              <stop offset="0.9424" stopColor={edgingColor} stopOpacity="0.9" />
+              <stop offset="1" stopColor={edgingColor} stopOpacity="1" />
             </linearGradient>
           </defs>
           <path

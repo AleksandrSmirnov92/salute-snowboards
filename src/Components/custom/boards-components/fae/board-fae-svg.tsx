@@ -3,7 +3,7 @@ import { SnowboardInserts } from '../../snowboards-inserts/snowboard-inserts';
 
 import { StarsBottom } from './figure/stars/stars-bottom';
 import { StarsTop } from './figure/stars/stars-top';
-import { LegendPositionOne } from './legend/legend-position-one/legend';
+import { LegendVersionOne } from './legend/legend-position-one/legend';
 
 interface IProps {
   colorShapeOut: string;
@@ -42,9 +42,9 @@ export const BoardFaeSvg = ({
       case 'Not selected': {
         return;
       }
-      case 'Position1': {
+      case 'Version1': {
         return (
-          <LegendPositionOne width={width} height={height} colorLegend={legend.colorLegend} modelSize={modelSize} />
+          <LegendVersionOne width={width} height={height} colorLegend={legend.colorLegend} modelSize={modelSize} />
         );
       }
       default: {

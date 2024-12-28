@@ -1,6 +1,6 @@
 import { ILegent } from '../../../../store/contracts';
 import { SnowboardInserts } from '../../../custom/snowboards-inserts/snowboard-inserts';
-import { LegendPositionOne } from './legend/legend';
+import { LegendVersionOne } from './legend/legend';
 import { StraightLineBottom } from './straight-line/straight-line-bottom';
 import { StraightLineTop } from './straight-line/straight-line-top';
 
@@ -37,9 +37,9 @@ export const BoardUnderdogSvg = ({
       case 'Not selected': {
         return;
       }
-      case 'Position1': {
+      case 'Version1': {
         return (
-          <LegendPositionOne
+          <LegendVersionOne
             width={width}
             height={height}
             colorLegend={legend.colorLegend}

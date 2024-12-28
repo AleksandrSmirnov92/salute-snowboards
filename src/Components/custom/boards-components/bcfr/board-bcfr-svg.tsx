@@ -1,6 +1,6 @@
 import { ILegent } from '../../../../store/contracts';
 import { SnowboardInserts } from '../../../custom/snowboards-inserts/snowboard-inserts';
-import { LegendPositionOne } from './legend/legend-position-one/legend';
+import { LegendVersionOne } from './legend/legend-position-one/legend';
 
 interface IProps {
   colorShape: string;
@@ -22,9 +22,9 @@ export const BoardBcfrSvg = ({ colorShape, legend, modelSize }: IProps) => {
       case 'Not selected': {
         return;
       }
-      case 'Position1': {
+      case 'Version1': {
         return (
-          <LegendPositionOne
+          <LegendVersionOne
             width={width}
             height={height}
             colorLegend={legend.colorLegend}
