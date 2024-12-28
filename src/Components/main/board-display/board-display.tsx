@@ -101,15 +101,24 @@ export const BoardDisplay = ({}: IProps) => {
 
   const result = getAlertMessage(formValues);
   useEffect(() => {
-    const values = {
+    const values: SendMessageValue = {
       model: formValues.model.title,
       modelSize: formValues.boardLength.title,
-      exteriorColor: formValues.colorModel.colorOut.isActive ? formValues.colorModel.colorOut.color.cmyk : '',
-      interiorColor: formValues.colorModel.colorIn.isActive ? formValues.colorModel.colorIn.color.cmyk : '',
-      edgingColor: formValues.colorModel.colorEdging.isActive ? formValues.colorModel.colorEdging.color.cmyk : '',
+      exteriorColor: formValues.colorModel.colorOut.isActive
+        ? `CMYK: ${formValues.colorModel.colorOut.color.cmyk}`
+        : 'No data',
+      interiorColor: formValues.colorModel.colorIn.isActive
+        ? `CMYK: ${formValues.colorModel.colorIn.color.cmyk}`
+        : 'No data',
+      edgingColor: formValues.colorModel.colorEdging.isActive
+        ? `CMYK: ${formValues.colorModel.colorEdging.color.cmyk}`
+        : 'No data',
+      figureTop: formValues.figures.figureTop.isActive ? `${formValues.figures.figureTop.nameFigure} - yes` : 'No data',
+      figureBottom: formValues.figures.figureTop.isActive
+        ? `${formValues.figures.figureTop.nameFigure} - yes`
+        : 'No data',
     };
     sendMessageToParent('updateForm', values);
-    console.log('formValuesInDisplayComponent', formValues);
   }, [formValues]);
   return <>{result}</>;
 };
@@ -119,4 +128,6 @@ interface SendMessageValue {
   exteriorColor: string;
   interiorColor: string;
   edgingColor: string;
+  figureTop: string;
+  figureBottom: string;
 }
