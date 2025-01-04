@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import { ILegent } from '../../../../store/contracts';
 import { SnowboardInserts } from '../../snowboards-inserts/snowboard-inserts';
 
@@ -15,69 +16,74 @@ interface IProps {
   edgingColor: string;
   modelSize: number;
 }
-export const BoardAmFishSvg = ({
-  colorShape,
-  isFigureTopActive,
-  isFigureBottomActive,
-  figureTopColor,
-  figureBottomColor,
-  edgingColor,
-  legend,
-  modelSize,
-}: IProps) => {
-  const scaleBoard = 0.079;
-  const scaleBoardInnerShape = 0.105;
-  const rotate = 90;
-  const width = 600;
-  const height = 600;
-  const translateX = 349;
-  const translateY = 52;
-  const translateXInnerShape = 247.5;
-  const translateYInnerShape = 66.5;
-  const strokeWidthBoard = 1;
-  const strokeWidthBoardInnerShape = 1;
-  const viewBoxWidth = 600;
-  const viewBoxHeight = 600;
+export const BoardAmFishSvg = forwardRef(
+  (
+    {
+      colorShape,
+      isFigureTopActive,
+      isFigureBottomActive,
+      figureTopColor,
+      figureBottomColor,
+      edgingColor,
+      legend,
+      modelSize,
+    }: IProps,
+    ref: any,
+  ) => {
+    const scaleBoard = 0.079;
+    const scaleBoardInnerShape = 0.105;
+    const rotate = 90;
+    const width = 600;
+    const height = 600;
+    const translateX = 349;
+    const translateY = 52;
+    const translateXInnerShape = 247.5;
+    const translateYInnerShape = 66.5;
+    const strokeWidthBoard = 1;
+    const strokeWidthBoardInnerShape = 1;
+    const viewBoxWidth = 600;
+    const viewBoxHeight = 600;
 
-  const currentLegend = (): JSX.Element | undefined => {
-    switch (legend.pos) {
-      case 'Not selected': {
-        return;
+    const currentLegend = (): JSX.Element | undefined => {
+      switch (legend.pos) {
+        case 'Not selected': {
+          return;
+        }
+        case 'Version1': {
+          return (
+            <LegendVersionOne
+              width={width}
+              height={height}
+              colorLegend={legend.colorLegend}
+              backgroundColor={colorShape}
+              modelSize={modelSize}
+            />
+          );
+        }
+        default: {
+          return;
+        }
       }
-      case 'Version1': {
-        return (
-          <LegendVersionOne
-            width={width}
-            height={height}
-            colorLegend={legend.colorLegend}
-            backgroundColor={colorShape}
-            modelSize={modelSize}
-          />
-        );
-      }
-      default: {
-        return;
-      }
-    }
-  };
-  return (
-    <svg
-      version="1.1"
-      id="Слой_1"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-screen"
-      width={'100%'}
-      height={'100%'}
-      viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-      preserveAspectRatio="xMidYMid slice"
-    >
-      <g>
-        <g transform={`translate(${translateX},${translateY}) rotate(${rotate}) scale(${scaleBoard})`}>
-          <polygon
-            stroke="#black" // Черная обводка
-            fill={colorShape}
-            strokeWidth={strokeWidthBoard}
-            points="5438.85,101.13 5309.54,108.38 4999.99,123.51 4690.3,135.55 4380.51,144.49 4070.64,150.33 
+    };
+    return (
+      <svg
+        ref={ref}
+        version="1.1"
+        id="Слой_1"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-screen"
+        width={'100%'}
+        height={'100%'}
+        viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <g>
+          <g transform={`translate(${translateX},${translateY}) rotate(${rotate}) scale(${scaleBoard})`}>
+            <polygon
+              stroke="#black" // Черная обводка
+              fill={colorShape}
+              strokeWidth={strokeWidthBoard}
+              points="5438.85,101.13 5309.54,108.38 4999.99,123.51 4690.3,135.55 4380.51,144.49 4070.64,150.33 
 		3760.74,153.08 3450.82,152.72 3346.88,152.72 3242.94,152.72 3112.02,150.64 2802.18,143.52 2492.43,133.29 2182.8,119.97 
 		1873.31,103.56 1564.01,84.05 1254.91,61.45 1231.47,60.34 1208.01,59.46 1184.55,58.82 1161.08,58.41 1137.61,58.24 1114.14,58.3 
 		1090.68,58.6 1067.21,59.13 1043.75,59.89 1020.3,60.9 1009.24,61.45 997.34,62.23 986.53,62.98 976.5,63.72 966.99,64.5 
@@ -214,38 +220,38 @@ export const BoardAmFishSvg = ({
 		5711.32,103.47 5709.22,103.21 5707.11,102.96 5704.98,102.74 5701.12,102.36 5697.17,102.03 5693.11,101.72 5688.9,101.43 
 		5684.52,101.13 5661.07,100.02 5637.62,99.15 5614.16,98.5 5590.69,98.1 5567.22,97.92 5543.75,97.99 5520.28,98.28 5496.82,98.81 
 		5473.36,99.58 5449.91,100.58"
-          />
-        </g>
-        <g transform={`translate(${translateXInnerShape},${translateYInnerShape})  scale(${scaleBoardInnerShape})`}>
-          //shape inner
-          <defs>
-            <linearGradient
-              id="SVGID_1_"
-              gradientUnits="userSpaceOnUse"
-              x1="-6419.958"
-              y1="2462.7122"
-              x2="-2292.7209"
-              y2="2462.7122"
-              gradientTransform="matrix(3.267949e-07 -1 1 3.267949e-07 -1972.5607 -2116.9702)"
-            >
-              <stop offset="0" stopColor={edgingColor} stopOpacity="1" />
-              <stop offset="0.0566" stopColor={edgingColor} stopOpacity="0.95" />
-              <stop offset="0.1471" stopColor={edgingColor} stopOpacity="0.85" />
-              <stop offset="0.1501" stopColor={edgingColor} stopOpacity="0.7" />
-              <stop offset="0.2000" stopColor={edgingColor} stopOpacity="0.3" />
-              <stop offset="0.3500" stopColor={edgingColor} stopOpacity="0" />
-              <stop offset="0.5900" stopColor={edgingColor} stopOpacity="0" />
-              <stop offset="0.7039" stopColor={edgingColor} stopOpacity="0.3" />
-              <stop offset="0.8057" stopColor={edgingColor} stopOpacity="0.7" />
-              <stop offset="0.9424" stopColor={edgingColor} stopOpacity="0.9" />
-              <stop offset="1" stopColor={edgingColor} stopOpacity="1" />
-            </linearGradient>
-          </defs>
-          <path
-            stroke="url(#SVGID_1_)"
-            fill="url(#SVGID_1_)"
-            strokeWidth={strokeWidthBoardInnerShape}
-            d="M244.97,4302.99c-0.04,0-0.08,0-0.12,0l-2.98-0.04c-0.11,0-0.22,0-0.33-0.01l-3.86-0.21
+            />
+          </g>
+          <g transform={`translate(${translateXInnerShape},${translateYInnerShape})  scale(${scaleBoardInnerShape})`}>
+            //shape inner
+            <defs>
+              <linearGradient
+                id="SVGID_1_"
+                gradientUnits="userSpaceOnUse"
+                x1="-6419.958"
+                y1="2462.7122"
+                x2="-2292.7209"
+                y2="2462.7122"
+                gradientTransform="matrix(3.267949e-07 -1 1 3.267949e-07 -1972.5607 -2116.9702)"
+              >
+                <stop offset="0" stopColor={edgingColor} stopOpacity="1" />
+                <stop offset="0.0566" stopColor={edgingColor} stopOpacity="0.95" />
+                <stop offset="0.1471" stopColor={edgingColor} stopOpacity="0.85" />
+                <stop offset="0.1501" stopColor={edgingColor} stopOpacity="0.7" />
+                <stop offset="0.2000" stopColor={edgingColor} stopOpacity="0.3" />
+                <stop offset="0.3500" stopColor={edgingColor} stopOpacity="0" />
+                <stop offset="0.5900" stopColor={edgingColor} stopOpacity="0" />
+                <stop offset="0.7039" stopColor={edgingColor} stopOpacity="0.3" />
+                <stop offset="0.8057" stopColor={edgingColor} stopOpacity="0.7" />
+                <stop offset="0.9424" stopColor={edgingColor} stopOpacity="0.9" />
+                <stop offset="1" stopColor={edgingColor} stopOpacity="1" />
+              </linearGradient>
+            </defs>
+            <path
+              stroke="url(#SVGID_1_)"
+              fill="url(#SVGID_1_)"
+              strokeWidth={strokeWidthBoardInnerShape}
+              d="M244.97,4302.99c-0.04,0-0.08,0-0.12,0l-2.98-0.04c-0.11,0-0.22,0-0.33-0.01l-3.86-0.21
 		c-0.21-0.01-0.43-0.03-0.64-0.06l-2.98-0.39c-0.49-0.06-0.97-0.17-1.44-0.31l-1.09-0.34c-0.36-0.11-0.72-0.25-1.06-0.41l-0.2-0.1
 		c-0.02-0.01-0.14-0.07-0.16-0.08l-0.11-0.05c-0.06-0.03-0.2-0.1-0.27-0.13l-0.22-0.11c-0.24-0.12-0.47-0.26-0.69-0.41l-2.62-1.71
 		c-0.14-0.09-0.27-0.18-0.4-0.28l-0.15-0.11c-0.15-0.11-0.3-0.23-0.44-0.35l-5.4-4.58c-0.17-0.14-0.33-0.29-0.49-0.45l-5.63-5.58
@@ -379,23 +385,24 @@ export const BoardAmFishSvg = ({
 		c-0.11,0.03-0.23,0.06-0.34,0.09l-7.2,1.81c-0.14,0.04-0.28,0.07-0.42,0.09l-7.4,1.47c-0.18,0.04-0.35,0.06-0.53,0.09l-8.25,1.09
 		c-0.17,0.02-0.34,0.04-0.51,0.05l-6.19,0.44c-0.14,0.01-0.27,0.02-0.41,0.02l-6.42,0.15
 		C245.11,4302.99,245.04,4302.99,244.97,4302.99z"
+            />
+          </g>
+          <SnowboardInserts
+            color="black"
+            translateCircleX={180}
+            translateCircleY={110}
+            translateCircle2Y={265}
+            numberOfRows={5}
+            numberOfColumns={2}
+            viewBoxWidth={viewBoxWidth}
+            viewBoxHeight={viewBoxHeight}
+            powMode={true}
           />
+          {isFigureTopActive && <StraightLineTop width={width} height={height} color={figureTopColor} />}
+          {isFigureBottomActive && <StraightLineBottom width={width} height={height} color={figureBottomColor} />}
+          {currentLegend()}
         </g>
-        <SnowboardInserts
-          color="black"
-          translateCircleX={180}
-          translateCircleY={110}
-          translateCircle2Y={265}
-          numberOfRows={5}
-          numberOfColumns={2}
-          viewBoxWidth={viewBoxWidth}
-          viewBoxHeight={viewBoxHeight}
-          powMode={true}
-        />
-        {isFigureTopActive && <StraightLineTop width={width} height={height} color={figureTopColor} />}
-        {isFigureBottomActive && <StraightLineBottom width={width} height={height} color={figureBottomColor} />}
-        {currentLegend()}
-      </g>
-    </svg>
-  );
-};
+      </svg>
+    );
+  },
+);

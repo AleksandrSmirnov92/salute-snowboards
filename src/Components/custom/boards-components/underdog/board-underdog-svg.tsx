@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import { ILegent } from '../../../../store/contracts';
 import { SnowboardInserts } from '../../../custom/snowboards-inserts/snowboard-inserts';
 import { LegendVersionOne } from './legend/legend';
@@ -13,60 +14,65 @@ interface IProps {
   legend: ILegent;
   modelSize: number | string;
 }
-export const BoardUnderdogSvg = ({
-  colorShape,
-  isStraightLineTopActive,
-  straightLineTopColor,
-  isStraightLineBottomActive,
-  straightLineBottomColor,
-  legend,
-  modelSize,
-}: IProps) => {
-  //Board
-  const scaleBoard = 0.012;
-  const width = 600;
-  const height = 600;
-  const translateX = 29;
-  const translateY = 20;
-  const strokeWidthBoard = 1;
-  const viewBoxWidth = 600;
-  const viewBoxHeight = 600;
+export const BoardUnderdogSvg = forwardRef(
+  (
+    {
+      colorShape,
+      isStraightLineTopActive,
+      straightLineTopColor,
+      isStraightLineBottomActive,
+      straightLineBottomColor,
+      legend,
+      modelSize,
+    }: IProps,
+    ref: any,
+  ) => {
+    //Board
+    const scaleBoard = 0.012;
+    const width = 600;
+    const height = 600;
+    const translateX = 29;
+    const translateY = 20;
+    const strokeWidthBoard = 1;
+    const viewBoxWidth = 600;
+    const viewBoxHeight = 600;
 
-  const currentLegend = (): JSX.Element | undefined => {
-    switch (legend.pos) {
-      case 'Not selected': {
-        return;
+    const currentLegend = (): JSX.Element | undefined => {
+      switch (legend.pos) {
+        case 'Not selected': {
+          return;
+        }
+        case 'Version1': {
+          return (
+            <LegendVersionOne
+              width={width}
+              height={height}
+              colorLegend={legend.colorLegend}
+              backgroundColor={colorShape}
+              modelSize={modelSize}
+            />
+          );
+        }
+        default: {
+          return;
+        }
       }
-      case 'Version1': {
-        return (
-          <LegendVersionOne
-            width={width}
-            height={height}
-            colorLegend={legend.colorLegend}
-            backgroundColor={colorShape}
-            modelSize={modelSize}
-          />
-        );
-      }
-      default: {
-        return;
-      }
-    }
-  };
-  return (
-    <svg
-      version="1.0"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-screen"
-      width={'100%'}
-      height={'100%'}
-      viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-      preserveAspectRatio="xMidYMid slice"
-    >
-      <g transform={`translate(${0}, ${10})`}>
-        <g transform={`translate(${translateX}, ${translateY}) scale(${scaleBoard})`}>
-          <path
-            d="M22265 41340 c-579 -27 -1176 -171 -1651 -400 -236 -114 -414 -255
+    };
+    return (
+      <svg
+        ref={ref}
+        version="1.0"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-screen"
+        width={'100%'}
+        height={'100%'}
+        viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <g transform={`translate(${0}, ${10})`}>
+          <g transform={`translate(${translateX}, ${translateY}) scale(${scaleBoard})`}>
+            <path
+              d="M22265 41340 c-579 -27 -1176 -171 -1651 -400 -236 -114 -414 -255
           -565 -450 -205 -263 -423 -626 -655 -1090 -317 -635 -452 -1073 -504 -1635 -6
           -66 -15 -271 -20 -455 l-9 -335 94 -1600 c336 -5693 427 -7959 456 -11318 20
           -2282 -14 -4854 -96 -7322 -86 -2578 -228 -5267 -406 -7675 -39 -532 -41 -574
@@ -78,28 +84,29 @@ export const BoardUnderdogSvg = ({
           1453 250 4430 320 5380 19 262 6 939 -25 1241 -58 571 -255 1131 -648 1849
           -350 639 -578 943 -838 1116 -366 245 -973 440 -1583 509 -131 15 -500 36
           -576 33 -19 -1 -107 -4 -195 -8z"
-            fill={colorShape}
-            stroke="#black" // Черная обводка
-            strokeWidth={strokeWidthBoard}
+              fill={colorShape}
+              stroke="#black" // Черная обводка
+              strokeWidth={strokeWidthBoard}
+            />
+          </g>
+          <SnowboardInserts
+            color="black"
+            translateCircleX={180}
+            translateCircleY={85}
+            translateCircle2Y={255}
+            numberOfRows={6}
+            numberOfColumns={2}
+            viewBoxWidth={viewBoxWidth}
+            viewBoxHeight={viewBoxHeight}
+            powMode={false}
           />
+          {isStraightLineTopActive && <StraightLineTop width={width} height={height} color={straightLineTopColor} />}
+          {isStraightLineBottomActive && (
+            <StraightLineBottom width={width} height={height} color={straightLineBottomColor} />
+          )}
+          {currentLegend()}
         </g>
-        <SnowboardInserts
-          color="black"
-          translateCircleX={180}
-          translateCircleY={85}
-          translateCircle2Y={255}
-          numberOfRows={6}
-          numberOfColumns={2}
-          viewBoxWidth={viewBoxWidth}
-          viewBoxHeight={viewBoxHeight}
-          powMode={false}
-        />
-        {isStraightLineTopActive && <StraightLineTop width={width} height={height} color={straightLineTopColor} />}
-        {isStraightLineBottomActive && (
-          <StraightLineBottom width={width} height={height} color={straightLineBottomColor} />
-        )}
-        {currentLegend()}
-      </g>
-    </svg>
-  );
-};
+      </svg>
+    );
+  },
+);

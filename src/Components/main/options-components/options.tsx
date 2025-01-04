@@ -131,9 +131,8 @@ export const Options = () => {
 
     const { colorEdging } = actualModel.boardDetails.colorModel;
     setColorEdgingActive(colorEdging.isActive);
+    dispatch(toggleEdgingColorActive(colorEdging.isActive));
     if (colorEdging.isActive) {
-      // setModelColorEdging(colorEdging.color[0].bgColor);
-      dispatch(toggleEdgingColorActive(colorEdging.isActive));
       switch (selectedModel.title) {
         case ModelsSnowboards.Fae: {
           dispatch(updateEdgingColor(colorEdging.color[1]));

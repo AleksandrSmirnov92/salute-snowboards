@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useAppSelector } from '../../../store/hooks/hooks';
 import { IInitialState } from '../../../store/feautures/formValues/formValuesSlice';
 import { ISendMessageValue, ModelsSnowboards } from '../../../store/contracts';
@@ -9,15 +9,23 @@ import { BoardUnitSvg } from '../../custom/boards-components/unit/board-unit-svg
 import { BoardFaeSvg } from '../../custom/boards-components/fae/board-fae-svg';
 import { BoardAmFishSvg } from '../../custom/boards-components/amf/board-am-fish-svg';
 import { createDataForTilde } from '../../../utils/creator-data-for-tilda';
+import { serializeSVG } from '../../../utils/serialize-svg';
 
-interface IProps {}
-export const BoardDisplay = ({}: IProps) => {
+interface IProps {
+  isBack: boolean;
+  rotation: number;
+}
+export const BoardDisplay = ({ isBack, rotation }: IProps) => {
   const formValues = useAppSelector((state) => state.selectedValuesForm);
-  const getAlertMessage = (value: IInitialState) => {
+  const svgRef = useRef<any>(null);
+  const getSnowboard = (value: IInitialState) => {
     switch (value.model.title) {
       case ModelsSnowboards.Pixie:
         return (
           <BoardPixieSvg
+            isBack={isBack}
+            rotation={rotation}
+            ref={svgRef}
             isFigureTopActive={value.figures.figureTop.isActive}
             straightLineTopColor={value.figures.figureTop.colorFigure.hex}
             isFigureBottomActive={value.figures.figureBottom.isActive}
@@ -30,6 +38,7 @@ export const BoardDisplay = ({}: IProps) => {
       case ModelsSnowboards.Underdog:
         return (
           <BoardUnderdogSvg
+            ref={svgRef}
             isStraightLineTopActive={value.figures.figureTop.isActive}
             straightLineTopColor={value.figures.figureTop.colorFigure.hex}
             isStraightLineBottomActive={value.figures.figureBottom.isActive}
@@ -42,6 +51,7 @@ export const BoardDisplay = ({}: IProps) => {
       case ModelsSnowboards.AMFish:
         return (
           <BoardAmFishSvg
+            ref={svgRef}
             colorShape={value.colorModel.colorOut.color.hex!}
             isFigureBottomActive={value.figures.figureBottom.isActive}
             isFigureTopActive={value.figures.figureTop.isActive}
@@ -55,6 +65,7 @@ export const BoardDisplay = ({}: IProps) => {
       case ModelsSnowboards.BCFR:
         return (
           <BoardBcfrSvg
+            ref={svgRef}
             colorShape={value.colorModel.colorOut.color.hex!}
             legend={value.legend}
             modelSize={value.boardLength.title}
@@ -63,6 +74,7 @@ export const BoardDisplay = ({}: IProps) => {
       case ModelsSnowboards.Unit: {
         return (
           <BoardUnitSvg
+            ref={svgRef}
             isFigureTopActive={value.figures.figureTop.isActive}
             isFigureBottomActive={value.figures.figureBottom.isActive}
             figureTopColor={value.figures.figureTop.colorFigure.hex}
@@ -79,6 +91,7 @@ export const BoardDisplay = ({}: IProps) => {
       case ModelsSnowboards.Fae: {
         return (
           <BoardFaeSvg
+            ref={svgRef}
             isFigureTopActive={value.figures.figureTop.isActive}
             isFigureBottomActive={value.figures.figureBottom.isActive}
             figureTopColor={value.figures.figureTop.colorFigure.hex}
@@ -100,9 +113,11 @@ export const BoardDisplay = ({}: IProps) => {
     window.parent.postMessage(data, 'https://salutmfg.co/constructorultramegasalutconstructor');
   };
 
-  const result = getAlertMessage(formValues);
+  const result = getSnowboard(formValues);
   useEffect(() => {
-    const values: ISendMessageValue = createDataForTilde(formValues);
+    const dataUrl = serializeSVG(svgRef, formValues.model.title);
+    console.log(dataUrl);
+    const values: ISendMessageValue = createDataForTilde(formValues, dataUrl);
     sendMessageToParent('updateForm', values);
   }, [formValues]);
   return <>{result}</>;

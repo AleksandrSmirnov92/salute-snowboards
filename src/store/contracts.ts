@@ -97,4 +97,5 @@ export interface ISendMessageValue {
     middle: string;
     bottom: string;
   };
+  imageUrl: string;
 }

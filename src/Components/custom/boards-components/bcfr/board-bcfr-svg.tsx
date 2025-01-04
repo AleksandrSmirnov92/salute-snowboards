@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import { ILegent } from '../../../../store/contracts';
 import { SnowboardInserts } from '../../../custom/snowboards-inserts/snowboard-inserts';
 import { LegendVersionOne } from './legend/legend-position-one/legend';
@@ -7,7 +8,7 @@ interface IProps {
   legend: ILegent;
   modelSize: number | string;
 }
-export const BoardBcfrSvg = ({ colorShape, legend, modelSize }: IProps) => {
+export const BoardBcfrSvg = forwardRef(({ colorShape, legend, modelSize }: IProps, ref: any) => {
   const scaleBoard = 0.1009;
 
   const width = 600;
@@ -40,6 +41,7 @@ export const BoardBcfrSvg = ({ colorShape, legend, modelSize }: IProps) => {
   };
   return (
     <svg
+      ref={ref}
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       className="w-full h-full"
@@ -148,4 +150,4 @@ export const BoardBcfrSvg = ({ colorShape, legend, modelSize }: IProps) => {
       </g>
     </svg>
   );
-};
+});
