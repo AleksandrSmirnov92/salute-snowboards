@@ -1,4 +1,4 @@
-import { IColorPallete } from './data/colorPalette';
+import { IColorPallete } from './data/color-palette';
 export interface ISnowboard {
   id: number;
   model: ModelsSnowboards;
@@ -6,22 +6,24 @@ export interface ISnowboard {
 }
 
 export interface ISnowboardDetails {
-  colorModel: {
-    colorOut: {
-      isActive: boolean;
-      color: IColorPallete[];
+  frontPart: {
+    colorModel: {
+      colorOut: {
+        isActive: boolean;
+        color: IColorPallete[];
+      };
+      colorIn: {
+        isActive: boolean;
+        color: IColorPallete[];
+      };
+      colorEdging: {
+        isActive: boolean;
+        color: IColorPallete[];
+      };
     };
-    colorIn: {
-      isActive: boolean;
-      color: IColorPallete[];
-    };
-    colorEdging: {
-      isActive: boolean;
-      color: IColorPallete[];
-    };
+    figures: IFigures;
+    legentPositions: ILegent[];
   };
-  figures: IFigures;
-  legentPositions: ILegent[];
   boardLength: IModelSize[];
 }
 export interface IModelSize {

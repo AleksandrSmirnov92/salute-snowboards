@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { modelsSnowboards } from '../../data/snowboardsData';
+import { modelsSnowboards } from '../../data/snowboards-data';
 
 const initialState = {
   snowboards: [...modelsSnowboards],

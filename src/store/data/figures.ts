@@ -1,5 +1,5 @@
 import { IFigures } from '../contracts';
-import { colorPalette } from './colorPalette';
+import { colorPalette } from './color-palette';
 
 export const hasStraightLines: IFigures = {
   figureTop: {

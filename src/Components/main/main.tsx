@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 import { BoardDisplay } from './board-display/board-display';
-import { Options } from './options-components/options';
+import { Options } from './options/options';
 import { Button } from '@headlessui/react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 export const Main = () => {

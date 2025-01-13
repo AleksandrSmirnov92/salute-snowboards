@@ -1,5 +1,5 @@
 import { ISendMessageValue } from '../store/contracts';
-import { IInitialState } from '../store/feautures/formValues/formValuesSlice';
+import { IInitialState } from '../store/feautures/formValues/form-values-slice';
 
 export const createDataForTilde = (formValues: IInitialState, dataUrl: string): ISendMessageValue => {
   const imageUrl = dataUrl;

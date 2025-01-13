@@ -1,4 +1,4 @@
-import { IModelSize } from '../contracts';
+import { IModelSize } from '../../contracts';
 
 export const boardLengthAmFish: IModelSize[] = [
   { id: 1, title: '148-cm', size: 148 },

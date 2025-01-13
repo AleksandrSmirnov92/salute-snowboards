@@ -1,7 +1,7 @@
-import { IModelSize, ILegent } from '../contracts';
-import { colorPalette } from './colorPalette';
+import { IModelSize, ILegent } from '../../contracts';
+import { colorPalette } from '../color-palette';
 
-export const positionsPixie: ILegent[] = [
+export const positionsUnderdog: ILegent[] = [
   {
     id: 1,
     pos: 'Not selected',
@@ -9,7 +9,7 @@ export const positionsPixie: ILegent[] = [
     colorLegend: {
       top: {
         name: 'ColorLegendTop',
-        positionColor: 'Color legend Top',
+        positionColor: 'Color legend top',
         colorPallete: colorPalette[1],
       },
       middle: {
@@ -19,7 +19,7 @@ export const positionsPixie: ILegent[] = [
       },
       bottom: {
         name: 'ColorLegendBottom',
-        positionColor: 'Color legend bottom',
+        positionColor: 'Color legend Bottom',
         colorPallete: colorPalette[1],
       },
     },
@@ -31,7 +31,7 @@ export const positionsPixie: ILegent[] = [
     colorLegend: {
       top: {
         name: 'ColorLegendTop',
-        positionColor: 'Color legend Top',
+        positionColor: 'Color legend top',
         colorPallete: colorPalette[1],
       },
       middle: {
@@ -41,16 +41,18 @@ export const positionsPixie: ILegent[] = [
       },
       bottom: {
         name: 'ColorLegendBottom',
-        positionColor: 'Color legend bottom',
+        positionColor: 'Color legend Bottom',
         colorPallete: colorPalette[1],
       },
     },
   },
 ];
-export const boardLengthPixie: IModelSize[] = [
-  { id: 1, title: '140-cm', size: 140 },
-  { id: 2, title: '142-cm', size: 142 },
-  { id: 3, title: '145-cm', size: 145 },
-  { id: 4, title: '147-cm', size: 147 },
-  { id: 5, title: '149-cm', size: 149 },
+
+export const boardLengthUnderdog: IModelSize[] = [
+  { id: 1, title: '148-cm', size: 148 },
+  { id: 2, title: '151-cm', size: 151 },
+  { id: 3, title: '155-cm', size: 155 },
+  { id: 4, title: '155w-cm', size: 155 },
+  { id: 5, title: '158-cm', size: 158 },
+  { id: 6, title: '158w-cm', size: 158 },
 ];

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useAppSelector } from '../../../store/hooks/hooks';
-import { IInitialState } from '../../../store/feautures/formValues/formValuesSlice';
+import { IInitialState } from '../../../store/feautures/formValues/form-values-slice';
 import { ISendMessageValue, ModelsSnowboards } from '../../../store/contracts';
 import { BoardPixieSvg } from '../../custom/boards-components/pixie/board-pixie-svg';
 import { BoardUnderdogSvg } from '../../custom/boards-components/underdog/board-underdog-svg';

@@ -24,8 +24,8 @@ import {
   setHasFigureTop,
   setHasFigureBottom,
   setSize,
-} from '../../../store/feautures/formValues/formValuesSlice';
-import { colorPalette, IColorPallete } from '../../../store/data/colorPalette';
+} from '../../../store/feautures/formValues/form-values-slice';
+import { colorPalette, IColorPallete } from '../../../store/data/color-palette';
 import Select from '../../custom/select/select-legend-position';
 
 export const Options = () => {
@@ -38,7 +38,7 @@ export const Options = () => {
   const getBoardDetails = (modelId: number) => selectOptions.find((item) => item.id === modelId)!.boardDetails;
   const initialDetails = getBoardDetails(selectedModel.id);
 
-  const initialLegends = initialDetails.legentPositions;
+  const initialLegends = initialDetails.frontPart.legentPositions;
   const initialLengths = initialDetails.boardLength;
 
   const [modelColorOut, setModelColorsOut] = useState<null | string>(null);
@@ -61,23 +61,23 @@ export const Options = () => {
     dispatch(setModelValue(selectedModel));
     setModelSizes(actualModel.boardDetails.boardLength);
     dispatch(setSize(actualModel.boardDetails.boardLength[0]));
-    setLegends(actualModel.boardDetails.legentPositions);
+    setLegends(actualModel.boardDetails.frontPart.legentPositions);
   }, [selectedModel, selectOptions, dispatch]);
 
   useEffect(() => {
     const actualModel = selectOptions.find((item) => item.id === selectedModel.id);
-    if (!actualModel || !actualModel.boardDetails.legentPositions) return;
+    if (!actualModel || !actualModel.boardDetails.frontPart.legentPositions) return;
 
-    const actualLegends = actualModel.boardDetails.legentPositions;
+    const actualLegends = actualModel.boardDetails.frontPart.legentPositions;
     setLegends(actualLegends);
     dispatch(setLegendValue(actualLegends[0]));
   }, [selectedModel, selectOptions, dispatch]);
 
   useEffect(() => {
     const actualModel = selectOptions.find((item) => item.id === selectedModel.id);
-    if (!actualModel || !actualModel.boardDetails.figures) return;
+    if (!actualModel || !actualModel.boardDetails.frontPart.figures) return;
 
-    const { figureTop, figureBottom } = actualModel.boardDetails.figures;
+    const { figureTop, figureBottom } = actualModel.boardDetails.frontPart.figures;
 
     setNameFigureTop(figureTop.nameFigure);
     setNameFigureBottom(figureBottom.nameFigure);
@@ -94,9 +94,9 @@ export const Options = () => {
 
   useEffect(() => {
     const actualModel = selectOptions.find((item) => item.id === selectedModel.id);
-    if (!actualModel || !actualModel.boardDetails.colorModel) return;
+    if (!actualModel || !actualModel.boardDetails.frontPart.colorModel) return;
 
-    const { colorOut, colorIn } = actualModel.boardDetails.colorModel;
+    const { colorOut, colorIn } = actualModel.boardDetails.frontPart.colorModel;
 
     if (colorOut.isActive) {
       setModelColorsOut(colorOut.color[0].bgColor);
@@ -127,9 +127,9 @@ export const Options = () => {
   }, [selectedModel, selectOptions, dispatch]);
   useEffect(() => {
     const actualModel = selectOptions.find((item) => item.id === selectedModel.id);
-    if (!actualModel || !actualModel.boardDetails.colorModel) return;
+    if (!actualModel || !actualModel.boardDetails.frontPart.colorModel) return;
 
-    const { colorEdging } = actualModel.boardDetails.colorModel;
+    const { colorEdging } = actualModel.boardDetails.frontPart.colorModel;
     setColorEdgingActive(colorEdging.isActive);
     dispatch(toggleEdgingColorActive(colorEdging.isActive));
     if (colorEdging.isActive) {

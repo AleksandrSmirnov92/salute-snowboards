@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import selectOptionsReducer from './feautures/selectOptions/selectOptionsSlice';
-import selectValuesFormReducer from './feautures/formValues/formValuesSlice';
+import selectOptionsReducer from './feautures/selectOptions/select-options-slice';
+import selectValuesFormReducer from './feautures/formValues/form-values-slice';
 
 export const store = configureStore({
   reducer: {

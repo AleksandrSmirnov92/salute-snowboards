@@ -1,4 +1,4 @@
-import { IModelSize } from '../contracts';
+import { IModelSize } from '../../contracts';
 
 export const boardLengthBCFR: IModelSize[] = [
   { id: 1, title: '157-cm', size: 157 },

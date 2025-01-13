@@ -1,7 +1,7 @@
-import { ILegent, IModelSize } from '../contracts';
-import { colorPalette } from './colorPalette';
+import { ILegent, IModelSize } from '../../contracts';
+import { colorPalette } from '../color-palette';
 
-export const positionsFae: ILegent[] = [
+export const positionsUnit: ILegent[] = [
   {
     id: 1,
     pos: 'Not selected',
@@ -9,18 +9,18 @@ export const positionsFae: ILegent[] = [
     colorLegend: {
       top: {
         name: 'ColorLegendTop',
-        positionColor: 'Color legend top',
-        colorPallete: colorPalette[11],
+        positionColor: 'Color legend Top',
+        colorPallete: colorPalette[9],
       },
       middle: {
         name: 'ColorLegendMiddle',
         positionColor: 'Color legend middle',
-        colorPallete: colorPalette[11],
+        colorPallete: colorPalette[9],
       },
       bottom: {
         name: 'ColorLegendBottom',
-        positionColor: 'Color legend Bottom',
-        colorPallete: colorPalette[11],
+        positionColor: 'Color legend bottom',
+        colorPallete: colorPalette[9],
       },
     },
   },
@@ -31,24 +31,23 @@ export const positionsFae: ILegent[] = [
     colorLegend: {
       top: {
         name: 'ColorLegendTop',
-        positionColor: 'Color legend top',
-        colorPallete: colorPalette[11],
+        positionColor: 'Color legend Top',
+        colorPallete: colorPalette[9],
       },
       middle: {
         name: 'ColorLegendMiddle',
         positionColor: 'Color legend middle',
-        colorPallete: colorPalette[11],
+        colorPallete: colorPalette[9],
       },
       bottom: {
         name: 'ColorLegendBottom',
-        positionColor: 'Color legend Bottom',
-        colorPallete: colorPalette[11],
+        positionColor: 'Color legend bottom',
+        colorPallete: colorPalette[9],
       },
     },
   },
 ];
-
-export const boardLengthFae: IModelSize[] = [
+export const boardLengthUnit: IModelSize[] = [
   { id: 1, title: '125-cm', size: 125 },
   { id: 2, title: '130-cm', size: 130 },
   { id: 3, title: '135-cm', size: 135 },

@@ -1,7 +1,7 @@
-import { IModelSize, ILegent } from '../contracts';
-import { colorPalette } from './colorPalette';
+import { ILegent, IModelSize } from '../../contracts';
+import { colorPalette } from '../color-palette';
 
-export const positionsUnderdog: ILegent[] = [
+export const positionsFae: ILegent[] = [
   {
     id: 1,
     pos: 'Not selected',
@@ -10,17 +10,17 @@ export const positionsUnderdog: ILegent[] = [
       top: {
         name: 'ColorLegendTop',
         positionColor: 'Color legend top',
-        colorPallete: colorPalette[1],
+        colorPallete: colorPalette[11],
       },
       middle: {
         name: 'ColorLegendMiddle',
         positionColor: 'Color legend middle',
-        colorPallete: colorPalette[1],
+        colorPallete: colorPalette[11],
       },
       bottom: {
         name: 'ColorLegendBottom',
         positionColor: 'Color legend Bottom',
-        colorPallete: colorPalette[1],
+        colorPallete: colorPalette[11],
       },
     },
   },
@@ -32,27 +32,25 @@ export const positionsUnderdog: ILegent[] = [
       top: {
         name: 'ColorLegendTop',
         positionColor: 'Color legend top',
-        colorPallete: colorPalette[1],
+        colorPallete: colorPalette[11],
       },
       middle: {
         name: 'ColorLegendMiddle',
         positionColor: 'Color legend middle',
-        colorPallete: colorPalette[1],
+        colorPallete: colorPalette[11],
       },
       bottom: {
         name: 'ColorLegendBottom',
         positionColor: 'Color legend Bottom',
-        colorPallete: colorPalette[1],
+        colorPallete: colorPalette[11],
       },
     },
   },
 ];
 
-export const boardLengthUnderdog: IModelSize[] = [
-  { id: 1, title: '148-cm', size: 148 },
-  { id: 2, title: '151-cm', size: 151 },
-  { id: 3, title: '155-cm', size: 155 },
-  { id: 4, title: '155w-cm', size: 155 },
-  { id: 5, title: '158-cm', size: 158 },
-  { id: 6, title: '158w-cm', size: 158 },
+export const boardLengthFae: IModelSize[] = [
+  { id: 1, title: '125-cm', size: 125 },
+  { id: 2, title: '130-cm', size: 130 },
+  { id: 3, title: '135-cm', size: 135 },
+  { id: 4, title: '140-cm', size: 140 },
 ];

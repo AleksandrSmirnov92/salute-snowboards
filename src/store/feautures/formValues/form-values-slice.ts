@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { IFigures, ILegent, ModelsSnowboards, IModelSize as IModelSize, ISelectOptions } from '../../contracts';
-import { colorPalette, IColorPallete } from '../../data/colorPalette';
-import { boardLengthBCFR } from '../../data/boardBCFRData';
+import { colorPalette, IColorPallete } from '../../data/color-palette';
+import { boardLengthBCFR } from '../../data/boards-data/board-bcfr-data';
 import { hasNotFigure } from '../../data/figures';
 
 const defaultColor = {
