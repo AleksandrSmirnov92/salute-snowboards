@@ -1,9 +1,10 @@
 import { forwardRef } from 'react';
-import { ILegent } from '../../../../store/contracts';
+
 import { SnowboardInserts } from '../../snowboards-inserts/snowboard-inserts';
 import { LegendVersionOne } from './legend-position-one/legend';
 import { StraightLineBottom } from './straight-line/straight-line-bottom';
 import { StraightLineTop } from './straight-line/straight-line-top';
+import { ILegent } from '../../../types/types';
 
 interface IProps {
   isBack: boolean;

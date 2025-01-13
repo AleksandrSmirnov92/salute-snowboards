@@ -3,6 +3,8 @@
 // CMYK: 15/6/68/0 - HEX: #d8ef51 - Mellow Yellow
 // CMYK: 0/7/20/0 - HEX: #ffedcc - Peach Puff
 
+import { IColorPallete } from '../../types/color-pallete';
+
 // CMYK: 16/4/5/0 - HEX: #d6f4f2 - Pale Aqua
 // CMYK: 0/26/14/0 - HEX: #ffbcdb - Pink Blush
 // CMYK: 13/12/10/0 - HEX: #dde0e5 - Mist Blue
@@ -243,11 +245,4 @@ export const colorPalette: IColorPallete[] = [
   },
 ];
 
-export interface IColorPallete {
-  id: number;
-  cmyk: string;
-  hex: string;
-  title: string;
-  bgColor: string;
-}
 // CMYK: 38/48/40/25 - HEX: #748c81 - Xanadu

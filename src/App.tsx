@@ -1,5 +1,5 @@
 import './App.css';
-import { Main } from './components/main/main';
+import { Main } from './features/snowboards/pages/snowboard-viewer';
 
 function App() {
   return (

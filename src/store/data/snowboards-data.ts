@@ -1,4 +1,4 @@
-import { ISnowboard, ModelsSnowboards } from '../contracts';
+import { ISnowboard, ModelsSnowboards } from '../../types/types';
 import { boardLengthAmFish } from './boards-data/board-amFish-data';
 import { boardLengthBCFR } from './boards-data/board-bcfr-data';
 import { boardLengthFae, positionsFae } from './boards-data/board-fae-data';
@@ -31,6 +31,7 @@ export const modelsSnowboards: ISnowboard[] = [
         figures: hasStraightLines,
         legentPositions: positionsPixie,
       },
+      backPart: {},
       boardLength: boardLengthPixie,
     },
   },
@@ -56,6 +57,7 @@ export const modelsSnowboards: ISnowboard[] = [
         figures: hasStraightLines,
         legentPositions: positionsUnderdog,
       },
+      backPart: {},
       boardLength: boardLengthUnderdog,
     },
   },
@@ -81,6 +83,7 @@ export const modelsSnowboards: ISnowboard[] = [
         figures: hasStraightLines,
         legentPositions: positionsUnderdog,
       },
+      backPart: {},
       boardLength: boardLengthAmFish,
     },
   },
@@ -106,6 +109,7 @@ export const modelsSnowboards: ISnowboard[] = [
         figures: hasNotFigure,
         legentPositions: positionsUnderdog,
       },
+      backPart: {},
       boardLength: boardLengthBCFR,
     },
   },
@@ -131,6 +135,7 @@ export const modelsSnowboards: ISnowboard[] = [
         figures: hasLightning,
         legentPositions: positionsUnit,
       },
+      backPart: {},
       boardLength: boardLengthUnit,
     },
   },
@@ -156,6 +161,7 @@ export const modelsSnowboards: ISnowboard[] = [
         figures: hasStars,
         legentPositions: positionsFae,
       },
+      backPart: {},
       boardLength: boardLengthFae,
     },
   },

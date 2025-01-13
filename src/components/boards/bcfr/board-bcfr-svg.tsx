@@ -1,7 +1,8 @@
 import { forwardRef } from 'react';
-import { ILegent } from '../../../../store/contracts';
-import { SnowboardInserts } from '../../../custom/snowboards-inserts/snowboard-inserts';
+
 import { LegendVersionOne } from './legend/legend-position-one/legend';
+import { ILegent } from '../../../types/types';
+import { SnowboardInserts } from '../../snowboards-inserts/snowboard-inserts';
 
 interface IProps {
   colorShape: string;

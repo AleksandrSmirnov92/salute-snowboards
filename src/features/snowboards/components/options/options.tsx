@@ -1,9 +1,9 @@
-import type { RootState } from '../../../store/store';
+import type { RootState } from '../../../../store/store';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Label, Checkbox, Field } from '@headlessui/react';
-import { ISelectOptions, ModelsSnowboards } from '../../../store/contracts';
-import { useAppDispatch } from '../../../store/hooks/hooks';
+import { ISelectOptions, ModelsSnowboards } from '../../../../types/types';
+import { useAppDispatch } from '../../../../store/hooks/hooks';
 
 import {
   setModelValue,
@@ -24,9 +24,11 @@ import {
   setHasFigureTop,
   setHasFigureBottom,
   setSize,
-} from '../../../store/feautures/formValues/form-values-slice';
-import { colorPalette, IColorPallete } from '../../../store/data/color-palette';
-import Select from '../../custom/select/select-legend-position';
+} from '../../../../store/feautures/formValues/form-values-slice';
+import { colorPalette } from '../../../../store/data/color-palette';
+import Select from '../../../../components/custom/select/select';
+import { IColorPallete } from '../../../../types/color-pallete';
+import { SelectModel } from './components/select-model';
 
 export const Options = () => {
   const dispatch = useAppDispatch();
@@ -155,7 +157,8 @@ export const Options = () => {
         <span className="text-warm-gray text-lg">Детали доски</span>
       </div>
       <form className="relative">
-        <Select
+        <SelectModel modelsOptions={modelsOptions} selectedModel={selectedModel} setSelectedModel={setSelectedModel} />
+        {/* <Select
           name={'SnowboardsModel'}
           label={'Snowboards model'}
           labelContentPosition={'justify-start'}
@@ -172,7 +175,7 @@ export const Options = () => {
             title: selectedModel.title,
             value: selectedModel,
           }}
-        />
+        /> */}
         <Select
           name={'ModelSize'}
           label={'Size model'}

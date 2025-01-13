@@ -1,4 +1,4 @@
-import { ModelsSnowboards } from '../store/contracts';
+import { ModelsSnowboards } from '../types/types';
 
 export const serializeSVG = (svgRef: any, model: string): string => {
   let dataUrl = '';

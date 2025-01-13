@@ -1,8 +1,9 @@
 import { useCallback, useRef, useState } from 'react';
-import { BoardDisplay } from './board-display/board-display';
-import { Options } from './options/options';
+import { Options } from '../components/options/options';
 import { Button } from '@headlessui/react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import { BoardDisplay } from '../components/board-display/board-display';
+
 export const Main = () => {
   const transformRef = useRef<any>(null);
   const [firstZoomDone, setFirstZoomDone] = useState<Boolean>(false);

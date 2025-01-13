@@ -1,4 +1,4 @@
-import { IFigures } from '../contracts';
+import { IFigures } from '../../types/types';
 import { colorPalette } from './color-palette';
 
 export const hasStraightLines: IFigures = {

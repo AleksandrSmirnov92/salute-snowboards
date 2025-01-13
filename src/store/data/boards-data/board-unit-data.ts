@@ -1,4 +1,4 @@
-import { ILegent, IModelSize } from '../../contracts';
+import { ILegent, IModelSize } from '../../../types/types';
 import { colorPalette } from '../color-palette';
 
 export const positionsUnit: ILegent[] = [

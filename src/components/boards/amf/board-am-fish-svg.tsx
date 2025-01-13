@@ -1,10 +1,11 @@
 import { forwardRef } from 'react';
-import { ILegent } from '../../../../store/contracts';
+
 import { SnowboardInserts } from '../../snowboards-inserts/snowboard-inserts';
 
 import { StraightLineBottom } from './figure/straight-line/straight-line-bottom';
 import { StraightLineTop } from './figure/straight-line/straight-line-top';
 import { LegendVersionOne } from './legend/legend-position-one/legend';
+import { ILegent } from '../../../types/types';
 
 interface IProps {
   colorShape: string;

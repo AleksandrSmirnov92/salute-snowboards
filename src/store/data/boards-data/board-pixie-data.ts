@@ -1,4 +1,4 @@
-import { IModelSize, ILegent } from '../../contracts';
+import { IModelSize, ILegent } from '../../../types/types';
 import { colorPalette } from '../color-palette';
 
 export const positionsPixie: ILegent[] = [

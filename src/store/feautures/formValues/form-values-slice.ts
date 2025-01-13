@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { IFigures, ILegent, ModelsSnowboards, IModelSize as IModelSize, ISelectOptions } from '../../contracts';
+import { IFigures, ILegent, ModelsSnowboards, IModelSize as IModelSize, ISelectOptions } from '../../../types/types';
 import { colorPalette, IColorPallete } from '../../data/color-palette';
 import { boardLengthBCFR } from '../../data/boards-data/board-bcfr-data';
 import { hasNotFigure } from '../../data/figures';

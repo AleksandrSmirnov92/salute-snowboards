@@ -1,9 +1,11 @@
 import { forwardRef } from 'react';
-import { ILegent } from '../../../../store/contracts';
+
 import { SnowboardInserts } from '../../snowboards-inserts/snowboard-inserts';
-import { LightningBottom } from './figure/lightning-bottom';
-import { LightningTop } from './figure/lightning-top';
+
+import { StarsBottom } from './figure/stars/stars-bottom';
+import { StarsTop } from './figure/stars/stars-top';
 import { LegendVersionOne } from './legend/legend-position-one/legend';
+import { ILegent } from '../../../types/types';
 
 interface IProps {
   colorShapeOut: string;
@@ -17,7 +19,7 @@ interface IProps {
   modelSize: number | string;
 }
 
-export const BoardUnitSvg = forwardRef(
+export const BoardFaeSvg = forwardRef(
   (
     {
       colorShapeOut,
@@ -33,7 +35,6 @@ export const BoardUnitSvg = forwardRef(
     ref: any,
   ) => {
     const scaleBoard = 0.116;
-
     const width = 600;
     const height = 600;
     const strokeWidthBoard = 5;
@@ -110,8 +111,8 @@ export const BoardUnitSvg = forwardRef(
             viewBoxHeight={viewBoxHeight}
             powMode={false}
           />
-          {isFigureTopActive && <LightningTop width={width} height={height} color={figureTopColor} />}
-          {isFigureBottomActive && <LightningBottom width={width} height={height} color={figureBottomColor} />}
+          {isFigureTopActive && <StarsTop width={width} height={height} color={figureTopColor} />}
+          {isFigureBottomActive && <StarsBottom width={width} height={height} color={figureBottomColor} />}
           {currentLegend()}
         </g>
       </svg>

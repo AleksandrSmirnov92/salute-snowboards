@@ -1,4 +1,5 @@
-import { IColorPallete } from './data/color-palette';
+import { IColorPallete } from './color-pallete';
+
 export interface ISnowboard {
   id: number;
   model: ModelsSnowboards;
@@ -24,6 +25,7 @@ export interface ISnowboardDetails {
     figures: IFigures;
     legentPositions: ILegent[];
   };
+  backPart: {};
   boardLength: IModelSize[];
 }
 export interface IModelSize {

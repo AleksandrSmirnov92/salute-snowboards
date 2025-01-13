@@ -1,15 +1,16 @@
 import { useEffect, useRef } from 'react';
-import { useAppSelector } from '../../../store/hooks/hooks';
-import { IInitialState } from '../../../store/feautures/formValues/form-values-slice';
-import { ISendMessageValue, ModelsSnowboards } from '../../../store/contracts';
-import { BoardPixieSvg } from '../../custom/boards-components/pixie/board-pixie-svg';
-import { BoardUnderdogSvg } from '../../custom/boards-components/underdog/board-underdog-svg';
-import { BoardBcfrSvg } from '../../custom/boards-components/bcfr/board-bcfr-svg';
-import { BoardUnitSvg } from '../../custom/boards-components/unit/board-unit-svg';
-import { BoardFaeSvg } from '../../custom/boards-components/fae/board-fae-svg';
-import { BoardAmFishSvg } from '../../custom/boards-components/amf/board-am-fish-svg';
-import { createDataForTilde } from '../../../utils/creator-data-for-tilda';
-import { serializeSVG } from '../../../utils/serialize-svg';
+import { useAppSelector } from '../../../../store/hooks/hooks';
+import { IInitialState } from '../../../../store/feautures/formValues/form-values-slice';
+import { ISendMessageValue, ModelsSnowboards } from '../../../../types/types';
+
+import { createDataForTilde } from '../../../../utils/creator-data-for-tilda';
+import { serializeSVG } from '../../../../utils/serialize-svg';
+import { BoardUnderdogSvg } from '../../../../components/boards/underdog/board-underdog-svg';
+import { BoardPixieSvg } from '../../../../components/boards/pixie/board-pixie-svg';
+import { BoardAmFishSvg } from '../../../../components/boards/amf/board-am-fish-svg';
+import { BoardUnitSvg } from '../../../../components/boards/unit/board-unit-svg';
+import { BoardBcfrSvg } from '../../../../components/boards/bcfr/board-bcfr-svg';
+import { BoardFaeSvg } from '../../../../components/boards/fae/board-fae-svg';
 
 interface IProps {
   isBack: boolean;
@@ -116,7 +117,6 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
   const result = getSnowboard(formValues);
   useEffect(() => {
     const dataUrl = serializeSVG(svgRef, formValues.model.title);
-    console.log(dataUrl);
     const values: ISendMessageValue = createDataForTilde(formValues, dataUrl);
     sendMessageToParent('updateForm', values);
   }, [formValues]);

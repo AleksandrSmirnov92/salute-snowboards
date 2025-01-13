@@ -1,4 +1,4 @@
-import { ISendMessageValue } from '../store/contracts';
+import { ISendMessageValue } from '../types/types';
 import { IInitialState } from '../store/feautures/formValues/form-values-slice';
 
 export const createDataForTilde = (formValues: IInitialState, dataUrl: string): ISendMessageValue => {
