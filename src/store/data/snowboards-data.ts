@@ -5,7 +5,7 @@ import { boardLengthFae, positionsFae } from './boards-data/board-fae-data';
 import { boardLengthPixie, positionsPixie } from './boards-data/board-pixie-data';
 import { boardLengthUnderdog, positionsUnderdog } from './boards-data/board-underdog-data';
 import { boardLengthUnit, positionsUnit } from './boards-data/board-unit-data';
-import { colorPalette } from './color-palette';
+import { colorPaletteBack, colorPaletteFront } from './color-palette';
 import { hasLightning, hasNotFigure, hasStars, hasStraightLines } from './figures';
 
 export const modelsSnowboards: ISnowboard[] = [
@@ -14,24 +14,39 @@ export const modelsSnowboards: ISnowboard[] = [
     model: ModelsSnowboards.Pixie,
     boardDetails: {
       frontPart: {
-        colorModel: {
+        colorModelFront: {
           colorOut: {
             isActive: true,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
           colorIn: {
             isActive: false,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
           colorEdging: {
             isActive: false,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
         },
         figures: hasStraightLines,
         legentPositions: positionsPixie,
       },
-      backPart: {},
+      backPart: {
+        colorModelBack: {
+          colorOut: {
+            isActive: true,
+            color: colorPaletteBack,
+          },
+          colorIn: {
+            isActive: false,
+            color: colorPaletteBack,
+          },
+          colorEdging: {
+            isActive: false,
+            color: colorPaletteBack,
+          },
+        },
+      },
       boardLength: boardLengthPixie,
     },
   },
@@ -40,24 +55,39 @@ export const modelsSnowboards: ISnowboard[] = [
     model: ModelsSnowboards.Underdog,
     boardDetails: {
       frontPart: {
-        colorModel: {
+        colorModelFront: {
           colorOut: {
             isActive: true,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
           colorIn: {
             isActive: false,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
           colorEdging: {
             isActive: false,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
         },
         figures: hasStraightLines,
         legentPositions: positionsUnderdog,
       },
-      backPart: {},
+      backPart: {
+        colorModelBack: {
+          colorOut: {
+            isActive: true,
+            color: colorPaletteBack,
+          },
+          colorIn: {
+            isActive: false,
+            color: colorPaletteBack,
+          },
+          colorEdging: {
+            isActive: false,
+            color: colorPaletteBack,
+          },
+        },
+      },
       boardLength: boardLengthUnderdog,
     },
   },
@@ -66,24 +96,39 @@ export const modelsSnowboards: ISnowboard[] = [
     model: ModelsSnowboards.AMFish,
     boardDetails: {
       frontPart: {
-        colorModel: {
+        colorModelFront: {
           colorOut: {
             isActive: true,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
           colorIn: {
             isActive: false,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
           colorEdging: {
             isActive: true,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
         },
         figures: hasStraightLines,
         legentPositions: positionsUnderdog,
       },
-      backPart: {},
+      backPart: {
+        colorModelBack: {
+          colorOut: {
+            isActive: true,
+            color: colorPaletteBack,
+          },
+          colorIn: {
+            isActive: false,
+            color: colorPaletteBack,
+          },
+          colorEdging: {
+            isActive: false,
+            color: colorPaletteBack,
+          },
+        },
+      },
       boardLength: boardLengthAmFish,
     },
   },
@@ -92,24 +137,39 @@ export const modelsSnowboards: ISnowboard[] = [
     model: ModelsSnowboards.BCFR,
     boardDetails: {
       frontPart: {
-        colorModel: {
+        colorModelFront: {
           colorOut: {
             isActive: true,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
           colorIn: {
             isActive: false,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
           colorEdging: {
             isActive: false,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
         },
         figures: hasNotFigure,
         legentPositions: positionsUnderdog,
       },
-      backPart: {},
+      backPart: {
+        colorModelBack: {
+          colorOut: {
+            isActive: true,
+            color: colorPaletteBack,
+          },
+          colorIn: {
+            isActive: false,
+            color: colorPaletteBack,
+          },
+          colorEdging: {
+            isActive: false,
+            color: colorPaletteBack,
+          },
+        },
+      },
       boardLength: boardLengthBCFR,
     },
   },
@@ -118,24 +178,39 @@ export const modelsSnowboards: ISnowboard[] = [
     model: ModelsSnowboards.Unit,
     boardDetails: {
       frontPart: {
-        colorModel: {
+        colorModelFront: {
           colorOut: {
             isActive: true,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
           colorIn: {
             isActive: true,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
           colorEdging: {
             isActive: true,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
         },
         figures: hasLightning,
         legentPositions: positionsUnit,
       },
-      backPart: {},
+      backPart: {
+        colorModelBack: {
+          colorOut: {
+            isActive: true,
+            color: colorPaletteBack,
+          },
+          colorIn: {
+            isActive: false,
+            color: colorPaletteBack,
+          },
+          colorEdging: {
+            isActive: false,
+            color: colorPaletteBack,
+          },
+        },
+      },
       boardLength: boardLengthUnit,
     },
   },
@@ -144,24 +219,39 @@ export const modelsSnowboards: ISnowboard[] = [
     model: ModelsSnowboards.Fae,
     boardDetails: {
       frontPart: {
-        colorModel: {
+        colorModelFront: {
           colorOut: {
             isActive: true,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
           colorIn: {
             isActive: true,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
           colorEdging: {
             isActive: true,
-            color: colorPalette,
+            color: colorPaletteFront,
           },
         },
         figures: hasStars,
         legentPositions: positionsFae,
       },
-      backPart: {},
+      backPart: {
+        colorModelBack: {
+          colorOut: {
+            isActive: true,
+            color: colorPaletteBack,
+          },
+          colorIn: {
+            isActive: false,
+            color: colorPaletteBack,
+          },
+          colorEdging: {
+            isActive: false,
+            color: colorPaletteBack,
+          },
+        },
+      },
       boardLength: boardLengthFae,
     },
   },

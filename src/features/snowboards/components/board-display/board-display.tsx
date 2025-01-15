@@ -27,12 +27,12 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
             isBack={isBack}
             rotation={rotation}
             ref={svgRef}
-            isFigureTopActive={value.figures.figureTop.isActive}
-            straightLineTopColor={value.figures.figureTop.colorFigure.hex}
-            isFigureBottomActive={value.figures.figureBottom.isActive}
-            straightLineBottomColor={value.figures.figureBottom.colorFigure.hex}
-            colorShape={value.colorModel.colorOut.color.hex!}
-            legend={value.legend}
+            isFigureTopActive={value.boardDetails.frontPart.figures.figureTop.isActive}
+            straightLineTopColor={value.boardDetails.frontPart.figures.figureTop.colorFigure.hex}
+            isFigureBottomActive={value.boardDetails.frontPart.figures.figureBottom.isActive}
+            straightLineBottomColor={value.boardDetails.frontPart.figures.figureBottom.colorFigure.hex}
+            colorShape={value.boardDetails.frontPart.colorModelFront.colorOut.color.hex!}
+            legend={value.boardDetails.frontPart.legend}
             modelSize={value.boardLength.size}
           />
         );
@@ -40,12 +40,12 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
         return (
           <BoardUnderdogSvg
             ref={svgRef}
-            isStraightLineTopActive={value.figures.figureTop.isActive}
-            straightLineTopColor={value.figures.figureTop.colorFigure.hex}
-            isStraightLineBottomActive={value.figures.figureBottom.isActive}
-            straightLineBottomColor={value.figures.figureBottom.colorFigure.hex}
-            colorShape={value.colorModel.colorOut.color.hex!}
-            legend={value.legend}
+            isStraightLineTopActive={value.boardDetails.frontPart.figures.figureTop.isActive}
+            straightLineTopColor={value.boardDetails.frontPart.figures.figureTop.colorFigure.hex}
+            isStraightLineBottomActive={value.boardDetails.frontPart.figures.figureBottom.isActive}
+            straightLineBottomColor={value.boardDetails.frontPart.figures.figureBottom.colorFigure.hex}
+            colorShape={value.boardDetails.frontPart.colorModelFront.colorOut.color.hex!}
+            legend={value.boardDetails.frontPart.legend}
             modelSize={value.boardLength.title}
           />
         );
@@ -53,13 +53,13 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
         return (
           <BoardAmFishSvg
             ref={svgRef}
-            colorShape={value.colorModel.colorOut.color.hex!}
-            isFigureBottomActive={value.figures.figureBottom.isActive}
-            isFigureTopActive={value.figures.figureTop.isActive}
-            figureTopColor={value.figures.figureTop.colorFigure.hex}
-            figureBottomColor={value.figures.figureBottom.colorFigure.hex}
-            edgingColor={value.colorModel.colorEdging.color.hex}
-            legend={value.legend}
+            colorShape={value.boardDetails.frontPart.colorModelFront.colorOut.color.hex!}
+            isFigureBottomActive={value.boardDetails.frontPart.figures.figureBottom.isActive}
+            isFigureTopActive={value.boardDetails.frontPart.figures.figureTop.isActive}
+            figureTopColor={value.boardDetails.frontPart.figures.figureTop.colorFigure.hex}
+            figureBottomColor={value.boardDetails.frontPart.figures.figureBottom.colorFigure.hex}
+            edgingColor={value.boardDetails.frontPart.colorModelFront.colorEdging.color.hex}
+            legend={value.boardDetails.frontPart.legend}
             modelSize={value.boardLength.size}
           />
         );
@@ -67,8 +67,8 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
         return (
           <BoardBcfrSvg
             ref={svgRef}
-            colorShape={value.colorModel.colorOut.color.hex!}
-            legend={value.legend}
+            colorShape={value.boardDetails.frontPart.colorModelFront.colorOut.color.hex!}
+            legend={value.boardDetails.frontPart.legend}
             modelSize={value.boardLength.title}
           />
         );
@@ -76,14 +76,14 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
         return (
           <BoardUnitSvg
             ref={svgRef}
-            isFigureTopActive={value.figures.figureTop.isActive}
-            isFigureBottomActive={value.figures.figureBottom.isActive}
-            figureTopColor={value.figures.figureTop.colorFigure.hex}
-            figureBottomColor={value.figures.figureBottom.colorFigure.hex}
-            colorShapeInner={value.colorModel.colorIn.color.hex!}
-            colorShapeOut={value.colorModel.colorOut.color.hex!}
-            legend={value.legend}
-            edgingColor={value.colorModel.colorEdging.color.hex}
+            isFigureTopActive={value.boardDetails.frontPart.figures.figureTop.isActive}
+            isFigureBottomActive={value.boardDetails.frontPart.figures.figureBottom.isActive}
+            figureTopColor={value.boardDetails.frontPart.figures.figureTop.colorFigure.hex}
+            figureBottomColor={value.boardDetails.frontPart.figures.figureBottom.colorFigure.hex}
+            colorShapeInner={value.boardDetails.frontPart.colorModelFront.colorIn.color.hex!}
+            colorShapeOut={value.boardDetails.frontPart.colorModelFront.colorOut.color.hex!}
+            legend={value.boardDetails.frontPart.legend}
+            edgingColor={value.boardDetails.frontPart.colorModelFront.colorEdging.color.hex}
             modelSize={value.boardLength.size}
           />
         );
@@ -93,14 +93,14 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
         return (
           <BoardFaeSvg
             ref={svgRef}
-            isFigureTopActive={value.figures.figureTop.isActive}
-            isFigureBottomActive={value.figures.figureBottom.isActive}
-            figureTopColor={value.figures.figureTop.colorFigure.hex}
-            figureBottomColor={value.figures.figureBottom.colorFigure.hex}
-            colorShapeInner={value.colorModel.colorIn.color.hex!}
-            colorShapeOut={value.colorModel.colorOut.color.hex!}
-            legend={value.legend}
-            edgingColor={value.colorModel.colorEdging.color.hex}
+            isFigureTopActive={value.boardDetails.frontPart.figures.figureTop.isActive}
+            isFigureBottomActive={value.boardDetails.frontPart.figures.figureBottom.isActive}
+            figureTopColor={value.boardDetails.frontPart.figures.figureTop.colorFigure.hex}
+            figureBottomColor={value.boardDetails.frontPart.figures.figureBottom.colorFigure.hex}
+            colorShapeInner={value.boardDetails.frontPart.colorModelFront.colorIn.color.hex!}
+            colorShapeOut={value.boardDetails.frontPart.colorModelFront.colorOut.color.hex!}
+            legend={value.boardDetails.frontPart.legend}
+            edgingColor={value.boardDetails.frontPart.colorModelFront.colorEdging.color.hex}
             modelSize={value.boardLength.size}
           />
         );

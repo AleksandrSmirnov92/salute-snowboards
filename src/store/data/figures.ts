@@ -1,52 +1,52 @@
 import { IFigures } from '../../types/types';
-import { colorPalette } from './color-palette';
+import { colorPaletteFront } from './color-palette';
 
 export const hasStraightLines: IFigures = {
   figureTop: {
-    nameFigure: 'Straight line top',
-    colorLabel: 'Color line top',
+    nameFigure: 'Верхний стрингер',
+    colorLabel: 'Цвет верхнего стрингера',
     hasFigure: true,
     isActive: false,
-    colorFigure: colorPalette[1],
+    colorFigure: colorPaletteFront[1],
   },
   figureBottom: {
-    nameFigure: 'Straight line bottom',
-    colorLabel: 'Color line bottom',
+    nameFigure: 'Нижний стрингер',
+    colorLabel: 'Цвет нижнего стрингера',
     hasFigure: true,
     isActive: false,
-    colorFigure: colorPalette[1],
+    colorFigure: colorPaletteFront[1],
   },
 };
 export const hasStars: IFigures = {
   figureTop: {
-    nameFigure: 'Stars top',
-    colorLabel: 'Color stars top',
+    nameFigure: 'Звезды вверх',
+    colorLabel: 'Цвет звезд вверх',
     hasFigure: true,
     isActive: false,
-    colorFigure: colorPalette[11],
+    colorFigure: colorPaletteFront[11],
   },
   figureBottom: {
-    nameFigure: 'Stars bottom',
-    colorLabel: 'Color stars bottom',
+    nameFigure: 'Звезды низ',
+    colorLabel: 'Цвет звезд низ',
     hasFigure: true,
     isActive: false,
-    colorFigure: colorPalette[11],
+    colorFigure: colorPaletteFront[11],
   },
 };
 export const hasLightning: IFigures = {
   figureTop: {
-    nameFigure: 'Lightning top',
-    colorLabel: 'Color lightning top',
+    nameFigure: 'Молния вверх',
+    colorLabel: 'Цвет молнии вверх',
     hasFigure: true,
     isActive: false,
-    colorFigure: colorPalette[9],
+    colorFigure: colorPaletteFront[9],
   },
   figureBottom: {
-    nameFigure: 'Lightning bottom',
-    colorLabel: 'Color lightning bottom',
+    nameFigure: 'Молния низ',
+    colorLabel: 'Цвет молнии низ',
     hasFigure: true,
     isActive: false,
-    colorFigure: colorPalette[9],
+    colorFigure: colorPaletteFront[9],
   },
 };
 export const hasNotFigure: IFigures = {
@@ -55,13 +55,13 @@ export const hasNotFigure: IFigures = {
     colorLabel: '',
     hasFigure: false,
     isActive: false,
-    colorFigure: colorPalette[1],
+    colorFigure: colorPaletteFront[1],
   },
   figureBottom: {
     nameFigure: '',
     colorLabel: '',
     hasFigure: true,
     isActive: false,
-    colorFigure: colorPalette[1],
+    colorFigure: colorPaletteFront[1],
   },
 };

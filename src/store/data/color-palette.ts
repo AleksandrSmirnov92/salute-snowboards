@@ -32,7 +32,7 @@ import { IColorPallete } from '../../types/color-pallete';
 // CMYK: 38/30/68/13 - HEX: #899b46 - Avocado
 // CMYK: 39/48/40/25 - HEX: #746372 - Mauve Taupe
 
-export const colorPalette: IColorPallete[] = [
+export const colorPaletteFront: IColorPallete[] = [
   {
     id: 1,
     title: 'Slate Grey',
@@ -244,5 +244,32 @@ export const colorPalette: IColorPallete[] = [
     bgColor: 'bg-#8E7373',
   },
 ];
+export const colorPaletteBack: IColorPallete[] = [];
 
+export // CMYK: 16/4/5/0 - HEX: #d6f4f2 - Pale Aqua
+// CMYK: 0/26/14/0 - HEX: #ffbcdb - Pink Blush
+// CMYK: 13/12/10/0 - HEX: #dde0e5 - Mist Blue
+// CMYK: 36/0/8/0 - HEX: #a3ffea - Mint Green
+// CMYK: 4/25/33/0 - HEX: #f4bfaa - Apricot
+// CMYK: 5/33/20/0 - HEX: #f2aacc - Pale Pink
+// CMYK: 17/20/7/0 - HEX: #d3cced - Lavender Blue
+// CMYK: 20/11/5/0 - HEX: #cce2f2 - Powder Blue
+// CMYK: 11/11/2/0 - HEX: #e2e2f9 - Snow
+// CMYK: 30/17/9/0 - HEX: #b2d3e8 - Sky Blue
+// Right Column:
+// CMYK: 79/44/38/25 - HEX: #286b76 - Teal
+// CMYK: 73/33/37/14 - HEX: #3b928a - Sea Green
+// CMYK: 68/44/27/11 - HEX: #487fa5 - Steel Blue
+// CMYK: 82/74/47/11 - HEX: #283b78 - Midnight Blue
+// CMYK: 29/70/85/28 - HEX: #82371b - Rust
+// CMYK: 55/38/77/17 - HEX: #5f8330 - Olive Green
+// CMYK: 62/56/32/23 - HEX: #4a5685 - Slate Blue
+// CMYK: 51/38/56/28 - HEX: #597150 - Moss Green
+// CMYK: 58/44/55/19 - HEX: #56735c - Sage
+// CMYK: 53/43/42/27 - HEX: #576a6b - Slate Gray
+// CMYK: 70/35/23/6 - HEX: #479bb8 - Cerulean
+// CMYK: 38/48/52/36 - HEX: #65544e - Taupe
+// CMYK: 38/30/68/13 - HEX: #899b46 - Avocado
+// CMYK: 39/48/40/25 - HEX: #746372 - Mauve Taupe
+ {};
 // CMYK: 38/48/40/25 - HEX: #748c81 - Xanadu

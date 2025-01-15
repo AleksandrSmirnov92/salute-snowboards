@@ -1,13 +1,13 @@
-import { colorPalette } from '../../../../../store/data/color-palette';
+import { colorPaletteFront } from '../../../../../store/data/color-palette';
 import { useEffect, useState } from 'react';
 import { useAppDispatch } from '../../../../../store/hooks/hooks';
 import {
-  updateOuterColor,
-  toggleOuterColorActive,
-  updateInnerColor,
-  toggleInnerColorActive,
-  updateEdgingColor,
-  toggleEdgingColorActive,
+  updateOuterColorFrontPart,
+  toggleOuterColorActiveFrontPart,
+  updateInnerColorFrontPart,
+  toggleInnerColorActiveFrontPart,
+  updateEdgingColorFrontPart,
+  toggleEdgingColorActiveFrontPart,
   IInitialState,
 } from '../../../../../store/feautures/formValues/form-values-slice';
 import { ISelectOptions, ISnowboard, ModelsSnowboards } from '../../../../../types/types';
@@ -39,32 +39,32 @@ export const SelectColors = ({
 
   useEffect(() => {
     const actualModel = selectOptions.find((item) => item.id === selectedModel.id);
-    if (!actualModel || !actualModel.boardDetails.frontPart.colorModel) return;
+    if (!actualModel || !actualModel.boardDetails.frontPart.colorModelFront) return;
 
-    const { colorOut, colorIn } = actualModel.boardDetails.frontPart.colorModel;
+    const { colorOut, colorIn } = actualModel.boardDetails.frontPart.colorModelFront;
 
     if (colorOut.isActive) {
       setModelColorsOut(colorOut.color[0].bgColor);
-      dispatch(updateOuterColor(colorOut.color[0]));
-      dispatch(toggleOuterColorActive(colorOut.isActive));
-      dispatch(toggleInnerColorActive(colorIn.isActive));
+      dispatch(updateOuterColorFrontPart(colorOut.color[0]));
+      dispatch(toggleOuterColorActiveFrontPart(colorOut.isActive));
+      dispatch(toggleInnerColorActiveFrontPart(colorIn.isActive));
       setModelColorsInnerToActive(colorIn.isActive);
 
       switch (selectedModel.title) {
         case ModelsSnowboards.Fae: {
           setModelColorsOut(colorOut.color[5].bgColor);
-          dispatch(updateOuterColor(colorOut.color[5]));
-          dispatch(toggleOuterColorActive(colorOut.isActive));
+          dispatch(updateOuterColorFrontPart(colorOut.color[5]));
+          dispatch(toggleOuterColorActiveFrontPart(colorOut.isActive));
           setModelColorsInner(colorIn.color[2].bgColor);
-          dispatch(updateInnerColor(colorIn.color[2]));
+          dispatch(updateInnerColorFrontPart(colorIn.color[2]));
           break;
         }
         case ModelsSnowboards.Unit: {
           setModelColorsOut(colorOut.color[9].bgColor);
-          dispatch(updateOuterColor(colorOut.color[9]));
-          dispatch(toggleOuterColorActive(colorOut.isActive));
+          dispatch(updateOuterColorFrontPart(colorOut.color[9]));
+          dispatch(toggleOuterColorActiveFrontPart(colorOut.isActive));
           setModelColorsInner(colorIn.color[16].bgColor);
-          dispatch(updateInnerColor(colorIn.color[16]));
+          dispatch(updateInnerColorFrontPart(colorIn.color[16]));
           break;
         }
       }
@@ -73,19 +73,19 @@ export const SelectColors = ({
 
   useEffect(() => {
     const actualModel = selectOptions.find((item) => item.id === selectedModel.id);
-    if (!actualModel || !actualModel.boardDetails.frontPart.colorModel) return;
+    if (!actualModel || !actualModel.boardDetails.frontPart.colorModelFront) return;
 
-    const { colorEdging } = actualModel.boardDetails.frontPart.colorModel;
+    const { colorEdging } = actualModel.boardDetails.frontPart.colorModelFront;
     setColorEdgingActive(colorEdging.isActive);
-    dispatch(toggleEdgingColorActive(colorEdging.isActive));
+    dispatch(toggleEdgingColorActiveFrontPart(colorEdging.isActive));
     if (colorEdging.isActive) {
       switch (selectedModel.title) {
         case ModelsSnowboards.Fae: {
-          dispatch(updateEdgingColor(colorEdging.color[1]));
+          dispatch(updateEdgingColorFrontPart(colorEdging.color[1]));
           break;
         }
         case ModelsSnowboards.Unit: {
-          dispatch(updateEdgingColor(colorEdging.color[1]));
+          dispatch(updateEdgingColorFrontPart(colorEdging.color[1]));
           break;
         }
         case ModelsSnowboards.AMFish: {
@@ -98,38 +98,38 @@ export const SelectColors = ({
     <>
       <Select
         name={'ColorsModel'}
-        label={`Colors model ${modelColorInnerToActive ? 'outer' : ''}`}
+        label={`${modelColorInnerToActive ? `Внешний цвет` : 'Базовый цвет'}`}
         labelContentPosition={'justify-start'}
-        options={colorPalette.map((item) => {
+        options={colorPaletteFront.map((item) => {
           return { ...item, title: item.cmyk! };
         })}
         onChange={(e: IColorPallete) => {
           setModelColorsOut(e.bgColor);
-          dispatch(updateOuterColor(e));
+          dispatch(updateOuterColorFrontPart(e));
         }}
         valueTest={{
-          title: formValues.colorModel.colorOut.color.cmyk!,
-          bgColor: formValues.colorModel.colorOut.color.bgColor!,
-          value: formValues.colorModel.colorOut.color,
+          title: formValues.boardDetails.frontPart.colorModelFront.colorOut.color.cmyk!,
+          bgColor: formValues.boardDetails.frontPart.colorModelFront.colorOut.color.bgColor!,
+          value: formValues.boardDetails.frontPart.colorModelFront.colorOut.color,
         }}
         boardColorInner={modelColorInner}
       />
       {modelColorInnerToActive ? (
         <Select
           name={'ColorsModelIn'}
-          label={'Colors model inner'}
+          label={'Базовый цвет'}
           labelContentPosition={'justify-start'}
-          options={colorPalette.map((item) => {
+          options={colorPaletteFront.map((item) => {
             return { ...item, title: item.cmyk! };
           })}
           onChange={(e: IColorPallete) => {
             setModelColorsInner(e.bgColor);
-            dispatch(updateInnerColor(e));
+            dispatch(updateInnerColorFrontPart(e));
           }}
           valueTest={{
-            title: formValues.colorModel.colorIn.color.cmyk!,
-            bgColor: formValues.colorModel.colorIn.color.bgColor!,
-            value: formValues.colorModel.colorIn.color,
+            title: formValues.boardDetails.frontPart.colorModelFront.colorIn.color.cmyk!,
+            bgColor: formValues.boardDetails.frontPart.colorModelFront.colorIn.color.bgColor!,
+            value: formValues.boardDetails.frontPart.colorModelFront.colorIn.color,
           }}
           boardColorOut={modelColorOut}
         />
@@ -139,19 +139,19 @@ export const SelectColors = ({
       {colorEdgingActive ? (
         <Select
           name={'ColorsModelEdging'}
-          label={'Colors model Edging'}
+          label={'Цвет Окантовки'}
           labelContentPosition={'justify-start'}
-          options={colorPalette.map((item) => {
+          options={colorPaletteFront.map((item) => {
             return { ...item, title: item.cmyk! };
           })}
           onChange={(e: IColorPallete) => {
             // setModelColorEdging(e.bgColor);
-            dispatch(updateEdgingColor(e));
+            dispatch(updateEdgingColorFrontPart(e));
           }}
           valueTest={{
-            title: formValues.colorModel.colorEdging.color.cmyk!,
-            bgColor: formValues.colorModel.colorEdging.color.bgColor!,
-            value: formValues.colorModel.colorEdging.color,
+            title: formValues.boardDetails.frontPart.colorModelFront.colorEdging.color.cmyk!,
+            bgColor: formValues.boardDetails.frontPart.colorModelFront.colorEdging.color.bgColor!,
+            value: formValues.boardDetails.frontPart.colorModelFront.colorEdging.color,
           }}
           boardColorOut={modelColorOut}
           boardColorInner={modelColorInner}

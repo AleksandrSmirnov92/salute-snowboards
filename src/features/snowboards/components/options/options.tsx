@@ -3,7 +3,11 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { ISelectOptions } from '../../../../types/types';
 import { useAppDispatch } from '../../../../store/hooks/hooks';
-import { setModelValue, setLegendValue, setSize } from '../../../../store/feautures/formValues/form-values-slice';
+import {
+  setModelValue,
+  setLegendValueFrontPart,
+  setSize,
+} from '../../../../store/feautures/formValues/form-values-slice';
 import { SelectModel } from './components/select-model';
 import { SelectSize } from './components/select-size';
 import { SelectColors } from './components/select-colors';
@@ -43,7 +47,7 @@ export const Options = () => {
 
     const actualLegends = actualModel.boardDetails.frontPart.legentPositions;
     setLegends(actualLegends);
-    dispatch(setLegendValue(actualLegends[0]));
+    dispatch(setLegendValueFrontPart(actualLegends[0]));
   }, [selectedModel, selectOptions, dispatch]);
 
   return (

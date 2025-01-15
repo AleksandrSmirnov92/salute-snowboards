@@ -14,7 +14,7 @@ export const SelectModel = ({ options, selectedModel, setSelectedModel }: ISelec
     <>
       <Select
         name={'SnowboardsModel'}
-        label={'Snowboards model'}
+        label={'Сноуборд'}
         labelContentPosition={'justify-start'}
         options={options.map((item) => {
           return {

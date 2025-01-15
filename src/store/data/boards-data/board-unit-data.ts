@@ -1,48 +1,48 @@
 import { ILegent, IModelSize } from '../../../types/types';
-import { colorPalette } from '../color-palette';
+import { colorPaletteFront } from '../color-palette';
 
 export const positionsUnit: ILegent[] = [
   {
     id: 1,
     pos: 'Not selected',
-    title: 'Not selected',
+    title: 'Не выбранно',
     colorLegend: {
       top: {
-        name: 'ColorLegendTop',
+        name: 'Цвет вверх',
         positionColor: 'Color legend Top',
-        colorPallete: colorPalette[9],
+        colorPallete: colorPaletteFront[9],
       },
       middle: {
-        name: 'ColorLegendMiddle',
+        name: 'Цвет по центру',
         positionColor: 'Color legend middle',
-        colorPallete: colorPalette[9],
+        colorPallete: colorPaletteFront[9],
       },
       bottom: {
-        name: 'ColorLegendBottom',
-        positionColor: 'Color legend bottom',
-        colorPallete: colorPalette[9],
+        name: 'Цвет низа',
+        positionColor: 'Color legend Bottom',
+        colorPallete: colorPaletteFront[9],
       },
     },
   },
   {
     id: 2,
     pos: 'Version1',
-    title: 'Version1',
+    title: 'Вариант 1',
     colorLegend: {
       top: {
-        name: 'ColorLegendTop',
+        name: 'Цвет вверх',
         positionColor: 'Color legend Top',
-        colorPallete: colorPalette[9],
+        colorPallete: colorPaletteFront[9],
       },
       middle: {
-        name: 'ColorLegendMiddle',
+        name: 'Цвет по центру',
         positionColor: 'Color legend middle',
-        colorPallete: colorPalette[9],
+        colorPallete: colorPaletteFront[9],
       },
       bottom: {
-        name: 'ColorLegendBottom',
-        positionColor: 'Color legend bottom',
-        colorPallete: colorPalette[9],
+        name: 'Цвет низа',
+        positionColor: 'Color legend Bottom',
+        colorPallete: colorPaletteFront[9],
       },
     },
   },

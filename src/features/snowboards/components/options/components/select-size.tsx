@@ -15,7 +15,7 @@ export const SelectSize = ({ options }: ISelectSize) => {
     <>
       <Select
         name={'ModelSize'}
-        label={'Size model'}
+        label={'Ростовка'}
         labelContentPosition={'justify-start'}
         options={options}
         onChange={(e) => {

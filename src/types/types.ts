@@ -8,7 +8,7 @@ export interface ISnowboard {
 
 export interface ISnowboardDetails {
   frontPart: {
-    colorModel: {
+    colorModelFront: {
       colorOut: {
         isActive: boolean;
         color: IColorPallete[];
@@ -25,7 +25,22 @@ export interface ISnowboardDetails {
     figures: IFigures;
     legentPositions: ILegent[];
   };
-  backPart: {};
+  backPart: {
+    colorModelBack: {
+      colorOut: {
+        isActive: boolean;
+        color: IColorPallete[];
+      };
+      colorIn: {
+        isActive: boolean;
+        color: IColorPallete[];
+      };
+      colorEdging: {
+        isActive: boolean;
+        color: IColorPallete[];
+      };
+    };
+  };
   boardLength: IModelSize[];
 }
 export interface IModelSize {

@@ -1,11 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { IFigures, ILegent, ModelsSnowboards, IModelSize as IModelSize, ISelectOptions } from '../../../types/types';
-import { colorPalette, IColorPallete } from '../../data/color-palette';
+import {
+  IFigures,
+  ILegent as ILegend,
+  ModelsSnowboards,
+  IModelSize as IModelSize,
+  ISelectOptions,
+} from '../../../types/types';
+import { colorPaletteFront } from '../../data/color-palette';
 import { boardLengthBCFR } from '../../data/boards-data/board-bcfr-data';
 import { hasNotFigure } from '../../data/figures';
+import { IColorPallete } from '../../../types/color-pallete';
 
-const defaultColor = {
+const defaultColorFront = {
+  id: 1,
+  cmyk: '9/6/0/8',
+  hex: '#D2DAE9',
+  title: 'Alice Blue',
+  bgColor: 'bg-#D2DAE9',
+};
+const defaultColorBack = {
   id: 1,
   cmyk: '9/6/0/8',
   hex: '#D2DAE9',
@@ -17,44 +31,64 @@ const initialState: IInitialState = {
     id: 4,
     title: ModelsSnowboards.BCFR,
   },
-  colorModel: {
-    colorOut: {
-      isActive: true,
-      color: defaultColor,
+  boardDetails: {
+    frontPart: {
+      colorModelFront: {
+        colorOut: {
+          isActive: true,
+          color: defaultColorFront,
+        },
+        colorIn: {
+          isActive: false,
+          color: defaultColorFront,
+        },
+        colorEdging: {
+          isActive: false,
+          color: defaultColorFront,
+        },
+      },
+      figures: hasNotFigure,
+      legend: {
+        id: 1,
+        pos: 'Version1',
+        title: 'Вариант 1',
+        colorLegend: {
+          top: {
+            name: 'Цвет вверх',
+            positionColor: 'Color legend Top',
+            colorPallete: colorPaletteFront[1],
+          },
+          middle: {
+            name: 'Цвет по центру',
+            positionColor: 'Color legend middle',
+            colorPallete: colorPaletteFront[1],
+          },
+          bottom: {
+            name: 'Цвет низ',
+            positionColor: 'Color legend Bottom',
+            colorPallete: colorPaletteFront[1],
+          },
+        },
+      },
     },
-    colorIn: {
-      isActive: false,
-      color: defaultColor,
-    },
-    colorEdging: {
-      isActive: false,
-      color: defaultColor,
+    backPart: {
+      colorModelBack: {
+        colorOut: {
+          isActive: true,
+          color: defaultColorBack,
+        },
+        colorIn: {
+          isActive: false,
+          color: defaultColorBack,
+        },
+        colorEdging: {
+          isActive: false,
+          color: defaultColorBack,
+        },
+      },
     },
   },
-  figures: hasNotFigure,
   boardLength: boardLengthBCFR[1],
-  legend: {
-    id: 1,
-    pos: 'Version1',
-    title: 'Version1',
-    colorLegend: {
-      top: {
-        name: 'ColorLegendTop',
-        positionColor: 'Color legend Top',
-        colorPallete: colorPalette[1],
-      },
-      middle: {
-        name: 'ColorLegendMiddle',
-        positionColor: 'Color legend middle',
-        colorPallete: colorPalette[1],
-      },
-      bottom: {
-        name: 'ColorLegendBottom',
-        positionColor: 'Color legend Bottom',
-        colorPallete: colorPalette[1],
-      },
-    },
-  },
 };
 const selectedFormValues = createSlice({
   name: 'form',
@@ -63,55 +97,55 @@ const selectedFormValues = createSlice({
     setModelValue(state, action: PayloadAction<ISelectOptions>) {
       state.model = action.payload;
     },
-    updateOuterColor(state, action: PayloadAction<IColorPallete>) {
-      state.colorModel.colorOut.color = action.payload;
+    updateOuterColorFrontPart(state, action: PayloadAction<IColorPallete>) {
+      state.boardDetails.frontPart.colorModelFront.colorOut.color = action.payload;
     },
-    toggleOuterColorActive(state, action: PayloadAction<boolean>) {
-      state.colorModel.colorOut.isActive = action.payload;
+    toggleOuterColorActiveFrontPart(state, action: PayloadAction<boolean>) {
+      state.boardDetails.frontPart.colorModelFront.colorOut.isActive = action.payload;
     },
-    updateInnerColor(state, action: PayloadAction<IColorPallete>) {
-      state.colorModel.colorIn.color = action.payload;
+    updateInnerColorFrontPart(state, action: PayloadAction<IColorPallete>) {
+      state.boardDetails.frontPart.colorModelFront.colorIn.color = action.payload;
     },
-    toggleInnerColorActive(state, action: PayloadAction<boolean>) {
-      state.colorModel.colorIn.isActive = action.payload;
+    toggleInnerColorActiveFrontPart(state, action: PayloadAction<boolean>) {
+      state.boardDetails.frontPart.colorModelFront.colorIn.isActive = action.payload;
     },
-    updateEdgingColor(state, action: PayloadAction<IColorPallete>) {
-      state.colorModel.colorEdging.color = action.payload;
+    updateEdgingColorFrontPart(state, action: PayloadAction<IColorPallete>) {
+      state.boardDetails.frontPart.colorModelFront.colorEdging.color = action.payload;
     },
-    toggleEdgingColorActive(state, action: PayloadAction<boolean>) {
-      state.colorModel.colorEdging.isActive = action.payload;
+    toggleEdgingColorActiveFrontPart(state, action: PayloadAction<boolean>) {
+      state.boardDetails.frontPart.colorModelFront.colorEdging.isActive = action.payload;
     },
-    setFigureTopActive(state, action: PayloadAction<{ flag: boolean; nameFigure: string }>) {
-      state.figures.figureTop.isActive = action.payload.flag;
-      state.figures.figureTop.nameFigure = action.payload.nameFigure;
+    setFigureTopActiveFrontPart(state, action: PayloadAction<{ flag: boolean; nameFigure: string }>) {
+      state.boardDetails.frontPart.figures.figureTop.isActive = action.payload.flag;
+      state.boardDetails.frontPart.figures.figureTop.nameFigure = action.payload.nameFigure;
     },
-    setFigureTopColor(state, action: PayloadAction<IColorPallete>) {
-      state.figures.figureTop.colorFigure = action.payload;
+    setFigureTopColorFrontPart(state, action: PayloadAction<IColorPallete>) {
+      state.boardDetails.frontPart.figures.figureTop.colorFigure = action.payload;
     },
-    setFigureBottomActive(state, action: PayloadAction<{ flag: boolean; nameFigure: string }>) {
-      state.figures.figureBottom.isActive = action.payload.flag;
-      state.figures.figureBottom.nameFigure = action.payload.nameFigure;
+    setFigureBottomActiveFrontPart(state, action: PayloadAction<{ flag: boolean; nameFigure: string }>) {
+      state.boardDetails.frontPart.figures.figureBottom.isActive = action.payload.flag;
+      state.boardDetails.frontPart.figures.figureBottom.nameFigure = action.payload.nameFigure;
     },
-    setFigureBottomColor(state, action: PayloadAction<IColorPallete>) {
-      state.figures.figureBottom.colorFigure = action.payload;
+    setFigureBottomColorFrontPart(state, action: PayloadAction<IColorPallete>) {
+      state.boardDetails.frontPart.figures.figureBottom.colorFigure = action.payload;
     },
-    setHasFigureTop(state, action: PayloadAction<boolean>) {
-      state.figures.figureTop.hasFigure = action.payload;
+    setHasFigureTopFrontPart(state, action: PayloadAction<boolean>) {
+      state.boardDetails.frontPart.figures.figureTop.hasFigure = action.payload;
     },
-    setHasFigureBottom(state, action: PayloadAction<boolean>) {
-      state.figures.figureBottom.hasFigure = action.payload;
+    setHasFigureBottomFrontPart(state, action: PayloadAction<boolean>) {
+      state.boardDetails.frontPart.figures.figureBottom.hasFigure = action.payload;
     },
-    setLegendValue(state, action: PayloadAction<ILegent>) {
-      state.legend = action.payload;
+    setLegendValueFrontPart(state, action: PayloadAction<ILegend>) {
+      state.boardDetails.frontPart.legend = action.payload;
     },
-    setLegendTopColor(state, action: PayloadAction<IColorPallete>) {
-      state.legend.colorLegend.top!.colorPallete = action.payload;
+    setLegendTopColorFrontPart(state, action: PayloadAction<IColorPallete>) {
+      state.boardDetails.frontPart.legend.colorLegend.top!.colorPallete = action.payload;
     },
-    setLegendMiddleColor(state, action: PayloadAction<IColorPallete>) {
-      state.legend.colorLegend.middle!.colorPallete = action.payload;
+    setLegendMiddleColorFrontPart(state, action: PayloadAction<IColorPallete>) {
+      state.boardDetails.frontPart.legend.colorLegend.middle!.colorPallete = action.payload;
     },
-    setLegendBottomColor(state, action: PayloadAction<IColorPallete>) {
-      state.legend.colorLegend.bottom!.colorPallete = action.payload;
+    setLegendBottomColorFrontPart(state, action: PayloadAction<IColorPallete>) {
+      state.boardDetails.frontPart.legend.colorLegend.bottom!.colorPallete = action.payload;
     },
     setSize(state, action: PayloadAction<IModelSize>) {
       state.boardLength = action.payload;
@@ -120,65 +154,101 @@ const selectedFormValues = createSlice({
 });
 export const {
   setModelValue,
-  updateOuterColor,
-  toggleOuterColorActive,
-  updateInnerColor,
-  toggleInnerColorActive,
-  updateEdgingColor,
-  toggleEdgingColorActive,
-  setFigureTopActive,
-  setFigureTopColor,
-  setLegendValue,
-  setLegendTopColor,
-  setLegendMiddleColor,
-  setLegendBottomColor,
-  setFigureBottomActive,
-  setFigureBottomColor,
-  setHasFigureTop,
-  setHasFigureBottom,
+  updateOuterColorFrontPart,
+  toggleOuterColorActiveFrontPart,
+  updateInnerColorFrontPart,
+  toggleInnerColorActiveFrontPart,
+  updateEdgingColorFrontPart,
+  toggleEdgingColorActiveFrontPart,
+  setFigureTopActiveFrontPart,
+  setFigureTopColorFrontPart,
+  setLegendValueFrontPart,
+  setLegendTopColorFrontPart,
+  setLegendMiddleColorFrontPart,
+  setLegendBottomColorFrontPart,
+  setFigureBottomActiveFrontPart,
+  setFigureBottomColorFrontPart,
+  setHasFigureTopFrontPart,
+  setHasFigureBottomFrontPart,
   setSize,
 } = selectedFormValues.actions;
 export default selectedFormValues.reducer;
 
 export type SelectedFormValuesActionCreator =
   | ReturnType<typeof setModelValue>
-  | ReturnType<typeof updateOuterColor>
-  | ReturnType<typeof toggleOuterColorActive>
-  | ReturnType<typeof updateInnerColor>
-  | ReturnType<typeof toggleInnerColorActive>
-  | ReturnType<typeof updateEdgingColor>
-  | ReturnType<typeof toggleEdgingColorActive>
-  | ReturnType<typeof setFigureTopActive>
-  | ReturnType<typeof setFigureTopColor>
-  | ReturnType<typeof setFigureBottomActive>
-  | ReturnType<typeof setFigureBottomColor>
-  | ReturnType<typeof setLegendValue>
-  | ReturnType<typeof setLegendTopColor>
-  | ReturnType<typeof setLegendMiddleColor>
-  | ReturnType<typeof setLegendBottomColor>
-  | ReturnType<typeof setHasFigureTop>
-  | ReturnType<typeof setHasFigureBottom>
+  | ReturnType<typeof updateOuterColorFrontPart>
+  | ReturnType<typeof toggleOuterColorActiveFrontPart>
+  | ReturnType<typeof updateInnerColorFrontPart>
+  | ReturnType<typeof toggleInnerColorActiveFrontPart>
+  | ReturnType<typeof updateEdgingColorFrontPart>
+  | ReturnType<typeof toggleEdgingColorActiveFrontPart>
+  | ReturnType<typeof setFigureTopActiveFrontPart>
+  | ReturnType<typeof setFigureTopColorFrontPart>
+  | ReturnType<typeof setFigureBottomActiveFrontPart>
+  | ReturnType<typeof setFigureBottomColorFrontPart>
+  | ReturnType<typeof setLegendValueFrontPart>
+  | ReturnType<typeof setLegendTopColorFrontPart>
+  | ReturnType<typeof setLegendMiddleColorFrontPart>
+  | ReturnType<typeof setLegendBottomColorFrontPart>
+  | ReturnType<typeof setHasFigureTopFrontPart>
+  | ReturnType<typeof setHasFigureBottomFrontPart>
   | ReturnType<typeof setSize>;
 export interface IInitialState {
   model: {
     id: number;
     title: ModelsSnowboards;
   };
-  colorModel: {
-    colorOut: {
-      isActive: boolean;
-      color: IColorPallete;
+  boardDetails: {
+    frontPart: {
+      colorModelFront: {
+        colorOut: {
+          isActive: boolean;
+          color: IColorPallete;
+        };
+        colorIn: {
+          isActive: boolean;
+          color: IColorPallete;
+        };
+        colorEdging: {
+          isActive: boolean;
+          color: IColorPallete;
+        };
+      };
+      figures: IFigures;
+      legend: ILegend;
     };
-    colorIn: {
-      isActive: boolean;
-      color: IColorPallete;
-    };
-    colorEdging: {
-      isActive: boolean;
-      color: IColorPallete;
+    backPart: {
+      colorModelBack: {
+        colorOut: {
+          isActive: boolean;
+          color: IColorPallete;
+        };
+        colorIn: {
+          isActive: boolean;
+          color: IColorPallete;
+        };
+        colorEdging: {
+          isActive: boolean;
+          color: IColorPallete;
+        };
+      };
     };
   };
-  figures: IFigures;
-  legend: ILegent;
+  // colorModelFront: {
+  //   colorOut: {
+  //     isActive: boolean;
+  //     color: IColorPallete;
+  //   };
+  //   colorIn: {
+  //     isActive: boolean;
+  //     color: IColorPallete;
+  //   };
+  //   colorEdging: {
+  //     isActive: boolean;
+  //     color: IColorPallete;
+  //   };
+  // };
+  // figures: IFigures;
+  // legend: ILegent;
   boardLength: IModelSize;
 }
