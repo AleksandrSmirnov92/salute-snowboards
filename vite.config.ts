@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import tailwindcss from 'tailwindcss';
 import react from '@vitejs/plugin-react';
-import { viteSingleFile } from 'vite-plugin-singlefile';
 // https://vitejs.dev/config/
 export default defineConfig({
   css: {
@@ -9,6 +8,9 @@ export default defineConfig({
       plugins: [tailwindcss()],
     },
   },
-  plugins: [react(), viteSingleFile()],
+  plugins: [react()],
   base: 'salute-snowboards',
+  build: {
+    outDir: 'dist',
+  },
 });

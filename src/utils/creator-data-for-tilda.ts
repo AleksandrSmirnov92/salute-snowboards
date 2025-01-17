@@ -1,8 +1,13 @@
 import { ISendMessageValue } from '../types/types';
 import { IInitialState } from '../store/feautures/formValues/form-values-slice';
 
-export const createDataForTilde = (formValues: IInitialState, dataUrl: string): ISendMessageValue => {
-  const imageUrl = dataUrl;
+export const createDataForTilde = (
+  formValues: IInitialState,
+  dataUrlFront: string,
+  dataUrlBack: string,
+): ISendMessageValue => {
+  const imageUrlFront = dataUrlFront;
+  const imageUrlBack = dataUrlBack;
   const model = formValues.model.title;
   const modelSize = formValues.boardLength.title;
   const exteriorColor = formValues.boardDetails.frontPart.colorModelFront.colorOut.isActive
@@ -44,7 +49,8 @@ export const createDataForTilde = (formValues: IInitialState, dataUrl: string): 
     figureTop,
     figureBottom,
     legend,
-    imageUrl,
+    imageUrlFront: imageUrlFront,
+    imageUrlBack: imageUrlBack,
   };
   return result;
 };

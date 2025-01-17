@@ -4,6 +4,7 @@ import { useAppDispatch } from '../../../../../store/hooks/hooks';
 import { IColorPallete } from '../../../../../types/color-pallete';
 import { ISelectOptions, ISnowboard } from '../../../../../types/types';
 import { updateOuterColorFrontBack, IInitialState } from '../../../../../store/feautures/formValues/form-values-slice';
+import { useEffect } from 'react';
 interface ISelecColorsBack {
   selectedModel: ISelectOptions;
   selectOptions: ISnowboard[];
@@ -13,8 +14,18 @@ interface ISelecColorsBack {
   modelColorInnerBack: string | null;
   setModelColorsInnerBack: React.Dispatch<React.SetStateAction<string | null>>;
 }
-export const SelectColorsBack = ({ formValues, modelColorInnerBack, setModelColorsOutBack }: ISelecColorsBack) => {
+export const SelectColorsBack = ({
+  formValues,
+  modelColorInnerBack,
+  setModelColorsOutBack,
+  selectOptions,
+  selectedModel,
+}: ISelecColorsBack) => {
   const dispatch = useAppDispatch();
+  useEffect(() => {
+    setModelColorsOutBack(colorPaletteBack[0].bgColor);
+    dispatch(updateOuterColorFrontBack(colorPaletteBack[0]));
+  }, [selectedModel, selectOptions, dispatch]);
   return (
     <>
       <Select

@@ -48,6 +48,43 @@ export const positionsUnderdog: ILegent[] = [
   },
 ];
 
+export const positionsUnderdogBack: ILegent[] = [
+  {
+    id: 1,
+    pos: 'Not selected',
+    title: 'Не выбранно',
+    colorLegend: {
+      top: {
+        name: 'Цвет вверх',
+        positionColor: 'Color legend Top',
+        colorPallete: colorPaletteFront[1],
+      },
+      bottom: {
+        name: 'Цвет низа',
+        positionColor: 'Color legend Bottom',
+        colorPallete: colorPaletteFront[1],
+      },
+    },
+  },
+  {
+    id: 2,
+    pos: 'Version1',
+    title: 'Вариант 1',
+    colorLegend: {
+      top: {
+        name: 'Цвет вверх',
+        positionColor: 'Color legend Top',
+        colorPallete: colorPaletteFront[1],
+      },
+      bottom: {
+        name: 'Цвет низ',
+        positionColor: 'Color legend Bottom',
+        colorPallete: colorPaletteFront[1],
+      },
+    },
+  },
+];
+
 export const boardLengthUnderdog: IModelSize[] = [
   { id: 1, title: '148-cm', size: 148 },
   { id: 2, title: '151-cm', size: 151 },

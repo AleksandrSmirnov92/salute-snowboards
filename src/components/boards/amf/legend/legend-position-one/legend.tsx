@@ -1,4 +1,4 @@
-import { IColorPallete } from '../../../../../../store/data/color-palette';
+import { IColorPallete } from '../../../../../types/color-pallete';
 import { LegendBottom } from './legend-bottom/legend-bottom';
 import { LegendMiddle } from './legend-middle/legend-middle';
 import { LegendTop } from './legend-top/legend-top';
@@ -24,7 +24,7 @@ export interface IPropsLegend {
   };
   width: number;
   height: number;
-  modelSize: number;
+  modelSize: number | string;
 }
 export const LegendVersionOne = ({ colorLegend, width, height, modelSize }: IPropsLegend) => {
   // top options

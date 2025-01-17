@@ -47,6 +47,42 @@ export const positionsUnit: ILegent[] = [
     },
   },
 ];
+export const positionsUnitBack: ILegent[] = [
+  {
+    id: 1,
+    pos: 'Not selected',
+    title: 'Не выбранно',
+    colorLegend: {
+      top: {
+        name: 'Цвет вверх',
+        positionColor: 'Color legend Top',
+        colorPallete: colorPaletteFront[1],
+      },
+      bottom: {
+        name: 'Цвет низа',
+        positionColor: 'Color legend Bottom',
+        colorPallete: colorPaletteFront[1],
+      },
+    },
+  },
+  {
+    id: 2,
+    pos: 'Version1',
+    title: 'Вариант 1',
+    colorLegend: {
+      top: {
+        name: 'Цвет вверх',
+        positionColor: 'Color legend Top',
+        colorPallete: colorPaletteFront[1],
+      },
+      bottom: {
+        name: 'Цвет низ',
+        positionColor: 'Color legend Bottom',
+        colorPallete: colorPaletteFront[1],
+      },
+    },
+  },
+];
 export const boardLengthUnit: IModelSize[] = [
   { id: 1, title: '125-cm', size: 125 },
   { id: 2, title: '130-cm', size: 130 },

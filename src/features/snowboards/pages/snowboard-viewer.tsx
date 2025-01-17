@@ -3,7 +3,6 @@ import { Options } from '../components/options/options';
 import { Button } from '@headlessui/react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import { BoardDisplay } from '../components/board-display/board-display';
-
 export const Main = () => {
   const transformRef = useRef<any>(null);
   const [firstZoomDone, setFirstZoomDone] = useState<Boolean>(false);
@@ -18,6 +17,7 @@ export const Main = () => {
       setIsBack((prev) => !prev);
     }, 500);
   };
+
   const handleZoomIn = useCallback(() => {
     if (transformRef.current) {
       transformRef.current.zoomIn();
@@ -87,6 +87,7 @@ export const Main = () => {
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
             </svg>
           </Button>
+
           <Button
             className="border border-warm-gray "
             onClick={() => {
@@ -99,8 +100,9 @@ export const Main = () => {
           </Button>
         </div>
       </div>
+
       <div className="relative  w-full md:w-[50%] p-3 h-screen border-l-[1px] border-solid border-warm-gray overflow-hidden">
-        <Options />
+        <Options setIsBack={setIsBack} />
       </div>
     </div>
   );

@@ -9,6 +9,13 @@ export const hasStraightLines: IFigures = {
     isActive: false,
     colorFigure: colorPalette[1],
   },
+  figureMiddle: {
+    nameFigure: '',
+    colorLabel: '',
+    hasFigure: false,
+    isActive: false,
+    colorFigure: colorPalette[5],
+  },
   figureBottom: {
     nameFigure: 'Нижний стрингер',
     colorLabel: 'Цвет нижнего стрингера',
@@ -25,10 +32,40 @@ export const hasStars: IFigures = {
     isActive: false,
     colorFigure: colorPalette[11],
   },
+  figureMiddle: {
+    nameFigure: '',
+    colorLabel: '',
+    hasFigure: false,
+    isActive: false,
+    colorFigure: colorPalette[5],
+  },
   figureBottom: {
     nameFigure: 'Звезды низ',
     colorLabel: 'Цвет звезд низ',
     hasFigure: true,
+    isActive: false,
+    colorFigure: colorPalette[11],
+  },
+};
+export const hasStarsBack: IFigures = {
+  figureTop: {
+    nameFigure: '',
+    colorLabel: '',
+    hasFigure: false,
+    isActive: false,
+    colorFigure: colorPalette[11],
+  },
+  figureMiddle: {
+    nameFigure: 'Вертикальные звезды',
+    colorLabel: 'Цвет вертикальных звезд',
+    hasFigure: true,
+    isActive: false,
+    colorFigure: colorPalette[5],
+  },
+  figureBottom: {
+    nameFigure: '',
+    colorLabel: '',
+    hasFigure: false,
     isActive: false,
     colorFigure: colorPalette[11],
   },
@@ -41,10 +78,40 @@ export const hasLightning: IFigures = {
     isActive: false,
     colorFigure: colorPalette[9],
   },
+  figureMiddle: {
+    nameFigure: '',
+    colorLabel: '',
+    hasFigure: false,
+    isActive: false,
+    colorFigure: colorPalette[5],
+  },
   figureBottom: {
     nameFigure: 'Молния низ',
     colorLabel: 'Цвет молнии низ',
     hasFigure: true,
+    isActive: false,
+    colorFigure: colorPalette[9],
+  },
+};
+export const hasLightningBack: IFigures = {
+  figureTop: {
+    nameFigure: '',
+    colorLabel: '',
+    hasFigure: false,
+    isActive: false,
+    colorFigure: colorPalette[9],
+  },
+  figureMiddle: {
+    nameFigure: 'Вертикальная молния',
+    colorLabel: 'Цвет вертикальной молнии',
+    hasFigure: true,
+    isActive: false,
+    colorFigure: colorPalette[5],
+  },
+  figureBottom: {
+    nameFigure: '',
+    colorLabel: '',
+    hasFigure: false,
     isActive: false,
     colorFigure: colorPalette[9],
   },
@@ -57,16 +124,30 @@ export const hasNotFigure: IFigures = {
     isActive: false,
     colorFigure: colorPalette[1],
   },
+  figureMiddle: {
+    nameFigure: '',
+    colorLabel: '',
+    hasFigure: false,
+    isActive: false,
+    colorFigure: colorPalette[5],
+  },
   figureBottom: {
     nameFigure: '',
     colorLabel: '',
-    hasFigure: true,
+    hasFigure: false,
     isActive: false,
     colorFigure: colorPalette[1],
   },
 };
 export const hasStraightLinesBack: IFigures = {
   figureTop: {
+    nameFigure: '',
+    colorLabel: '',
+    hasFigure: false,
+    isActive: false,
+    colorFigure: colorPalette[5],
+  },
+  figureMiddle: {
     nameFigure: 'Вертикальная линия',
     colorLabel: 'Цвет вертикальной линии',
     hasFigure: true,

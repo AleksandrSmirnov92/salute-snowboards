@@ -5,59 +5,68 @@ import { Label, Checkbox, Field } from '@headlessui/react';
 import { ISelectOptions, ISnowboard } from '../../../../../types/types';
 import { useAppDispatch } from '../../../../../store/hooks/hooks';
 import {
-  setFigureTopActiveFrontPart,
-  setFigureTopColorFrontPart,
-  setFigureBottomActiveFrontPart,
-  setFigureBottomColorFrontPart,
-  setHasFigureTopFrontPart,
-  setHasFigureBottomFrontPart,
+  setFigureTopActiveBackPart,
+  setFigureTopColorBackPart,
+  setFigureMiddleActiveBackPart,
+  setFigureMiddleColorBackPart,
+  setHasFigureMiddleBackPart,
+  setHasFigureTopBackPart,
+  setHasFigureBottomBackPart,
+  setFigureBottomActiveBackPart,
+  setFigureBottomColorBackPart,
 } from '../../../../../store/feautures/formValues/form-values-slice';
 import { colorPaletteFront } from '../../../../../store/data/color-palette';
 interface IProps {
   formValues: IInitialState;
   selectedModel: ISelectOptions;
   selectOptions: ISnowboard[];
-  modelColorOut: string | null;
-  setModelColorsOut: React.Dispatch<React.SetStateAction<string | null>>;
-  modelColorInner: string | null;
-  setModelColorsInner: React.Dispatch<React.SetStateAction<string | null>>;
 }
-export const SelectFigures = ({ formValues, selectedModel, selectOptions, modelColorOut, modelColorInner }: IProps) => {
+export const SelectFiguresBack = ({ formValues, selectedModel, selectOptions }: IProps) => {
   const dispatch = useAppDispatch();
   const [nameFigureTop, setNameFigureTop] = useState('');
+  const [nameFigureMiddle, setNameFigureMiddle] = useState('');
   const [nameFigureBottom, setNameFigureBottom] = useState('');
   const [colorNameFigureTop, setColorNameFigureTop] = useState('');
+  const [colorNameFigureMiddle, setColorNameFigureMiddle] = useState('');
   const [colorNameFigureBottom, setColorNameFigureBottom] = useState('');
 
   useEffect(() => {
     const actualModel = selectOptions.find((item) => item.id === selectedModel.id);
     if (!actualModel || !actualModel.boardDetails.backPart) return;
 
-    const { figureTop, figureBottom } = actualModel.boardDetails.backPart.figures;
-
+    const { figureTop, figureMiddle, figureBottom } = actualModel.boardDetails.backPart.figures;
+    // top
     setNameFigureTop(figureTop.nameFigure);
+    setNameFigureMiddle(figureMiddle.nameFigure);
     setNameFigureBottom(figureBottom.nameFigure);
+
     setColorNameFigureTop(figureTop.colorLabel);
+    setColorNameFigureMiddle(figureMiddle.colorLabel);
     setColorNameFigureBottom(figureBottom.colorLabel);
 
-    dispatch(setFigureTopColorFrontPart(figureTop.colorFigure));
-    dispatch(setFigureTopActiveFrontPart({ flag: figureTop.isActive, nameFigure: figureTop.nameFigure }));
-    dispatch(setFigureBottomColorFrontPart(figureBottom.colorFigure));
-    dispatch(setFigureBottomActiveFrontPart({ flag: figureBottom.isActive, nameFigure: figureBottom.nameFigure }));
-    dispatch(setHasFigureTopFrontPart(figureTop.hasFigure));
-    dispatch(setHasFigureBottomFrontPart(figureBottom.hasFigure));
+    dispatch(setFigureTopColorBackPart(figureTop.colorFigure));
+    dispatch(setFigureTopActiveBackPart({ flag: figureTop.isActive, nameFigure: figureTop.nameFigure }));
+    dispatch(setHasFigureTopBackPart(figureTop.hasFigure));
+    // middle
+    dispatch(setFigureMiddleColorBackPart(figureMiddle.colorFigure));
+    dispatch(setFigureMiddleActiveBackPart({ flag: figureMiddle.isActive, nameFigure: figureMiddle.nameFigure }));
+    dispatch(setHasFigureMiddleBackPart(figureMiddle.hasFigure));
+    // bottom
+    dispatch(setFigureBottomColorBackPart(figureBottom.colorFigure));
+    dispatch(setFigureBottomActiveBackPart({ flag: figureBottom.isActive, nameFigure: figureBottom.nameFigure }));
+    dispatch(setHasFigureBottomBackPart(figureBottom.hasFigure));
+    console.log(formValues.boardDetails.backPart.figuresBack.figureTop.hasFigure);
   }, [selectedModel, selectOptions, dispatch]);
   return (
     <>
-      {formValues.boardDetails.frontPart.figuresFront.figureTop.hasFigure &&
-      formValues.boardDetails.frontPart.figuresFront.figureBottom.hasFigure ? (
+      {formValues.boardDetails.backPart.figuresBack.figureTop.hasFigure ? (
         <div className="flex flex-col md:flex-row w-full gap-3 mt-2">
           <div className="flex flex-col w-full md:w-1/2">
             <Field className="flex justify-center items-center md:pl-4 py-1.5 gap-2">
               <Label className="text-nowrap text-base font-medium leading-6 text-warm-gray">{nameFigureTop}</Label>
               <Checkbox
-                checked={formValues.boardDetails.frontPart.figuresFront.figureTop.isActive}
-                onChange={(e: boolean) => dispatch(setFigureTopActiveFrontPart({ flag: e, nameFigure: nameFigureTop }))}
+                checked={formValues.boardDetails.backPart.figuresBack.figureTop.isActive}
+                onChange={(e: boolean) => dispatch(setFigureTopActiveBackPart({ flag: e, nameFigure: nameFigureTop }))}
                 name={'CheckboxFigureTop'}
                 className="group block size-4 ml-2 border border-#b3b2a0 bg-eerie-black shadow-sm  hover:border-#9c9b7c data-[checked]:bg-eerie-black cursor-pointer"
               >
@@ -71,30 +80,37 @@ export const SelectFigures = ({ formValues, selectedModel, selectOptions, modelC
               </Checkbox>
             </Field>
             <Select
-              disabled={!formValues.boardDetails.frontPart.figuresFront.figureTop.isActive}
+              disabled={!formValues.boardDetails.backPart.figuresBack.figureTop.isActive}
               name={'FigureTop'}
               label={colorNameFigureTop}
               labelContentPosition="justify-center"
               options={colorPaletteFront.map((item) => {
                 return { ...item, title: item.cmyk! };
               })}
-              onChange={(e) => dispatch(setFigureTopColorFrontPart(e))}
+              onChange={(e) => dispatch(setFigureTopColorBackPart(e))}
               valueTest={{
-                title: formValues.boardDetails.frontPart.figuresFront.figureTop.colorFigure.cmyk!,
-                bgColor: formValues.boardDetails.frontPart.figuresFront.figureTop.colorFigure.bgColor,
-                value: formValues.boardDetails.frontPart.figuresFront.figureTop.colorFigure,
+                title: formValues.boardDetails.backPart.figuresBack.figureTop.colorFigure.cmyk!,
+                bgColor: formValues.boardDetails.backPart.figuresBack.figureTop.colorFigure.bgColor,
+                value: formValues.boardDetails.backPart.figuresBack.figureTop.colorFigure,
               }}
-              boardColorOut={modelColorOut}
-              boardColorInner={modelColorInner}
             />
           </div>
-          <div className="flex   flex-col w-full md:w-1/2">
+        </div>
+      ) : (
+        ''
+      )}
+      {/* //////////////////////////////////////////////////////////////////////////// */}
+      {formValues.boardDetails.backPart.figuresBack.figureMiddle.hasFigure ? (
+        <div className="flex flex-col md:flex-row w-full gap-3 mt-2">
+          <div className="flex flex-col w-full md:w-1/2">
             <Field className="flex justify-center items-center md:pl-4 py-1.5 gap-2">
-              <Label className="text-nowrap text-base font-medium leading-6 text-warm-gray">{nameFigureBottom}</Label>
+              <Label className="text-nowrap text-base font-medium leading-6 text-warm-gray">{nameFigureMiddle}</Label>
               <Checkbox
-                checked={formValues.boardDetails.frontPart.figuresFront.figureBottom.isActive}
-                onChange={(e) => dispatch(setFigureBottomActiveFrontPart({ flag: e, nameFigure: nameFigureBottom }))}
-                name={'CheckboxFigureBottom'}
+                checked={formValues.boardDetails.backPart.figuresBack.figureMiddle.isActive}
+                onChange={(e: boolean) =>
+                  dispatch(setFigureMiddleActiveBackPart({ flag: e, nameFigure: nameFigureMiddle }))
+                }
+                name={'CheckboxFigureTop'}
                 className="group block size-4 ml-2 border border-#b3b2a0 bg-eerie-black shadow-sm  hover:border-#9c9b7c data-[checked]:bg-eerie-black cursor-pointer"
               >
                 <svg
@@ -107,21 +123,62 @@ export const SelectFigures = ({ formValues, selectedModel, selectOptions, modelC
               </Checkbox>
             </Field>
             <Select
-              disabled={!formValues.boardDetails.frontPart.figuresFront.figureBottom.isActive}
-              name={'FigureBottom'}
+              disabled={!formValues.boardDetails.backPart.figuresBack.figureMiddle.isActive}
+              name={'FigureBackMiddle'}
+              label={colorNameFigureMiddle}
+              labelContentPosition="justify-center"
+              options={colorPaletteFront.map((item) => {
+                return { ...item, title: item.cmyk! };
+              })}
+              onChange={(e) => dispatch(setFigureMiddleColorBackPart(e))}
+              valueTest={{
+                title: formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure.cmyk!,
+                bgColor: formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure.bgColor,
+                value: formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure,
+              }}
+            />
+          </div>
+        </div>
+      ) : (
+        ''
+      )}
+      {/* //////////////////////////////////////////////////////////////////////////// */}
+      {formValues.boardDetails.backPart.figuresBack.figureBottom.hasFigure ? (
+        <div className="flex flex-col md:flex-row w-full gap-3 mt-2">
+          <div className="flex flex-col w-full md:w-1/2">
+            <Field className="flex justify-center items-center md:pl-4 py-1.5 gap-2">
+              <Label className="text-nowrap text-base font-medium leading-6 text-warm-gray">{nameFigureBottom}</Label>
+              <Checkbox
+                checked={formValues.boardDetails.backPart.figuresBack.figureBottom.isActive}
+                onChange={(e: boolean) =>
+                  dispatch(setFigureBottomActiveBackPart({ flag: e, nameFigure: nameFigureBottom }))
+                }
+                name={'CheckboxFigureTop'}
+                className="group block size-4 ml-2 border border-#b3b2a0 bg-eerie-black shadow-sm  hover:border-#9c9b7c data-[checked]:bg-eerie-black cursor-pointer"
+              >
+                <svg
+                  className="stroke-#b3b2a0 opacity-0 group-data-[checked]:opacity-100"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                >
+                  <path d="M3 8L6 11L11 3.5" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Checkbox>
+            </Field>
+            <Select
+              disabled={!formValues.boardDetails.backPart.figuresBack.figureBottom.isActive}
+              name={'FigureTop'}
               label={colorNameFigureBottom}
               labelContentPosition="justify-center"
               options={colorPaletteFront.map((item) => {
                 return { ...item, title: item.cmyk! };
               })}
-              onChange={(e) => dispatch(setFigureBottomColorFrontPart(e))}
+              onChange={(e) => dispatch(setFigureBottomColorBackPart(e))}
               valueTest={{
-                title: formValues.boardDetails.frontPart.figuresFront.figureBottom.colorFigure.cmyk!,
-                bgColor: formValues.boardDetails.frontPart.figuresFront.figureBottom.colorFigure.bgColor,
-                value: formValues.boardDetails.frontPart.figuresFront.figureBottom.colorFigure,
+                title: formValues.boardDetails.backPart.figuresBack.figureBottom.colorFigure.cmyk!,
+                bgColor: formValues.boardDetails.backPart.figuresBack.figureBottom.colorFigure.bgColor,
+                value: formValues.boardDetails.backPart.figuresBack.figureBottom.colorFigure,
               }}
-              boardColorOut={modelColorOut}
-              boardColorInner={modelColorInner}
             />
           </div>
         </div>

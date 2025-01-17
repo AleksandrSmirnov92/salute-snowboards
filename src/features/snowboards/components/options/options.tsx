@@ -6,6 +6,7 @@ import { useAppDispatch } from '../../../../store/hooks/hooks';
 import {
   setModelValue,
   setLegendValueFrontPart,
+  setLegendValueBackPart,
   setSize,
 } from '../../../../store/feautures/formValues/form-values-slice';
 import { SelectModel } from './components/select-model';
@@ -14,8 +15,12 @@ import { SelectColors } from './components/select-colors';
 import { SelectFigures } from './components/select-figures';
 import { SelectLegends } from './components/select-legends';
 import { SelectColorsBack } from './components/select-colors-back';
-
-export const Options = () => {
+import { SelectFiguresBack } from './components/select-figures-back';
+import { SelectLegendsBack } from './components/select-legends-back';
+interface IProps {
+  setIsBack: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export const Options = ({ setIsBack }: IProps) => {
   const dispatch = useAppDispatch();
   const selectOptions = useSelector((state: RootState) => state.selectOptions.snowboards);
   const modelsOptions = useSelector((state: RootState) => state.selectOptions.modelsSnowboards);
@@ -25,14 +30,16 @@ export const Options = () => {
   const getBoardDetails = (modelId: number) => selectOptions.find((item) => item.id === modelId)!.boardDetails;
   const initialDetails = getBoardDetails(selectedModel.id);
 
-  const initialLegends = initialDetails.frontPart.legentPositions;
+  const initialLegendsFront = initialDetails.frontPart.legentPositions;
+  const initialLegendsBack = initialDetails.backPart.legentPositions;
   const initialLengths = initialDetails.boardLength;
 
   const [modelColorOutFront, setModelColorsOutFront] = useState<null | string>(null);
   const [modelColorInnerFront, setModelColorsInnerFront] = useState<null | string>(null);
   const [modelColorOutBack, setModelColorsOutBack] = useState<null | string>(null);
   const [modelColorInnerBack, setModelColorsInnerBack] = useState<null | string>(null);
-  const [legends, setLegends] = useState(initialLegends);
+  const [legendsFront, setLegendsFront] = useState(initialLegendsFront);
+  const [legendsBack, setLegendsBack] = useState(initialLegendsBack);
   const [modelSizes, setModelSizes] = useState(initialLengths);
   useEffect(() => {
     const actualModel = selectOptions.find((item) => item.id === selectedModel.id);
@@ -41,16 +48,27 @@ export const Options = () => {
     dispatch(setModelValue(selectedModel));
     setModelSizes(actualModel.boardDetails.boardLength);
     dispatch(setSize(actualModel.boardDetails.boardLength[0]));
-    setLegends(actualModel.boardDetails.frontPart.legentPositions);
+    setLegendsFront(actualModel.boardDetails.frontPart.legentPositions);
+    setLegendsBack(actualModel.boardDetails.backPart.legentPositions);
+    setIsBack(true);
   }, [selectedModel, selectOptions, dispatch]);
 
   useEffect(() => {
     const actualModel = selectOptions.find((item) => item.id === selectedModel.id);
     if (!actualModel || !actualModel.boardDetails.frontPart.legentPositions) return;
 
-    const actualLegends = actualModel.boardDetails.frontPart.legentPositions;
-    setLegends(actualLegends);
-    dispatch(setLegendValueFrontPart(actualLegends[0]));
+    const actualLegendsFront = actualModel.boardDetails.frontPart.legentPositions;
+    setLegendsFront(actualLegendsFront);
+    dispatch(setLegendValueFrontPart(actualLegendsFront[0]));
+  }, [selectedModel, selectOptions, dispatch]);
+
+  useEffect(() => {
+    const actualModel = selectOptions.find((item) => item.id === selectedModel.id);
+    if (!actualModel || !actualModel.boardDetails.backPart.legentPositions) return;
+
+    const actualLegendsBack = actualModel.boardDetails.backPart.legentPositions;
+    setLegendsBack(actualLegendsBack);
+    dispatch(setLegendValueBackPart(actualLegendsBack[0]));
   }, [selectedModel, selectOptions, dispatch]);
 
   return (
@@ -82,7 +100,7 @@ export const Options = () => {
             setModelColorsOut={setModelColorsOutFront}
           />
           <SelectLegends
-            legends={legends}
+            legends={legendsFront}
             formValues={formValues}
             modelColorOut={modelColorOutFront}
             modelColorInner={modelColorInnerFront}
@@ -98,6 +116,13 @@ export const Options = () => {
             setModelColorsInnerBack={setModelColorsInnerBack}
             modelColorOutBack={modelColorOutBack}
             setModelColorsOutBack={setModelColorsOutBack}
+          />
+          <SelectFiguresBack selectOptions={selectOptions} selectedModel={selectedModel} formValues={formValues} />
+          <SelectLegendsBack
+            legends={legendsBack}
+            formValues={formValues}
+            modelColorOut={modelColorOutBack}
+            modelColorInner={modelColorInnerBack}
           />
         </>
       </form>

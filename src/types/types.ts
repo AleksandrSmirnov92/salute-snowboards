@@ -41,6 +41,7 @@ export interface ISnowboardDetails {
       };
     };
     figures: IFigures;
+    legentPositions: ILegent[];
   };
   boardLength: IModelSize[];
 }
@@ -87,6 +88,13 @@ export interface IFigures {
     isActive: boolean;
     colorFigure: IColorPallete;
   };
+  figureMiddle: {
+    nameFigure: string;
+    colorLabel: string;
+    hasFigure: boolean;
+    isActive: boolean;
+    colorFigure: IColorPallete;
+  };
   figureBottom: {
     nameFigure: string;
     colorLabel: string;
@@ -117,5 +125,6 @@ export interface ISendMessageValue {
     middle: string;
     bottom: string;
   };
-  imageUrl: string;
+  imageUrlFront: string;
+  imageUrlBack: string;
 }

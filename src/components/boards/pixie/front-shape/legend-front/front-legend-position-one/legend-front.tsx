@@ -1,7 +1,7 @@
-import { IColorPallete } from '../../../../../store/data/color-palette';
-import { LegendBottom } from './bottom/legend-bottom';
-import { LegendMiddle } from './middle/legend-middle';
-import { LegendTop } from './top/legend-top';
+import { IColorPallete } from '../../../../../../types/color-pallete';
+import { LegendBottom } from './legend-bottom/legend-bottom';
+import { LegendMiddle } from './legend-middle/legend-middle';
+import { LegendTop } from './legend-top/legend-top';
 
 export interface IPropsLegend {
   backgroundColor: string;
@@ -22,11 +22,11 @@ export interface IPropsLegend {
       colorPallete: IColorPallete;
     };
   };
+  modelSize: number;
   width: number;
   height: number;
-  modelSize: number | string;
 }
-export const LegendVersionOne = ({ colorLegend, width, height, modelSize }: IPropsLegend) => {
+export const FrontLegendPixieVersionOne = ({ colorLegend, width, height, modelSize }: IPropsLegend) => {
   // top options
   const colorTop = colorLegend.top?.colorPallete.hex;
   //middle options
@@ -43,13 +43,9 @@ export const LegendVersionOne = ({ colorLegend, width, height, modelSize }: IPro
       xmlns="http://www.w3.org/2000/svg"
     >
       {/* <rect width="600" height="600" fill="blue" /> */}
-      {colorLegend.top ? <LegendTop width={width} height={height} color={colorTop!} modelSize={modelSize} /> : ''}
+      {colorLegend.top ? <LegendTop width={width} height={height} color={colorTop!} sizes={modelSize} /> : ''}
       {colorLegend.middle ? <LegendMiddle width={width} height={height} color={colorMiddle!} /> : ''}
-      {colorLegend.bottom ? (
-        <LegendBottom width={width} height={height} color={colorBottom!} modelSize={modelSize} />
-      ) : (
-        ''
-      )}
+      {colorLegend.bottom ? <LegendBottom width={width} height={height} color={colorBottom!} sizes={modelSize} /> : ''}
     </svg>
   );
 };

@@ -1,12 +1,20 @@
 import { ISnowboard, ModelsSnowboards } from '../../types/types';
-import { boardLengthAmFish } from './boards-data/board-amFish-data';
-import { boardLengthBCFR } from './boards-data/board-bcfr-data';
-import { boardLengthFae, positionsFae } from './boards-data/board-fae-data';
-import { boardLengthPixie, positionsPixie } from './boards-data/board-pixie-data';
-import { boardLengthUnderdog, positionsUnderdog } from './boards-data/board-underdog-data';
-import { boardLengthUnit, positionsUnit } from './boards-data/board-unit-data';
+import { boardLengthAmFish, positionsAmFishBack } from './boards-data/board-amFish-data';
+import { boardLengthBCFR, positionsBcfrBack } from './boards-data/board-bcfr-data';
+import { boardLengthFae, positionsFae, positionsFaeBack } from './boards-data/board-fae-data';
+import { boardLengthPixie, positionsPixieBack, positionsPixieFront } from './boards-data/board-pixie-data';
+import { boardLengthUnderdog, positionsUnderdog, positionsUnderdogBack } from './boards-data/board-underdog-data';
+import { boardLengthUnit, positionsUnit, positionsUnitBack } from './boards-data/board-unit-data';
 import { colorPaletteBack, colorPaletteFront } from './color-palette';
-import { hasLightning, hasNotFigure, hasStars, hasStraightLines, hasStraightLinesBack } from './figures';
+import {
+  hasLightning,
+  hasLightningBack,
+  hasNotFigure,
+  hasStars,
+  hasStarsBack,
+  hasStraightLines,
+  hasStraightLinesBack,
+} from './figures';
 
 export const modelsSnowboards: ISnowboard[] = [
   {
@@ -28,8 +36,8 @@ export const modelsSnowboards: ISnowboard[] = [
             color: colorPaletteFront,
           },
         },
-        figures: hasStraightLinesBack,
-        legentPositions: positionsPixie,
+        figures: hasStraightLines,
+        legentPositions: positionsPixieFront,
       },
       backPart: {
         colorModelBack: {
@@ -46,7 +54,8 @@ export const modelsSnowboards: ISnowboard[] = [
             color: colorPaletteBack,
           },
         },
-        figures: hasStraightLines,
+        figures: hasStraightLinesBack,
+        legentPositions: positionsPixieBack,
       },
       boardLength: boardLengthPixie,
     },
@@ -88,7 +97,8 @@ export const modelsSnowboards: ISnowboard[] = [
             color: colorPaletteBack,
           },
         },
-        figures: hasStraightLines,
+        figures: hasStraightLinesBack,
+        legentPositions: positionsUnderdogBack,
       },
       boardLength: boardLengthUnderdog,
     },
@@ -130,7 +140,8 @@ export const modelsSnowboards: ISnowboard[] = [
             color: colorPaletteBack,
           },
         },
-        figures: hasStraightLines,
+        figures: hasStraightLinesBack,
+        legentPositions: positionsAmFishBack,
       },
       boardLength: boardLengthAmFish,
     },
@@ -172,7 +183,8 @@ export const modelsSnowboards: ISnowboard[] = [
             color: colorPaletteBack,
           },
         },
-        figures: hasStraightLines,
+        figures: hasNotFigure,
+        legentPositions: positionsBcfrBack,
       },
       boardLength: boardLengthBCFR,
     },
@@ -214,7 +226,8 @@ export const modelsSnowboards: ISnowboard[] = [
             color: colorPaletteBack,
           },
         },
-        figures: hasStraightLines,
+        figures: hasLightningBack,
+        legentPositions: positionsUnitBack,
       },
       boardLength: boardLengthUnit,
     },
@@ -256,7 +269,8 @@ export const modelsSnowboards: ISnowboard[] = [
             color: colorPaletteBack,
           },
         },
-        figures: hasStraightLines,
+        figures: hasStarsBack,
+        legentPositions: positionsFaeBack,
       },
       boardLength: boardLengthFae,
     },

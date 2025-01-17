@@ -21,6 +21,10 @@ export const serializeSVG = (svgRef: any, model: string): string => {
           firstChild.setAttribute('transform', `translate(0, -50)`);
           break;
         }
+        case ModelsSnowboards.Pixie: {
+          firstChild.setAttribute('transform', `translate(0, -15)`);
+          break;
+        }
         case ModelsSnowboards.Underdog: {
           firstChild.setAttribute('transform', `translate(0, -40)`);
           break;

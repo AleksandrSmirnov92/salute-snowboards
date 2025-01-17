@@ -8,7 +8,7 @@ interface IPropsLegendBottom {
   color: string;
   width: number;
   height: number;
-  sizes: number;
+  sizes: number | string;
 }
 export const LegendBottom = ({ width, height, sizes, color }: IPropsLegendBottom) => {
   const currentSizeBoard = (): JSX.Element | undefined => {

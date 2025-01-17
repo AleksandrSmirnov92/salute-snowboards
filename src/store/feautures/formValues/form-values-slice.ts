@@ -87,6 +87,18 @@ const initialState: IInitialState = {
         },
       },
       figuresBack: hasNotFigure,
+      legend: {
+        id: 1,
+        pos: 'Version1',
+        title: 'Вариант 1',
+        colorLegend: {
+          top: {
+            name: 'Цвет вверх',
+            positionColor: 'Color legend Top',
+            colorPallete: colorPaletteFront[1],
+          },
+        },
+      },
     },
   },
   boardLength: boardLengthBCFR[1],
@@ -154,6 +166,48 @@ const selectedFormValues = createSlice({
     updateOuterColorFrontBack(state, action: PayloadAction<IColorPallete>) {
       state.boardDetails.backPart.colorModelBack.colorOut.color = action.payload;
     },
+    setFigureTopActiveBackPart(state, action: PayloadAction<{ flag: boolean; nameFigure: string }>) {
+      state.boardDetails.backPart.figuresBack.figureTop.isActive = action.payload.flag;
+      state.boardDetails.backPart.figuresBack.figureTop.nameFigure = action.payload.nameFigure;
+    },
+    setFigureTopColorBackPart(state, action: PayloadAction<IColorPallete>) {
+      state.boardDetails.backPart.figuresBack.figureTop.colorFigure = action.payload;
+    },
+    setHasFigureTopBackPart(state, action: PayloadAction<boolean>) {
+      state.boardDetails.backPart.figuresBack.figureTop.hasFigure = action.payload;
+    },
+    setFigureMiddleActiveBackPart(state, action: PayloadAction<{ flag: boolean; nameFigure: string }>) {
+      state.boardDetails.backPart.figuresBack.figureMiddle.isActive = action.payload.flag;
+      state.boardDetails.backPart.figuresBack.figureMiddle.nameFigure = action.payload.nameFigure;
+    },
+    setFigureMiddleColorBackPart(state, action: PayloadAction<IColorPallete>) {
+      state.boardDetails.backPart.figuresBack.figureMiddle.colorFigure = action.payload;
+    },
+    setHasFigureMiddleBackPart(state, action: PayloadAction<boolean>) {
+      state.boardDetails.backPart.figuresBack.figureMiddle.hasFigure = action.payload;
+    },
+    setHasFigureBottomBackPart(state, action: PayloadAction<boolean>) {
+      state.boardDetails.backPart.figuresBack.figureBottom.hasFigure = action.payload;
+    },
+    setFigureBottomActiveBackPart(state, action: PayloadAction<{ flag: boolean; nameFigure: string }>) {
+      state.boardDetails.backPart.figuresBack.figureBottom.isActive = action.payload.flag;
+      state.boardDetails.backPart.figuresBack.figureBottom.nameFigure = action.payload.nameFigure;
+    },
+    setFigureBottomColorBackPart(state, action: PayloadAction<IColorPallete>) {
+      state.boardDetails.backPart.figuresBack.figureMiddle.colorFigure = action.payload;
+    },
+    setLegendValueBackPart(state, action: PayloadAction<ILegend>) {
+      state.boardDetails.backPart.legend = action.payload;
+    },
+    setLegendTopColorBackPart(state, action: PayloadAction<IColorPallete>) {
+      state.boardDetails.backPart.legend.colorLegend.top!.colorPallete = action.payload;
+    },
+    setLegendMiddleColorBackPart(state, action: PayloadAction<IColorPallete>) {
+      state.boardDetails.backPart.legend.colorLegend.middle!.colorPallete = action.payload;
+    },
+    setLegendBottomColorBackPart(state, action: PayloadAction<IColorPallete>) {
+      state.boardDetails.backPart.legend.colorLegend.bottom!.colorPallete = action.payload;
+    },
   },
 });
 export const {
@@ -176,6 +230,19 @@ export const {
   setHasFigureBottomFrontPart,
   setSize,
   updateOuterColorFrontBack,
+  setFigureTopActiveBackPart,
+  setFigureTopColorBackPart,
+  setHasFigureTopBackPart,
+  setFigureMiddleActiveBackPart,
+  setFigureMiddleColorBackPart,
+  setHasFigureMiddleBackPart,
+  setHasFigureBottomBackPart,
+  setFigureBottomActiveBackPart,
+  setFigureBottomColorBackPart,
+  setLegendValueBackPart,
+  setLegendTopColorBackPart,
+  setLegendMiddleColorBackPart,
+  setLegendBottomColorBackPart,
 } = selectedFormValues.actions;
 export default selectedFormValues.reducer;
 
@@ -198,7 +265,20 @@ export type SelectedFormValuesActionCreator =
   | ReturnType<typeof setHasFigureTopFrontPart>
   | ReturnType<typeof setHasFigureBottomFrontPart>
   | ReturnType<typeof setSize>
-  | ReturnType<typeof updateOuterColorFrontBack>;
+  | ReturnType<typeof updateOuterColorFrontBack>
+  | ReturnType<typeof setFigureTopActiveBackPart>
+  | ReturnType<typeof setFigureTopColorBackPart>
+  | ReturnType<typeof setHasFigureTopBackPart>
+  | ReturnType<typeof setFigureMiddleActiveBackPart>
+  | ReturnType<typeof setFigureMiddleColorBackPart>
+  | ReturnType<typeof setHasFigureMiddleBackPart>
+  | ReturnType<typeof setHasFigureBottomBackPart>
+  | ReturnType<typeof setFigureBottomActiveBackPart>
+  | ReturnType<typeof setFigureBottomColorBackPart>
+  | ReturnType<typeof setLegendValueBackPart>
+  | ReturnType<typeof setLegendTopColorBackPart>
+  | ReturnType<typeof setLegendMiddleColorBackPart>
+  | ReturnType<typeof setLegendBottomColorBackPart>;
 export interface IInitialState {
   model: {
     id: number;
@@ -239,6 +319,7 @@ export interface IInitialState {
         };
       };
       figuresBack: IFigures;
+      legend: ILegend;
     };
   };
   // colorModelFront: {

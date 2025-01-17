@@ -9,7 +9,7 @@ interface IPropsLegendMiddle {
   color: string;
   width: number;
   height: number;
-  sizes: number;
+  sizes: number | string;
 }
 export const LegendMiddle = ({ width, height, sizes, color }: IPropsLegendMiddle) => {
   const currentSizeBoard = (): JSX.Element | undefined => {
