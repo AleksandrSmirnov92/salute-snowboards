@@ -28,7 +28,7 @@ export const modelsSnowboards: ISnowboard[] = [
             color: colorPaletteFront,
           },
         },
-        figures: hasStraightLinesBack,
+        figures: hasStraightLines,
         legentPositions: positionsPixie,
       },
       backPart: {
@@ -46,7 +46,7 @@ export const modelsSnowboards: ISnowboard[] = [
             color: colorPaletteBack,
           },
         },
-        figures: hasStraightLines,
+        figures: hasStraightLinesBack,
       },
       boardLength: boardLengthPixie,
     },

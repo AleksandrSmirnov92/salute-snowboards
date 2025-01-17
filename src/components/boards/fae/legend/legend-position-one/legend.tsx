@@ -1,5 +1,4 @@
-import { IColorPallete } from '../../../../../../store/data/color-palette';
-
+import { IColorPallete } from '../../../../../types/color-pallete';
 import { LegendBottomFae } from './legend-bottom/legend-bottom';
 import { LegendMiddleFae } from './legend-middle/legend-middle';
 import { LegendTopFae } from './legend-top/legend-top';
