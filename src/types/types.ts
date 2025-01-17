@@ -40,6 +40,7 @@ export interface ISnowboardDetails {
         color: IColorPallete[];
       };
     };
+    figures: IFigures;
   };
   boardLength: IModelSize[];
 }

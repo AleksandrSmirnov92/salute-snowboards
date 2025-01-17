@@ -14,11 +14,11 @@ export const createDataForTilde = (formValues: IInitialState, dataUrl: string): 
   const edgingColor = formValues.boardDetails.frontPart.colorModelFront.colorEdging.isActive
     ? `CMYK: ${formValues.boardDetails.frontPart.colorModelFront.colorEdging.color.cmyk}`
     : 'Нет';
-  const figureTop = formValues.boardDetails.frontPart.figures.figureTop.isActive
-    ? `CMYK: ${formValues.boardDetails.frontPart.figures.figureTop.colorFigure.cmyk}`
+  const figureTop = formValues.boardDetails.frontPart.figuresFront.figureTop.isActive
+    ? `CMYK: ${formValues.boardDetails.frontPart.figuresFront.figureTop.colorFigure.cmyk}`
     : 'Нет';
-  const figureBottom = formValues.boardDetails.frontPart.figures.figureBottom.isActive
-    ? `CMYK: ${formValues.boardDetails.frontPart.figures.figureBottom.colorFigure.cmyk}`
+  const figureBottom = formValues.boardDetails.frontPart.figuresFront.figureBottom.isActive
+    ? `CMYK: ${formValues.boardDetails.frontPart.figuresFront.figureBottom.colorFigure.cmyk}`
     : 'Нет';
   const legend = {
     versionPosition: formValues.boardDetails.frontPart.legend.pos,

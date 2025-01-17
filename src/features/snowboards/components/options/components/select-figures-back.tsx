@@ -31,9 +31,9 @@ export const SelectFigures = ({ formValues, selectedModel, selectOptions, modelC
 
   useEffect(() => {
     const actualModel = selectOptions.find((item) => item.id === selectedModel.id);
-    if (!actualModel || !actualModel.boardDetails.frontPart.figures) return;
+    if (!actualModel || !actualModel.boardDetails.backPart) return;
 
-    const { figureTop, figureBottom } = actualModel.boardDetails.frontPart.figures;
+    const { figureTop, figureBottom } = actualModel.boardDetails.backPart.figures;
 
     setNameFigureTop(figureTop.nameFigure);
     setNameFigureBottom(figureBottom.nameFigure);

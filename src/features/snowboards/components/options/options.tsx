@@ -13,6 +13,7 @@ import { SelectSize } from './components/select-size';
 import { SelectColors } from './components/select-colors';
 import { SelectFigures } from './components/select-figures';
 import { SelectLegends } from './components/select-legends';
+import { SelectColorsBack } from './components/select-colors-back';
 
 export const Options = () => {
   const dispatch = useAppDispatch();
@@ -27,8 +28,10 @@ export const Options = () => {
   const initialLegends = initialDetails.frontPart.legentPositions;
   const initialLengths = initialDetails.boardLength;
 
-  const [modelColorOut, setModelColorsOut] = useState<null | string>(null);
-  const [modelColorInner, setModelColorsInner] = useState<null | string>(null);
+  const [modelColorOutFront, setModelColorsOutFront] = useState<null | string>(null);
+  const [modelColorInnerFront, setModelColorsInnerFront] = useState<null | string>(null);
+  const [modelColorOutBack, setModelColorsOutBack] = useState<null | string>(null);
+  const [modelColorInnerBack, setModelColorsInnerBack] = useState<null | string>(null);
   const [legends, setLegends] = useState(initialLegends);
   const [modelSizes, setModelSizes] = useState(initialLengths);
   useEffect(() => {
@@ -56,32 +59,47 @@ export const Options = () => {
         <span className="text-warm-gray text-lg">Детали доски</span>
       </div>
       <form className="relative">
-        <SelectModel options={modelsOptions} selectedModel={selectedModel} setSelectedModel={setSelectedModel} />
-        <SelectSize options={modelSizes} />
-        <SelectColors
-          selectOptions={selectOptions}
-          selectedModel={selectedModel}
-          formValues={formValues}
-          modelColorInner={modelColorInner}
-          setModelColorsInner={setModelColorsInner}
-          modelColorOut={modelColorOut}
-          setModelColorsOut={setModelColorsOut}
-        />
-        <SelectFigures
-          selectOptions={selectOptions}
-          selectedModel={selectedModel}
-          formValues={formValues}
-          modelColorInner={modelColorInner}
-          setModelColorsInner={setModelColorsInner}
-          modelColorOut={modelColorOut}
-          setModelColorsOut={setModelColorsOut}
-        />
-        <SelectLegends
-          legends={legends}
-          formValues={formValues}
-          modelColorOut={modelColorOut}
-          modelColorInner={modelColorInner}
-        />
+        <>
+          {/* Опции передней части доски */}
+          <SelectModel options={modelsOptions} selectedModel={selectedModel} setSelectedModel={setSelectedModel} />
+          <SelectSize options={modelSizes} />
+          <SelectColors
+            selectOptions={selectOptions}
+            selectedModel={selectedModel}
+            formValues={formValues}
+            modelColorInner={modelColorInnerFront}
+            setModelColorsInner={setModelColorsInnerFront}
+            modelColorOut={modelColorOutFront}
+            setModelColorsOut={setModelColorsOutFront}
+          />
+          <SelectFigures
+            selectOptions={selectOptions}
+            selectedModel={selectedModel}
+            formValues={formValues}
+            modelColorInner={modelColorInnerFront}
+            setModelColorsInner={setModelColorsInnerFront}
+            modelColorOut={modelColorOutFront}
+            setModelColorsOut={setModelColorsOutFront}
+          />
+          <SelectLegends
+            legends={legends}
+            formValues={formValues}
+            modelColorOut={modelColorOutFront}
+            modelColorInner={modelColorInnerFront}
+          />
+        </>
+        <>
+          {/* Опции задней части доски */}
+          <SelectColorsBack
+            selectOptions={selectOptions}
+            selectedModel={selectedModel}
+            formValues={formValues}
+            modelColorInnerBack={modelColorInnerBack}
+            setModelColorsInnerBack={setModelColorsInnerBack}
+            modelColorOutBack={modelColorOutBack}
+            setModelColorsOutBack={setModelColorsOutBack}
+          />
+        </>
       </form>
     </div>
   );

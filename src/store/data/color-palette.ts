@@ -244,7 +244,71 @@ export const colorPaletteFront: IColorPallete[] = [
     bgColor: 'bg-#8E7373',
   },
 ];
-export const colorPaletteBack: IColorPallete[] = [];
+export const colorPaletteBack: IColorPallete[] = [
+  {
+    id: 1,
+    cmyk: '3/2/0/97', // Очень темный, почти черный с нейтральным подтоном
+    hex: '#0D0F11', // Почти черный, без выраженного коричневого оттенка
+    title: 'Noble Black',
+    bgColor: 'bg-#0D0F11',
+  },
+  {
+    id: 2,
+    cmyk: '0/88/85/0', // Яркий, насыщенный оттенок с преобладанием красного и оранжевого
+    hex: '#FF1F26', // Яркий оранжево-красный цвет
+    title: 'Vibrant Red',
+    bgColor: 'bg-#FF1F26',
+  },
+  {
+    id: 3,
+    cmyk: '51/0/85/0',
+    hex: '#7DFF26',
+    title: 'Salt',
+    bgColor: 'bg-#7DFF26',
+  },
+  {
+    id: 4,
+    cmyk: '50/0/69/38',
+    hex: '#00FFFF',
+    title: 'Cyan',
+    bgColor: 'bg-#00FFFF',
+  },
+  {
+    id: 5,
+    cmyk: '11/6/0/67',
+    hex: '#4F5557',
+    title: 'Moss Green',
+    bgColor: 'bg-#4F5557',
+  },
+  {
+    id: 6,
+    cmyk: '100/33/0/27 ',
+    hex: '#005CBA',
+    title: 'Royal Blue',
+    bgColor: 'bg-#005CBA',
+  },
+  {
+    id: 7,
+    cmyk: '14/76/0/0',
+    hex: '#DB3DFF',
+    title: 'Pink',
+    bgColor: 'bg-#DB3DFF',
+  },
+  {
+    id: 8,
+    cmyk: '0/5/100/0',
+    hex: '#FFF200',
+    title: 'Yellow',
+    bgColor: 'bg-#FFF200',
+  },
+  {
+    id: 9,
+    cmyk: '100/78/0/57',
+    hex: '#00186E',
+    title: 'Midnight Blue',
+    bgColor: 'bg-#00186E',
+  },
+];
 
 export // CMYK: 16/4/5/0 - HEX: #d6f4f2 - Pale Aqua
 // CMYK: 0/26/14/0 - HEX: #ffbcdb - Pink Blush

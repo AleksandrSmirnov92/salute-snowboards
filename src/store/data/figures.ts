@@ -1,5 +1,5 @@
 import { IFigures } from '../../types/types';
-import { colorPaletteFront } from './color-palette';
+import { colorPaletteFront as colorPalette } from './color-palette';
 
 export const hasStraightLines: IFigures = {
   figureTop: {
@@ -7,14 +7,14 @@ export const hasStraightLines: IFigures = {
     colorLabel: 'Цвет верхнего стрингера',
     hasFigure: true,
     isActive: false,
-    colorFigure: colorPaletteFront[1],
+    colorFigure: colorPalette[1],
   },
   figureBottom: {
     nameFigure: 'Нижний стрингер',
     colorLabel: 'Цвет нижнего стрингера',
     hasFigure: true,
     isActive: false,
-    colorFigure: colorPaletteFront[1],
+    colorFigure: colorPalette[1],
   },
 };
 export const hasStars: IFigures = {
@@ -23,14 +23,14 @@ export const hasStars: IFigures = {
     colorLabel: 'Цвет звезд вверх',
     hasFigure: true,
     isActive: false,
-    colorFigure: colorPaletteFront[11],
+    colorFigure: colorPalette[11],
   },
   figureBottom: {
     nameFigure: 'Звезды низ',
     colorLabel: 'Цвет звезд низ',
     hasFigure: true,
     isActive: false,
-    colorFigure: colorPaletteFront[11],
+    colorFigure: colorPalette[11],
   },
 };
 export const hasLightning: IFigures = {
@@ -39,14 +39,14 @@ export const hasLightning: IFigures = {
     colorLabel: 'Цвет молнии вверх',
     hasFigure: true,
     isActive: false,
-    colorFigure: colorPaletteFront[9],
+    colorFigure: colorPalette[9],
   },
   figureBottom: {
     nameFigure: 'Молния низ',
     colorLabel: 'Цвет молнии низ',
     hasFigure: true,
     isActive: false,
-    colorFigure: colorPaletteFront[9],
+    colorFigure: colorPalette[9],
   },
 };
 export const hasNotFigure: IFigures = {
@@ -55,13 +55,29 @@ export const hasNotFigure: IFigures = {
     colorLabel: '',
     hasFigure: false,
     isActive: false,
-    colorFigure: colorPaletteFront[1],
+    colorFigure: colorPalette[1],
   },
   figureBottom: {
     nameFigure: '',
     colorLabel: '',
     hasFigure: true,
     isActive: false,
-    colorFigure: colorPaletteFront[1],
+    colorFigure: colorPalette[1],
+  },
+};
+export const hasStraightLinesBack: IFigures = {
+  figureTop: {
+    nameFigure: 'Вертикальная линия',
+    colorLabel: 'Цвет вертикальной линии',
+    hasFigure: true,
+    isActive: false,
+    colorFigure: colorPalette[5],
+  },
+  figureBottom: {
+    nameFigure: '',
+    colorLabel: '',
+    hasFigure: false,
+    isActive: false,
+    colorFigure: colorPalette[5],
   },
 };

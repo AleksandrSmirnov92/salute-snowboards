@@ -6,7 +6,7 @@ import { boardLengthPixie, positionsPixie } from './boards-data/board-pixie-data
 import { boardLengthUnderdog, positionsUnderdog } from './boards-data/board-underdog-data';
 import { boardLengthUnit, positionsUnit } from './boards-data/board-unit-data';
 import { colorPaletteBack, colorPaletteFront } from './color-palette';
-import { hasLightning, hasNotFigure, hasStars, hasStraightLines } from './figures';
+import { hasLightning, hasNotFigure, hasStars, hasStraightLines, hasStraightLinesBack } from './figures';
 
 export const modelsSnowboards: ISnowboard[] = [
   {
@@ -28,7 +28,7 @@ export const modelsSnowboards: ISnowboard[] = [
             color: colorPaletteFront,
           },
         },
-        figures: hasStraightLines,
+        figures: hasStraightLinesBack,
         legentPositions: positionsPixie,
       },
       backPart: {
@@ -46,6 +46,7 @@ export const modelsSnowboards: ISnowboard[] = [
             color: colorPaletteBack,
           },
         },
+        figures: hasStraightLines,
       },
       boardLength: boardLengthPixie,
     },
@@ -87,6 +88,7 @@ export const modelsSnowboards: ISnowboard[] = [
             color: colorPaletteBack,
           },
         },
+        figures: hasStraightLines,
       },
       boardLength: boardLengthUnderdog,
     },
@@ -128,6 +130,7 @@ export const modelsSnowboards: ISnowboard[] = [
             color: colorPaletteBack,
           },
         },
+        figures: hasStraightLines,
       },
       boardLength: boardLengthAmFish,
     },
@@ -169,6 +172,7 @@ export const modelsSnowboards: ISnowboard[] = [
             color: colorPaletteBack,
           },
         },
+        figures: hasStraightLines,
       },
       boardLength: boardLengthBCFR,
     },
@@ -210,6 +214,7 @@ export const modelsSnowboards: ISnowboard[] = [
             color: colorPaletteBack,
           },
         },
+        figures: hasStraightLines,
       },
       boardLength: boardLengthUnit,
     },
@@ -251,6 +256,7 @@ export const modelsSnowboards: ISnowboard[] = [
             color: colorPaletteBack,
           },
         },
+        figures: hasStraightLines,
       },
       boardLength: boardLengthFae,
     },

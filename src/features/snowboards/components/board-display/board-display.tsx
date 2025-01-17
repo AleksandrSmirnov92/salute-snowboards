@@ -22,16 +22,18 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
   const getSnowboard = (value: IInitialState) => {
     switch (value.model.title) {
       case ModelsSnowboards.Pixie:
+        console.log(value.boardDetails.backPart.colorModelBack.colorOut.color.hex);
         return (
           <BoardPixieSvg
             isBack={isBack}
             rotation={rotation}
             ref={svgRef}
-            isFigureTopActive={value.boardDetails.frontPart.figures.figureTop.isActive}
-            straightLineTopColor={value.boardDetails.frontPart.figures.figureTop.colorFigure.hex}
-            isFigureBottomActive={value.boardDetails.frontPart.figures.figureBottom.isActive}
-            straightLineBottomColor={value.boardDetails.frontPart.figures.figureBottom.colorFigure.hex}
-            colorShape={value.boardDetails.frontPart.colorModelFront.colorOut.color.hex!}
+            isFigureTopActive={value.boardDetails.frontPart.figuresFront.figureTop.isActive}
+            straightLineTopColor={value.boardDetails.frontPart.figuresFront.figureTop.colorFigure.hex}
+            isFigureBottomActive={value.boardDetails.frontPart.figuresFront.figureBottom.isActive}
+            straightLineBottomColor={value.boardDetails.frontPart.figuresFront.figureBottom.colorFigure.hex}
+            colorShapeFront={value.boardDetails.frontPart.colorModelFront.colorOut.color.hex!}
+            colorShapeBack={value.boardDetails.backPart.colorModelBack.colorOut.color.hex!}
             legend={value.boardDetails.frontPart.legend}
             modelSize={value.boardLength.size}
           />
@@ -40,10 +42,10 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
         return (
           <BoardUnderdogSvg
             ref={svgRef}
-            isStraightLineTopActive={value.boardDetails.frontPart.figures.figureTop.isActive}
-            straightLineTopColor={value.boardDetails.frontPart.figures.figureTop.colorFigure.hex}
-            isStraightLineBottomActive={value.boardDetails.frontPart.figures.figureBottom.isActive}
-            straightLineBottomColor={value.boardDetails.frontPart.figures.figureBottom.colorFigure.hex}
+            isStraightLineTopActive={value.boardDetails.frontPart.figuresFront.figureTop.isActive}
+            straightLineTopColor={value.boardDetails.frontPart.figuresFront.figureTop.colorFigure.hex}
+            isStraightLineBottomActive={value.boardDetails.frontPart.figuresFront.figureBottom.isActive}
+            straightLineBottomColor={value.boardDetails.frontPart.figuresFront.figureBottom.colorFigure.hex}
             colorShape={value.boardDetails.frontPart.colorModelFront.colorOut.color.hex!}
             legend={value.boardDetails.frontPart.legend}
             modelSize={value.boardLength.title}
@@ -54,10 +56,10 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
           <BoardAmFishSvg
             ref={svgRef}
             colorShape={value.boardDetails.frontPart.colorModelFront.colorOut.color.hex!}
-            isFigureBottomActive={value.boardDetails.frontPart.figures.figureBottom.isActive}
-            isFigureTopActive={value.boardDetails.frontPart.figures.figureTop.isActive}
-            figureTopColor={value.boardDetails.frontPart.figures.figureTop.colorFigure.hex}
-            figureBottomColor={value.boardDetails.frontPart.figures.figureBottom.colorFigure.hex}
+            isFigureBottomActive={value.boardDetails.frontPart.figuresFront.figureBottom.isActive}
+            isFigureTopActive={value.boardDetails.frontPart.figuresFront.figureTop.isActive}
+            figureTopColor={value.boardDetails.frontPart.figuresFront.figureTop.colorFigure.hex}
+            figureBottomColor={value.boardDetails.frontPart.figuresFront.figureBottom.colorFigure.hex}
             edgingColor={value.boardDetails.frontPart.colorModelFront.colorEdging.color.hex}
             legend={value.boardDetails.frontPart.legend}
             modelSize={value.boardLength.size}
@@ -76,10 +78,10 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
         return (
           <BoardUnitSvg
             ref={svgRef}
-            isFigureTopActive={value.boardDetails.frontPart.figures.figureTop.isActive}
-            isFigureBottomActive={value.boardDetails.frontPart.figures.figureBottom.isActive}
-            figureTopColor={value.boardDetails.frontPart.figures.figureTop.colorFigure.hex}
-            figureBottomColor={value.boardDetails.frontPart.figures.figureBottom.colorFigure.hex}
+            isFigureTopActive={value.boardDetails.frontPart.figuresFront.figureTop.isActive}
+            isFigureBottomActive={value.boardDetails.frontPart.figuresFront.figureBottom.isActive}
+            figureTopColor={value.boardDetails.frontPart.figuresFront.figureTop.colorFigure.hex}
+            figureBottomColor={value.boardDetails.frontPart.figuresFront.figureBottom.colorFigure.hex}
             colorShapeInner={value.boardDetails.frontPart.colorModelFront.colorIn.color.hex!}
             colorShapeOut={value.boardDetails.frontPart.colorModelFront.colorOut.color.hex!}
             legend={value.boardDetails.frontPart.legend}
@@ -93,10 +95,10 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
         return (
           <BoardFaeSvg
             ref={svgRef}
-            isFigureTopActive={value.boardDetails.frontPart.figures.figureTop.isActive}
-            isFigureBottomActive={value.boardDetails.frontPart.figures.figureBottom.isActive}
-            figureTopColor={value.boardDetails.frontPart.figures.figureTop.colorFigure.hex}
-            figureBottomColor={value.boardDetails.frontPart.figures.figureBottom.colorFigure.hex}
+            isFigureTopActive={value.boardDetails.frontPart.figuresFront.figureTop.isActive}
+            isFigureBottomActive={value.boardDetails.frontPart.figuresFront.figureBottom.isActive}
+            figureTopColor={value.boardDetails.frontPart.figuresFront.figureTop.colorFigure.hex}
+            figureBottomColor={value.boardDetails.frontPart.figuresFront.figureBottom.colorFigure.hex}
             colorShapeInner={value.boardDetails.frontPart.colorModelFront.colorIn.color.hex!}
             colorShapeOut={value.boardDetails.frontPart.colorModelFront.colorOut.color.hex!}
             legend={value.boardDetails.frontPart.legend}

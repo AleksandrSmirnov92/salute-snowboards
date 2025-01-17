@@ -21,10 +21,10 @@ const defaultColorFront = {
 };
 const defaultColorBack = {
   id: 1,
-  cmyk: '9/6/0/8',
-  hex: '#D2DAE9',
-  title: 'Alice Blue',
-  bgColor: 'bg-#D2DAE9',
+  cmyk: '3/2/0/97', // Очень темный, почти черный с нейтральным подтоном
+  hex: '#0D0F11', // Почти черный, без выраженного коричневого оттенка
+  title: 'Noble Black',
+  bgColor: 'bg-#0D0F11',
 };
 const initialState: IInitialState = {
   model: {
@@ -47,7 +47,7 @@ const initialState: IInitialState = {
           color: defaultColorFront,
         },
       },
-      figures: hasNotFigure,
+      figuresFront: hasNotFigure,
       legend: {
         id: 1,
         pos: 'Version1',
@@ -86,6 +86,7 @@ const initialState: IInitialState = {
           color: defaultColorBack,
         },
       },
+      figuresBack: hasNotFigure,
     },
   },
   boardLength: boardLengthBCFR[1],
@@ -116,24 +117,24 @@ const selectedFormValues = createSlice({
       state.boardDetails.frontPart.colorModelFront.colorEdging.isActive = action.payload;
     },
     setFigureTopActiveFrontPart(state, action: PayloadAction<{ flag: boolean; nameFigure: string }>) {
-      state.boardDetails.frontPart.figures.figureTop.isActive = action.payload.flag;
-      state.boardDetails.frontPart.figures.figureTop.nameFigure = action.payload.nameFigure;
+      state.boardDetails.frontPart.figuresFront.figureTop.isActive = action.payload.flag;
+      state.boardDetails.frontPart.figuresFront.figureTop.nameFigure = action.payload.nameFigure;
     },
     setFigureTopColorFrontPart(state, action: PayloadAction<IColorPallete>) {
-      state.boardDetails.frontPart.figures.figureTop.colorFigure = action.payload;
+      state.boardDetails.frontPart.figuresFront.figureTop.colorFigure = action.payload;
     },
     setFigureBottomActiveFrontPart(state, action: PayloadAction<{ flag: boolean; nameFigure: string }>) {
-      state.boardDetails.frontPart.figures.figureBottom.isActive = action.payload.flag;
-      state.boardDetails.frontPart.figures.figureBottom.nameFigure = action.payload.nameFigure;
+      state.boardDetails.frontPart.figuresFront.figureBottom.isActive = action.payload.flag;
+      state.boardDetails.frontPart.figuresFront.figureBottom.nameFigure = action.payload.nameFigure;
     },
     setFigureBottomColorFrontPart(state, action: PayloadAction<IColorPallete>) {
-      state.boardDetails.frontPart.figures.figureBottom.colorFigure = action.payload;
+      state.boardDetails.frontPart.figuresFront.figureBottom.colorFigure = action.payload;
     },
     setHasFigureTopFrontPart(state, action: PayloadAction<boolean>) {
-      state.boardDetails.frontPart.figures.figureTop.hasFigure = action.payload;
+      state.boardDetails.frontPart.figuresFront.figureTop.hasFigure = action.payload;
     },
     setHasFigureBottomFrontPart(state, action: PayloadAction<boolean>) {
-      state.boardDetails.frontPart.figures.figureBottom.hasFigure = action.payload;
+      state.boardDetails.frontPart.figuresFront.figureBottom.hasFigure = action.payload;
     },
     setLegendValueFrontPart(state, action: PayloadAction<ILegend>) {
       state.boardDetails.frontPart.legend = action.payload;
@@ -149,6 +150,9 @@ const selectedFormValues = createSlice({
     },
     setSize(state, action: PayloadAction<IModelSize>) {
       state.boardLength = action.payload;
+    },
+    updateOuterColorFrontBack(state, action: PayloadAction<IColorPallete>) {
+      state.boardDetails.backPart.colorModelBack.colorOut.color = action.payload;
     },
   },
 });
@@ -171,6 +175,7 @@ export const {
   setHasFigureTopFrontPart,
   setHasFigureBottomFrontPart,
   setSize,
+  updateOuterColorFrontBack,
 } = selectedFormValues.actions;
 export default selectedFormValues.reducer;
 
@@ -192,7 +197,8 @@ export type SelectedFormValuesActionCreator =
   | ReturnType<typeof setLegendBottomColorFrontPart>
   | ReturnType<typeof setHasFigureTopFrontPart>
   | ReturnType<typeof setHasFigureBottomFrontPart>
-  | ReturnType<typeof setSize>;
+  | ReturnType<typeof setSize>
+  | ReturnType<typeof updateOuterColorFrontBack>;
 export interface IInitialState {
   model: {
     id: number;
@@ -214,7 +220,7 @@ export interface IInitialState {
           color: IColorPallete;
         };
       };
-      figures: IFigures;
+      figuresFront: IFigures;
       legend: ILegend;
     };
     backPart: {
@@ -232,6 +238,7 @@ export interface IInitialState {
           color: IColorPallete;
         };
       };
+      figuresBack: IFigures;
     };
   };
   // colorModelFront: {
