@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { useAppSelector } from '../../../store/hooks/hooks';
 import { RootState } from '../../../store/store';
-import { useSelector } from 'react-redux';
 
 interface IProps {
   isBack: boolean;

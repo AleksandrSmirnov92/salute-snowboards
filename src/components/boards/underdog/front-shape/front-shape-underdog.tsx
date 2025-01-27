@@ -2,8 +2,8 @@ import { ILegent } from '../../../../types/types';
 import { LinearGradientFront } from '../../../liner-gradient-front/liner-gradient-front';
 import { SnowboardInserts } from '../../../snowboards-inserts/snowboard-inserts';
 import { LegendVersionOne } from './legend-front/legend';
-import { StraightLineBottom } from '../straight-line/straight-line-bottom';
-import { StraightLineTop } from '../straight-line/straight-line-top';
+import { StraightLineBottom } from './straight-line-underdog-front/straight-line-bottom';
+import { StraightLineTop } from './straight-line-underdog-front/straight-line-top';
 
 interface IProps {
   colorShapeFront: string;

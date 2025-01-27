@@ -3,7 +3,7 @@ import { LinearGradientFront } from '../../../liner-gradient-front/liner-gradien
 import { SnowboardInserts } from '../../../snowboards-inserts/snowboard-inserts';
 import { StraightLineBottom } from '../figure/straight-line/straight-line-bottom';
 import { StraightLineTop } from '../figure/straight-line/straight-line-top';
-import { LegendVersionOne } from '../legend/legend-position-one/legend';
+import { LegendVersionOne } from './legend-front/legend-position-one/legend';
 interface IProps {
   colorShapeFront: string;
   isFigureTopActive: boolean;

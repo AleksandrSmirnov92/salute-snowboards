@@ -1,7 +1,7 @@
 import { ILegent } from '../../../../types/types';
 import { LinearGradientBack } from '../../../liner-gradiend-back/liner-gradien-back';
 import { BackLegendPixieVersionOne } from './legend-back/back-legend-position-one/legend-back';
-import { StraightLineMiddleBack } from './straight-line-pixie-back/straight-line-pixie-back';
+import { StraightLineMiddlePixieBack } from './straight-line-pixie-back/straight-line-pixie-back';
 
 interface IProps {
   colorShapeBack: string;
@@ -35,7 +35,7 @@ export const BackShapePixie = ({
             <BackLegendPixieVersionOne
               width={width}
               height={height}
-              colorLegend={legendBack.colorLegend}
+              colorLegend={legendBack}
               backgroundColor={colorShapeBack}
               modelSize={modelSize}
             />
@@ -60,7 +60,7 @@ export const BackShapePixie = ({
         </g>
         <g transform={`translate(${0}, ${0})`}>
           {isBackFigureMiddleActive && (
-            <StraightLineMiddleBack width={width} height={height} color={backFigureMiddleColor} />
+            <StraightLineMiddlePixieBack width={width} height={height} color={backFigureMiddleColor} />
           )}
           {currentLegend()}
         </g>

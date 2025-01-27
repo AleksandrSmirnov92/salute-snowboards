@@ -1,14 +1,52 @@
+import { ILegent } from '../../../../types/types';
 import { LinearGradientBack } from '../../../liner-gradiend-back/liner-gradien-back';
+import { BackLegendFaeVersionOne } from './back-legend-position-one/legend-back';
+import { VerticalStars } from './vertical-stars/vertical-lightning';
 
 interface IProps {
   colorShapeBack: string;
+  legendBack: ILegent;
+  modelSize: number | string;
+  isBackFigureMiddleActive: boolean;
+  backFigureMiddleColor: string;
 }
-export const BackShapeFae = ({ colorShapeBack }: IProps) => {
+
+export const BackShapeFae = ({
+  colorShapeBack,
+  legendBack,
+  modelSize,
+  isBackFigureMiddleActive,
+  backFigureMiddleColor,
+}: IProps) => {
   const scaleBoard = 0.116;
+  const width = 600;
+  const height = 600;
   const strokeWidthBoard = 5;
   const translateX = 240;
   const translateY = 30;
-
+  const currentLegend = (): JSX.Element | undefined => {
+    if (legendBack) {
+      switch (legendBack.pos) {
+        case 'Not selected': {
+          return;
+        }
+        case 'Version1': {
+          return (
+            <BackLegendFaeVersionOne
+              width={width}
+              height={height}
+              colorLegend={legendBack}
+              backgroundColor={colorShapeBack}
+              modelSize={modelSize}
+            />
+          );
+        }
+        default: {
+          return;
+        }
+      }
+    } else return;
+  };
   return (
     <>
       <g transform={`translate(${0}, ${40}) `}>
@@ -26,6 +64,10 @@ export const BackShapeFae = ({ colorShapeBack }: IProps) => {
     c63.57,4.92,140.18,25.24,192.34,62.82c26.15,20.2,43.25,49.44,60.05,77.33c37.48,67.07,72.61,137.49,88.42,213.17
     c13.27,66.76,11.07,136.33,9.83,204.08C842.42,1158.88,812.86,1637.89,816.43,2097.62"
           />
+        </g>
+        <g transform={`translate(${0}, ${0})`}>
+          {isBackFigureMiddleActive && <VerticalStars width={width} height={height} color={backFigureMiddleColor} />}
+          {currentLegend()}
         </g>
       </g>
       <LinearGradientBack

@@ -3,11 +3,11 @@ interface IPropsLegendTop {
   width: number;
   height: number;
 }
-export const BackLegendBottom = ({ color, width, height }: IPropsLegendTop) => {
+export const BackLegendTopBCFR = ({ color, width, height }: IPropsLegendTop) => {
   const scaleText = 1.0;
-  const scaleS = 0.07;
-  const positionLegendMiddleSX = 4740;
-  const positionLegentMiddleSY = 4400;
+  const scaleS = 0.1;
+  const positionLegendMiddleSX = 3465;
+  const positionLegentMiddleSY = -1810;
   const colorMiddle = color;
 
   return (

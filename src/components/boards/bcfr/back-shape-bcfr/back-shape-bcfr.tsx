@@ -1,14 +1,43 @@
+import { ILegent } from '../../../../types/types';
 import { LinearGradientBack } from '../../../liner-gradiend-back/liner-gradien-back';
+import { BackLegendBCFRVersionOne } from './legend-back/back-legend-position-one/legend-back';
 
 interface IProps {
   colorShapeBack: string;
+  legendBack: ILegent;
+  modelSize: number | string;
 }
-export const BackShapeBcfr = ({ colorShapeBack }: IProps) => {
+export const BackShapeBcfr = ({ colorShapeBack, legendBack, modelSize }: IProps) => {
   const scaleBoard = 0.1009;
+  const width = 600;
+  const height = 600;
   const strokeWidthBoard = 1;
   const translateX = 347;
   const translateY = 12;
 
+  const currentLegend = (): JSX.Element | undefined => {
+    if (legendBack) {
+      switch (legendBack.pos) {
+        case 'Not selected': {
+          return;
+        }
+        case 'Version1': {
+          return (
+            <BackLegendBCFRVersionOne
+              width={width}
+              height={height}
+              colorLegend={legendBack}
+              backgroundColor={colorShapeBack}
+              modelSize={modelSize}
+            />
+          );
+        }
+        default: {
+          return;
+        }
+      }
+    } else return;
+  };
   return (
     <>
       <g transform={`translate(${0}, ${40}) `}>
@@ -96,6 +125,7 @@ export const BackShapeBcfr = ({ colorShapeBack }: IProps) => {
     	2921.1,109.8 2691.6,114.9 "
           />
         </g>
+        <g transform={`translate(${0}, ${0})`}>{currentLegend()}</g>
       </g>
       <LinearGradientBack
         id={'colorShapeBackBCFR'}

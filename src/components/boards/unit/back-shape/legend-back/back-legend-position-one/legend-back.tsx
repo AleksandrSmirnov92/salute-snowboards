@@ -1,15 +1,15 @@
 import { ILegent } from '../../../../../../types/types';
-import { BackLegendBottom } from './legend-bottom/back-legend-top';
-import { BackLegendTop } from './legend-top/back-legend-top';
+import { BackLegendBottomUnit } from './legend-bottom/legend-bottom-unit';
+import { BackLegendTopUnit } from './legend-top/legend-top-unit';
 
 export interface IPropsLegend {
   backgroundColor: string;
   colorLegend: ILegent;
-  modelSize: number;
+  modelSize: number | string;
   width: number;
   height: number;
 }
-export const BackLegendPixieVersionOne = ({ colorLegend, width, height }: IPropsLegend) => {
+export const BackLegendUnitVersionOne = ({ colorLegend, width, height }: IPropsLegend) => {
   const colorTop = colorLegend.colorLegend.top?.colorPallete.hex;
   const colorBottom = colorLegend.colorLegend.bottom?.colorPallete.hex;
   return (
@@ -21,8 +21,12 @@ export const BackLegendPixieVersionOne = ({ colorLegend, width, height }: IProps
       height={height}
       xmlns="http://www.w3.org/2000/svg"
     >
-      {colorLegend.colorLegend.top ? <BackLegendTop width={width} height={height} color={colorTop!} /> : ''}
-      {colorLegend.colorLegend.bottom ? <BackLegendBottom width={width} height={height} color={colorBottom!} /> : ''}
+      {colorLegend.colorLegend.top ? <BackLegendTopUnit width={width} height={height} color={colorTop!} /> : ''}
+      {colorLegend.colorLegend.bottom ? (
+        <BackLegendBottomUnit width={width} height={height} color={colorBottom!} />
+      ) : (
+        ''
+      )}
     </svg>
   );
 };

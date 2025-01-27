@@ -82,6 +82,9 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
             legend={value.boardDetails.frontPart.legend}
             colorShapeBack={value.boardDetails.backPart.colorModelBack.colorOut.color.hex!}
             modelSize={value.boardLength.size}
+            legendBack={value.boardDetails.backPart.legend}
+            isBackFigureMiddleActive={value.boardDetails.backPart.figuresBack.figureMiddle.isActive}
+            backFigureMiddleColor={value.boardDetails.backPart.figuresBack.figureMiddle.colorFigure.hex}
           />
         );
       case ModelsSnowboards.BCFR:
@@ -95,6 +98,7 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
             legend={value.boardDetails.frontPart.legend}
             modelSize={value.boardLength.title}
             colorShapeBack={value.boardDetails.backPart.colorModelBack.colorOut.color.hex!}
+            legendBack={value.boardDetails.backPart.legend}
           />
         );
       case ModelsSnowboards.Unit: {
@@ -114,6 +118,9 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
             edgingColor={value.boardDetails.frontPart.colorModelFront.colorEdging.color.hex}
             modelSize={value.boardLength.size}
             colorShapeBack={value.boardDetails.backPart.colorModelBack.colorOut.color.hex!}
+            legendBack={value.boardDetails.backPart.legend}
+            isBackFigureMiddleActive={value.boardDetails.backPart.figuresBack.figureMiddle.isActive}
+            backFigureMiddleColor={value.boardDetails.backPart.figuresBack.figureMiddle.colorFigure.hex}
           />
         );
       }
@@ -135,6 +142,9 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
             edgingColor={value.boardDetails.frontPart.colorModelFront.colorEdging.color.hex}
             modelSize={value.boardLength.size}
             colorShapeBack={value.boardDetails.backPart.colorModelBack.colorOut.color.hex!}
+            legendBack={value.boardDetails.backPart.legend}
+            isBackFigureMiddleActive={value.boardDetails.backPart.figuresBack.figureMiddle.isActive}
+            backFigureMiddleColor={value.boardDetails.backPart.figuresBack.figureMiddle.colorFigure.hex}
           />
         );
       }

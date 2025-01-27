@@ -1,13 +1,52 @@
+import { ILegent } from '../../../../types/types';
 import { LinearGradientBack } from '../../../liner-gradiend-back/liner-gradien-back';
+import { BackLegendAMFishVersionOne } from './legend-back/legend-position-one-back/legend';
+import { StraightLineMiddleAMFishBack } from './straight-line-am-fish-back/straight-line-am-fish-back';
 interface IProps {
   colorShapeBack: string;
+  legendBack: ILegent;
+  modelSize: number | string;
+  isBackFigureMiddleActive: boolean;
+  backFigureMiddleColor: string;
 }
-export const BackShapeAmFish = ({ colorShapeBack }: IProps) => {
+export const BackShapeAmFish = ({
+  colorShapeBack,
+  legendBack,
+  modelSize,
+  isBackFigureMiddleActive,
+  backFigureMiddleColor,
+}: IProps) => {
+  const scaleBoard = 0.079;
+  const rotate = 90;
+  const width = 600;
+  const height = 600;
   const translateX = 349;
   const translateY = 52;
-  const rotate = 90;
-  const scaleBoard = 0.079;
   const strokeWidthBoard = 1;
+
+  const currentLegend = (): JSX.Element | undefined => {
+    if (legendBack) {
+      switch (legendBack.pos) {
+        case 'Not selected': {
+          return;
+        }
+        case 'Version1': {
+          return (
+            <BackLegendAMFishVersionOne
+              width={width}
+              height={height}
+              colorLegend={legendBack}
+              backgroundColor={colorShapeBack}
+              modelSize={modelSize}
+            />
+          );
+        }
+        default: {
+          return;
+        }
+      }
+    } else return;
+  };
   return (
     <>
       <g>
@@ -155,11 +194,18 @@ export const BackShapeAmFish = ({ colorShapeBack }: IProps) => {
     	5473.36,99.58 5449.91,100.58"
           />
         </g>
+        <g transform={`translate(${0}, ${0})`}>
+          {isBackFigureMiddleActive && (
+            <StraightLineMiddleAMFishBack width={width} height={height} color={backFigureMiddleColor} />
+          )}
+          {currentLegend()}
+        </g>
       </g>
       <LinearGradientBack
         id={'colorShapeBackAMFish'}
         colorShapeBack={colorShapeBack}
         cords={{ x1: '0%', x2: '100%', y1: '0%', y2: '0%' }}
+        offsets={{ offset6: '90%', offset7: '98%' }}
       />
     </>
   );

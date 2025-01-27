@@ -19,6 +19,9 @@ interface IProps {
   isBack: boolean;
   colorShapeBack: string;
   edgingColor: string;
+  legendBack: ILegent;
+  isBackFigureMiddleActive: boolean;
+  backFigureMiddleColor: string;
   setShapeFront: React.Dispatch<React.SetStateAction<string>>;
   setShapeBack: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -36,11 +39,13 @@ export const BoardAmFishSvg = ({
   isBack,
   setShapeFront,
   setShapeBack,
+  isBackFigureMiddleActive,
+  backFigureMiddleColor,
+  legendBack,
 }: IProps) => {
   const formValues = useAppSelector((state: RootState) => state.selectedValuesForm);
   const shapeFront = (
     <SnowboardSpecs rotation={rotation}>
-      {' '}
       <FrontShapeAmFish
         colorShapeFront={colorShapeFront}
         isFigureTopActive={isFigureTopActive}
@@ -55,8 +60,13 @@ export const BoardAmFishSvg = ({
   );
   const shapeBack = (
     <SnowboardSpecs rotation={rotation}>
-      {' '}
-      <BackShapeAmFish colorShapeBack={colorShapeBack} />
+      <BackShapeAmFish
+        isBackFigureMiddleActive={isBackFigureMiddleActive}
+        backFigureMiddleColor={backFigureMiddleColor}
+        modelSize={modelSize}
+        legendBack={legendBack}
+        colorShapeBack={colorShapeBack}
+      />
     </SnowboardSpecs>
   );
 

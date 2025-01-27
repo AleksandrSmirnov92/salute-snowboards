@@ -22,6 +22,9 @@ interface IProps {
   colorShapeBack: string;
   setShapeFront: React.Dispatch<React.SetStateAction<string>>;
   setShapeBack: React.Dispatch<React.SetStateAction<string>>;
+  legendBack: ILegent;
+  isBackFigureMiddleActive: boolean;
+  backFigureMiddleColor: string;
 }
 
 export const BoardUnitSvg = ({
@@ -39,6 +42,9 @@ export const BoardUnitSvg = ({
   colorShapeBack,
   setShapeFront,
   setShapeBack,
+  isBackFigureMiddleActive,
+  backFigureMiddleColor,
+  legendBack,
 }: IProps) => {
   const formValues = useAppSelector((state: RootState) => state.selectedValuesForm);
   const shapeFront = (
@@ -58,7 +64,13 @@ export const BoardUnitSvg = ({
   );
   const shapeBack = (
     <SnowboardSpecs rotation={rotation}>
-      <BackShapeUnit colorShapeBack={colorShapeBack} />
+      <BackShapeUnit
+        isBackFigureMiddleActive={isBackFigureMiddleActive}
+        backFigureMiddleColor={backFigureMiddleColor}
+        modelSize={modelSize}
+        legendBack={legendBack}
+        colorShapeBack={colorShapeBack}
+      />
     </SnowboardSpecs>
   );
 

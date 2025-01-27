@@ -1,5 +1,7 @@
 import { ILegent } from '../../../../types/types';
 import { LinearGradientBack } from '../../../liner-gradiend-back/liner-gradien-back';
+import { BackLegendUnderdogVersionOne } from './legend-back/back-legend-position-one/legend-back';
+import { StraightLineMiddleUnderdogBack } from './straight-line-underdog-back/straight-line-underdog-back';
 
 interface IProps {
   colorShapeBack: string;
@@ -8,34 +10,42 @@ interface IProps {
   isBackFigureMiddleActive: boolean;
   backFigureMiddleColor: string;
 }
-export const BackShapeUnderdog = ({ colorShapeBack }: IProps) => {
-  const scaleBoard = 0.01205;
-  const translateX = 27.9;
-  const translateY = 19;
-  const strokeWidthBoard = 50;
-  // const currentLegend = (): JSX.Element | undefined => {
-  //   if (legendBack) {
-  //     switch (legendBack.pos) {
-  //       case 'Not selected': {
-  //         return;
-  //       }
-  //       case 'Version1': {
-  //         return (
-  //           <BackLegendPixieVersionOne
-  //             width={width}
-  //             height={height}
-  //             colorLegend={legendBack.colorLegend}
-  //             backgroundColor={colorShapeBack}
-  //             modelSize={modelSize}
-  //           />
-  //         );
-  //       }
-  //       default: {
-  //         return;
-  //       }
-  //     }
-  //   } else return;
-  // };
+export const BackShapeUnderdog = ({
+  legendBack,
+  colorShapeBack,
+  modelSize,
+  isBackFigureMiddleActive,
+  backFigureMiddleColor,
+}: IProps) => {
+  const scaleBoard = 0.01193;
+  const width = 600;
+  const height = 600;
+  const translateX = 30.6;
+  const translateY = 20;
+  const strokeWidthBoard = 1;
+  const currentLegend = (): JSX.Element | undefined => {
+    if (legendBack) {
+      switch (legendBack.pos) {
+        case 'Not selected': {
+          return;
+        }
+        case 'Version1': {
+          return (
+            <BackLegendUnderdogVersionOne
+              width={width}
+              height={height}
+              colorLegend={legendBack}
+              backgroundColor={colorShapeBack}
+              modelSize={modelSize}
+            />
+          );
+        }
+        default: {
+          return;
+        }
+      }
+    } else return;
+  };
   return (
     <>
       <g transform={`translate(${0}, ${10})`}>
@@ -58,7 +68,12 @@ export const BackShapeUnderdog = ({ colorShapeBack }: IProps) => {
             strokeWidth={strokeWidthBoard}
           />
         </g>
-        {/* <g transform={`translate(${0}, ${0})`}>{currentLegend()}</g> */}
+        <g transform={`translate(${0}, ${0})`}>
+          {isBackFigureMiddleActive && (
+            <StraightLineMiddleUnderdogBack width={width} height={height} color={backFigureMiddleColor} />
+          )}
+          {currentLegend()}
+        </g>
       </g>
       <LinearGradientBack
         id={'colorShapeBackUnderdog'}

@@ -1,14 +1,52 @@
+import { ILegent } from '../../../../types/types';
 import { LinearGradientBack } from '../../../liner-gradiend-back/liner-gradien-back';
+import { BackLegendUnitVersionOne } from './legend-back/back-legend-position-one/legend-back';
+import { VerticalLightning } from './vertical-lightning/vertical-lightning';
 
 interface IProps {
   colorShapeBack: string;
+  legendBack: ILegent;
+  modelSize: number | string;
+  isBackFigureMiddleActive: boolean;
+  backFigureMiddleColor: string;
 }
-export const BackShapeUnit = ({ colorShapeBack }: IProps) => {
+
+export const BackShapeUnit = ({
+  colorShapeBack,
+  legendBack,
+  modelSize,
+  isBackFigureMiddleActive,
+  backFigureMiddleColor,
+}: IProps) => {
   const scaleBoard = 0.116;
+  const width = 600;
+  const height = 600;
   const strokeWidthBoard = 5;
   const translateX = 240;
   const translateY = 30;
-
+  const currentLegend = (): JSX.Element | undefined => {
+    if (legendBack) {
+      switch (legendBack.pos) {
+        case 'Not selected': {
+          return;
+        }
+        case 'Version1': {
+          return (
+            <BackLegendUnitVersionOne
+              width={width}
+              height={height}
+              colorLegend={legendBack}
+              backgroundColor={colorShapeBack}
+              modelSize={modelSize}
+            />
+          );
+        }
+        default: {
+          return;
+        }
+      }
+    } else return;
+  };
   return (
     <>
       <g transform={`translate(${0}, ${40}) `}>
@@ -28,6 +66,12 @@ export const BackShapeUnit = ({ colorShapeBack }: IProps) => {
           />
         </g>
         {/* this figure back */}
+        <g transform={`translate(${0}, ${0})`}>
+          {isBackFigureMiddleActive && (
+            <VerticalLightning width={width} height={height} color={backFigureMiddleColor} />
+          )}
+          {currentLegend()}
+        </g>
       </g>
       <LinearGradientBack
         id={'colorShapeBackUnit'}

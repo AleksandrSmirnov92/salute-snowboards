@@ -16,6 +16,7 @@ interface IProps {
   isBack: boolean;
   setShapeFront: React.Dispatch<React.SetStateAction<string>>;
   setShapeBack: React.Dispatch<React.SetStateAction<string>>;
+  legendBack: ILegent;
 }
 export const BoardBcfrSvg = ({
   colorShapeFront,
@@ -26,17 +27,8 @@ export const BoardBcfrSvg = ({
   colorShapeBack,
   setShapeFront,
   setShapeBack,
+  legendBack,
 }: IProps) => {
-  const boardFront = (
-    <SnowboardSpecs rotation={rotation}>
-      {isBack ? (
-        <FrontShapeBcfr colorShapeFront={colorShapeFront} modelSize={modelSize} legend={legend} />
-      ) : (
-        <BackShapeBcfr colorShapeBack={colorShapeBack} />
-      )}
-    </SnowboardSpecs>
-  );
-
   const formValues = useAppSelector((state: RootState) => state.selectedValuesForm);
   const shapeFront = (
     <SnowboardSpecs rotation={rotation}>
@@ -45,7 +37,7 @@ export const BoardBcfrSvg = ({
   );
   const shapeBack = (
     <SnowboardSpecs rotation={rotation}>
-      <BackShapeBcfr colorShapeBack={colorShapeBack} />
+      <BackShapeBcfr legendBack={legendBack} modelSize={modelSize} colorShapeBack={colorShapeBack} />
     </SnowboardSpecs>
   );
 
