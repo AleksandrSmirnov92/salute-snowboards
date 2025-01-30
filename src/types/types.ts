@@ -115,26 +115,65 @@ export enum ModelsSnowboards {
 export interface ISendMessageValue {
   model: string;
   modelSize: string;
-  exteriorColor: string;
-  interiorColor: string;
-  edgingColor: string;
-  figureTop: string;
-  figureBottom: string;
+  exteriorColor: {
+    colorCmyk: string;
+    colorHex: string;
+  };
+  interiorColor: {
+    colorCmyk: string;
+    colorHex: string;
+  };
+  edgingColor: {
+    colorCmyk: string;
+    colorHex: string;
+  };
+  figureTop: {
+    colorCmyk: string;
+    colorHex: string;
+  };
+  figureBottom: {
+    colorCmyk: string;
+    colorHex: string;
+  };
   legend: {
     versionPosition: string;
-    top: string;
-    middle: string;
-    bottom: string;
+    top: {
+      colorCmyk: string;
+      colorHex: string;
+    };
+    middle: {
+      colorCmyk: string;
+      colorHex: string;
+    };
+    bottom: {
+      colorCmyk: string;
+      colorHex: string;
+    };
   };
   imageUrlFront: string;
   imageUrlBack: string;
-  colorSlippery: string;
-  backFigureMiddle: string;
+  colorSlippery: {
+    colorCmyk: string;
+    colorHex: string;
+  };
+  backFigureMiddle: {
+    colorCmyk: string;
+    colorHex: string;
+  };
   legendBack: {
     versionPosition: string;
-    top: string;
-    middle: string;
-    bottom: string;
+    top: {
+      colorCmyk: string;
+      colorHex: string | undefined;
+    };
+    middle: {
+      colorCmyk: string;
+      colorHex: string | undefined;
+    };
+    bottom: {
+      colorCmyk: string;
+      colorHex: string | undefined;
+    };
   };
   nameBackFigureMiddle: string;
   price: number;

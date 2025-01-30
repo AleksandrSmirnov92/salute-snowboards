@@ -1,4 +1,4 @@
-import { useCallback, useContext, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { Options } from '../components/options/options';
 import { Button } from '@headlessui/react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
