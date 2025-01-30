@@ -9,16 +9,15 @@ export const SnowboardSpecs = ({ rotation, children }: IProps) => {
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      width={600}
-      height={600}
-      className={`w-full h-screen min-h-screen`}
+      width={'100%'}
+      height={'100%'}
+      className={`w-full`}
       viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
       preserveAspectRatio="xMidYMid slice"
+      shape-rendering="crispEdges"
       style={{
         transform: `rotateY(${rotation ? rotation : 0}deg)`, // Применяем стиль с углом
         transition: 'transform 1s ease-in-out', // Плавная анимация
-        transformStyle: 'preserve-3d', // Сохраняем 3D-преобразования
-        perspective: '1000px',
       }}
     >
       {children}

@@ -6,9 +6,8 @@ interface IProps {
   colorShapeBack: string;
   legendBack: ILegent;
   modelSize: number | string;
-  isBack: boolean;
 }
-export const BackShapeBcfr = ({ colorShapeBack, legendBack, modelSize, isBack }: IProps) => {
+export const BackShapeBcfr = ({ colorShapeBack, legendBack, modelSize }: IProps) => {
   const scaleBoard = 0.1009;
   const width = 600;
   const height = 600;
@@ -25,7 +24,6 @@ export const BackShapeBcfr = ({ colorShapeBack, legendBack, modelSize, isBack }:
         case 'Version1': {
           return (
             <BackLegendBCFRVersionOne
-              isBack={isBack}
               width={width}
               height={height}
               colorLegend={legendBack}
@@ -41,14 +39,13 @@ export const BackShapeBcfr = ({ colorShapeBack, legendBack, modelSize, isBack }:
     } else return;
   };
   return (
-    <>
-      <g transform={`translate(${0}, ${40}) `}>
-        <g transform={`translate(${translateX}, ${translateY}) scale(${scaleBoard}) rotate(${90})`}>
-          <polyline
-            fill={'url(#colorShapeBackBCFR)'}
-            stroke="black"
-            strokeWidth={strokeWidthBoard}
-            points="2408.1,114.9 2298.6,112.1 2054.9,104.1 1811.4,93.7 1567.9,80.8 1324.7,65.5 1081.5,47.8
+    <g transform={`translate(${0}, ${40}) `}>
+      <g transform={`translate(${translateX}, ${translateY}) scale(${scaleBoard}) rotate(${90})`}>
+        <polyline
+          fill={'url(#colorShapeBackBCFR)'}
+          stroke="black"
+          strokeWidth={strokeWidthBoard}
+          points="2408.1,114.9 2298.6,112.1 2054.9,104.1 1811.4,93.7 1567.9,80.8 1324.7,65.5 1081.5,47.8
     	1054.5,46.5 1027.4,45.5 1000.3,44.7 973.3,44.3 946.2,44.1 919.1,44.1 892,44.5 864.9,45.1 837.9,46 810.8,47.1 798.1,47.8
     	788.9,48.3 779.6,48.9 770.2,49.5 760.9,50.3 751.4,51.2 744,51.9 736.6,52.7 729.1,53.5 721.6,54.5 714.1,55.4 706.7,56.5
     	699.2,57.6 691.7,58.8 684.3,60 676.8,61.3 669.5,62.7 662.2,64.1 655,65.6 647.7,67.2 641.6,68.5 635.5,69.9 629.4,71.4
@@ -125,15 +122,14 @@ export const BackShapeBcfr = ({ colorShapeBack, legendBack, modelSize, isBack }:
     	4326.7,56.1 4320.6,55.4 4314.4,54.7 4308.1,54 4301.7,53.4 4274.6,52.1 4247.6,51.1 4220.5,50.4 4193.4,49.9 4166.3,49.7
     	4139.2,49.8 4112.2,50.1 4085.1,50.8 4058,51.6 4031,52.8 4018.2,53.4 3838.5,66.3 3609.3,80.6 3380,92.6 3150.6,102.3
     	2921.1,109.8 2691.6,114.9 "
-          />
-        </g>
-        <g transform={`translate(${0}, ${0})`}>{currentLegend()}</g>
+        />
       </g>
+      <g transform={`translate(${0}, ${0})`}>{currentLegend()}</g>
       <LinearGradientBack
         id={'colorShapeBackBCFR'}
         colorShapeBack={colorShapeBack}
         cords={{ x1: '0%', x2: '100%', y1: '0%', y2: '0%' }}
       />
-    </>
+    </g>
   );
 };

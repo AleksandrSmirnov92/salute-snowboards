@@ -14,50 +14,50 @@ export const LegendMiddleBCFR = ({ color, width, height }: IPropsLegend) => {
       version="1.1"
       id="shape_x5F_159"
       xmlns="http://www.w3.org/2000/svg"
-      width={width}
-      height={height}
+      width={'100%'}
+      height={'100%'}
       viewBox={`0 0 ${width} ${height}`}
     >
-      <g width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
-        <g transform={`scale(${scale})`}>
-          <g>
-            <path
-              transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendMiddleX},${positionLegentMiddleY})`}
-              fill={colorMiddle}
-              d="M424.49,2478.14h-7.74v-36.77c0-1.31-0.67-1.96-1.92-1.9c-1.25,0-1.84,0.66-1.84,1.9v36.41
+      {/* <g width={width} height={height} viewBox={`0 0 ${width} ${height}`}> */}
+      <g transform={`scale(${scale})`}>
+        <g>
+          <path
+            transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendMiddleX},${positionLegentMiddleY})`}
+            fill={colorMiddle}
+            d="M424.49,2478.14h-7.74v-36.77c0-1.31-0.67-1.96-1.92-1.9c-1.25,0-1.84,0.66-1.84,1.9v36.41
 		c0,3.04,1.11,5.24,3.32,6.68l2.88,1.85c1.92,1.25,3.32,2.51,4.13,3.75c0.81,1.31,1.18,3.27,1.18,5.89v46.49
 		c0,5.06-3.1,7.57-9.36,7.57c-6.56,0-9.8-2.51-9.8-7.57v-43.81h7.66v43.81c0,1.37,0.67,2.09,1.99,2.09c1.25,0,1.84-0.72,1.78-2.09
 		v-43.69c0-3.4-0.97-5.72-2.88-6.98l-3.18-1.96c-1.99-1.31-3.39-2.68-4.2-4.06c-0.81-1.37-1.18-3.4-1.18-6.08v-38.43
 		c0-4.89,3.24-7.33,9.8-7.33c6.26,0,9.36,2.44,9.36,7.33V2478.14z"
-            />
-            <path
-              transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendMiddleX},${positionLegentMiddleY})`}
-              fill={colorMiddle}
-              d="M462.15,2549.66l-2.35-28.31l-15.11-0.11l-2.59,28.43H427.3l13.92-115.32h22.33l13.7,115.32
+          />
+          <path
+            transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendMiddleX},${positionLegentMiddleY})`}
+            fill={colorMiddle}
+            d="M462.15,2549.66l-2.35-28.31l-15.11-0.11l-2.59,28.43H427.3l13.92-115.32h22.33l13.7,115.32
 		C477.25,2549.66,462.15,2549.66,462.15,2549.66z M445.56,2511.1h13.27l-4.05-46.49l-1.99-18.24h-1.18l-1.99,18.24L445.56,2511.1z"
-            />
-            <path
-              transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendMiddleX},${positionLegentMiddleY})`}
-              fill={colorMiddle}
-              d="M511.7,2528.08h23.36v21.58h-55.03v-115.32h31.69v93.75H511.7z"
-            />
-            <path
-              transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendMiddleX},${positionLegentMiddleY})`}
-              fill={colorMiddle}
-              d="M556.07,2434.34v108.59c0,4.53-3.69,7.09-9.5,7.09c-5.9,0-9.5-2.51-9.5-7.09v-108.59h7.66v108.35
+          />
+          <path
+            transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendMiddleX},${positionLegentMiddleY})`}
+            fill={colorMiddle}
+            d="M511.7,2528.08h23.36v21.58h-55.03v-115.32h31.69v93.75H511.7z"
+          />
+          <path
+            transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendMiddleX},${positionLegentMiddleY})`}
+            fill={colorMiddle}
+            d="M556.07,2434.34v108.59c0,4.53-3.69,7.09-9.5,7.09c-5.9,0-9.5-2.51-9.5-7.09v-108.59h7.66v108.35
 		c0,1.25,0.59,1.85,1.84,1.85c1.18,0,1.76-0.59,1.76-1.85v-108.35H556.07z"
-            />
-            <path
-              transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendMiddleX},${positionLegentMiddleY})`}
-              fill={colorMiddle}
-              d="M575.97,2434.34v5.6h-5.15v109.72h-7.66v-109.61H558v-5.72H575.97z"
-            />
-          </g>
-          <g>
-            <path
-              transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendMiddleX},${positionLegentMiddleY})`}
-              fill={colorMiddle}
-              d="M417.74,2570.84c-0.62-0.5-1.42-0.86-3.15-1.46c-1.01-0.38-1.74-0.66-1.81-0.8c0.05-0.12,0.64-0.52,1.71-1.25
+          />
+          <path
+            transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendMiddleX},${positionLegentMiddleY})`}
+            fill={colorMiddle}
+            d="M575.97,2434.34v5.6h-5.15v109.72h-7.66v-109.61H558v-5.72H575.97z"
+          />
+        </g>
+        <g>
+          <path
+            transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendMiddleX},${positionLegentMiddleY})`}
+            fill={colorMiddle}
+            d="M417.74,2570.84c-0.62-0.5-1.42-0.86-3.15-1.46c-1.01-0.38-1.74-0.66-1.81-0.8c0.05-0.12,0.64-0.52,1.71-1.25
 		l0.81-0.55c2.35-1.56,5.25-3.7,6.75-4.98c2.2-1.84,2.88-2.6,2.55-3.49c-0.26-0.53-0.67-0.64-1.21-0.64c-2.9,0-12.03,5.3-13.77,7.99
 		c-0.56,0.91-0.73,1.73-0.49,2.43c0.37,1.09,1.6,1.7,2.88,2.2c0.47,0.18,1.42,0.53,2.14,0.77c0.58,0.18,1.16,0.43,1.54,0.59
 		l0.24,0.1c0.59,0.3,0.91,0.62,0.97,0.98c0.09,0.57-0.43,1.39-1.57,2.5c-1.61,1.61-3.49,2.85-6.7,4.43
@@ -66,11 +66,11 @@ export const LegendMiddleBCFR = ({ color, width, height }: IPropsLegend) => {
 		c2.44-1.83,3.75-3.59,3.79-5.09C418.71,2572.05,418.39,2571.39,417.74,2570.84z M419.4,2560.89c1.1-0.57,1.66-0.79,1.96-0.87
 		c-0.06,0.06-0.13,0.13-0.23,0.22c-0.89,0.84-4.27,3.42-7.34,5.4c-1.22,0.83-2.59,1.76-2.82,1.76c0,0,0,0,0,0
 		c0,0-0.01-0.01-0.02-0.04v-0.43C411.33,2565.89,415.25,2562.94,419.4,2560.89z"
-            />
-            <path
-              transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendMiddleX},${positionLegentMiddleY})`}
-              fill={colorMiddle}
-              d="M566.64,2560.32c-0.26-0.53-0.67-0.64-1.21-0.64c-2.9,0-12.03,5.3-13.77,7.99c-0.6,1-0.73,1.82-0.41,2.57
+          />
+          <path
+            transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendMiddleX},${positionLegentMiddleY})`}
+            fill={colorMiddle}
+            d="M566.64,2560.32c-0.26-0.53-0.67-0.64-1.21-0.64c-2.9,0-12.03,5.3-13.77,7.99c-0.6,1-0.73,1.82-0.41,2.57
 		c-0.94,0.28-2.1,0.65-3.38,1.08c-11.01,3.65-17.05,5.43-20.85,6.13c-1.77,0.34-3.63,0.4-4.34,0.13c-0.63-0.21-1.06-0.73-1.1-1.13
 		c-0.21-1.05,0.84-3.14,2.41-4.76c0.37-0.43,0.49-0.44,0.82-0.49c3.29-0.42,8.38-2.69,10.49-4.68c0.64-0.6,0.92-1.04,0.92-1.48
 		c0-0.3-0.12-0.57-0.36-0.82c-0.31-0.38-0.52-0.46-1.1-0.52c-2.01-0.13-6.03,1.73-9.19,4.13c-2.29,0.37-8.96,2.5-13.06,4.21
@@ -118,10 +118,10 @@ export const LegendMiddleBCFR = ({ color, width, height }: IPropsLegend) => {
 		C461.88,2570.39,462.38,2570.31,462.7,2570.31z M505.08,2577.37c-0.23,0.22-0.5,0.47-0.76,0.72c-0.56,0.53-1.24,1.16-1.95,1.86
 		c-2.48,2.42-5.11,4.49-6.13,5.03c-0.41,0.22-0.6,0.28-0.69,0.29c0-0.01,0-0.02,0-0.03c0-0.51,1.04-2.1,2.38-3.38
 		c1.39-1.27,3.55-2.71,5.78-3.85C504.14,2577.8,504.65,2577.56,505.08,2577.37z"
-            />
-          </g>
+          />
         </g>
       </g>
+      {/* </g> */}
     </svg>
   );
 };

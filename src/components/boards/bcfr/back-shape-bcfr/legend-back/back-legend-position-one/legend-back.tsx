@@ -7,9 +7,8 @@ export interface IPropsLegend {
   modelSize: number | string;
   width: number;
   height: number;
-  isBack: boolean;
 }
-export const BackLegendBCFRVersionOne = ({ colorLegend, width, height, isBack }: IPropsLegend) => {
+export const BackLegendBCFRVersionOne = ({ colorLegend, width, height }: IPropsLegend) => {
   const colorTop = colorLegend.colorLegend.top?.colorPallete.hex;
   return (
     <svg
@@ -20,11 +19,7 @@ export const BackLegendBCFRVersionOne = ({ colorLegend, width, height, isBack }:
       height={height}
       xmlns="http://www.w3.org/2000/svg"
     >
-      {colorLegend.colorLegend.top ? (
-        <BackLegendTopBCFR isBack={isBack} width={width} height={height} color={colorTop!} />
-      ) : (
-        ''
-      )}
+      {colorLegend.colorLegend.top ? <BackLegendTopBCFR width={width} height={height} color={colorTop!} /> : ''}
     </svg>
   );
 };

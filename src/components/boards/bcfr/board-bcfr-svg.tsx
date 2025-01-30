@@ -30,16 +30,6 @@ export const BoardBcfrSvg = ({
   legendBack,
 }: IProps) => {
   const formValues = useAppSelector((state: RootState) => state.selectedValuesForm);
-  const shapeFront = (
-    <SnowboardSpecs rotation={rotation}>
-      <FrontShapeBcfr colorShapeFront={colorShapeFront} modelSize={modelSize} legend={legend} />
-    </SnowboardSpecs>
-  );
-  const shapeBack = (
-    <SnowboardSpecs rotation={rotation}>
-      <BackShapeBcfr isBack={isBack} legendBack={legendBack} modelSize={modelSize} colorShapeBack={colorShapeBack} />
-    </SnowboardSpecs>
-  );
   const shapeFrontForImage = (
     <SnowboardSpecs rotation={0}>
       <FrontShapeBcfr colorShapeFront={colorShapeFront} modelSize={modelSize} legend={legend} />
@@ -47,7 +37,7 @@ export const BoardBcfrSvg = ({
   );
   const shapeBackForImage = (
     <SnowboardSpecs rotation={180}>
-      <BackShapeBcfr isBack={isBack} legendBack={legendBack} modelSize={modelSize} colorShapeBack={colorShapeBack} />
+      <BackShapeBcfr legendBack={legendBack} modelSize={modelSize} colorShapeBack={colorShapeBack} />
     </SnowboardSpecs>
   );
 
@@ -56,5 +46,14 @@ export const BoardBcfrSvg = ({
     setShapeFront(ReactDOMServer.renderToStaticMarkup(shapeFrontForImage));
   }, [formValues]);
 
-  return isBack ? shapeFront : shapeBack;
+  // return isBack ? shapeFront : shapeBack;
+  return (
+    <SnowboardSpecs rotation={rotation}>
+      {isBack ? (
+        <FrontShapeBcfr colorShapeFront={colorShapeFront} modelSize={modelSize} legend={legend} />
+      ) : (
+        <BackShapeBcfr legendBack={legendBack} modelSize={modelSize} colorShapeBack={colorShapeBack} />
+      )}
+    </SnowboardSpecs>
+  );
 };
