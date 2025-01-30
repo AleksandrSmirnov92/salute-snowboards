@@ -55,13 +55,14 @@ export const SelectFiguresBack = ({ formValues, selectedModel, selectOptions }: 
     dispatch(setFigureBottomColorBackPart(figureBottom.colorFigure));
     dispatch(setFigureBottomActiveBackPart({ flag: figureBottom.isActive, nameFigure: figureBottom.nameFigure }));
     dispatch(setHasFigureBottomBackPart(figureBottom.hasFigure));
-    console.log(formValues.boardDetails.backPart.figuresBack.figureTop.hasFigure);
   }, [selectedModel, selectOptions, dispatch]);
   return (
     <>
       {formValues.boardDetails.backPart.figuresBack.figureTop.hasFigure ? (
         <div className="flex flex-col md:flex-row w-full gap-3 mt-2">
-          <div className="flex flex-col w-full md:w-1/2">
+          <div
+            className={`flex flex-col w-full ${formValues.boardDetails.backPart.figuresBack.figureMiddle.hasFigure || formValues.boardDetails.backPart.figuresBack.figureBottom.hasFigure ? 'md:w-1/2' : ''}`}
+          >
             <Field className="flex justify-center items-center md:pl-4 py-1.5 gap-2">
               <Label className="text-nowrap text-base font-medium leading-6 text-warm-gray">{nameFigureTop}</Label>
               <Checkbox
@@ -102,16 +103,19 @@ export const SelectFiguresBack = ({ formValues, selectedModel, selectOptions }: 
       {/* //////////////////////////////////////////////////////////////////////////// */}
       {formValues.boardDetails.backPart.figuresBack.figureMiddle.hasFigure ? (
         <div className="flex flex-col md:flex-row w-full gap-3 mt-2">
-          <div className="flex flex-col w-full md:w-1/2">
-            <Field className="flex justify-center items-center md:pl-4 py-1.5 gap-2">
+          <div
+            className={`flex flex-col w-full ${formValues.boardDetails.backPart.figuresBack.figureTop.hasFigure || formValues.boardDetails.backPart.figuresBack.figureBottom.hasFigure ? 'md:w-1/2' : ''}`}
+          >
+            <Field className="flex justify-center md:justify-start items-center md:pl-4 py-1.5 gap-2">
               <Label className="text-nowrap text-base font-medium leading-6 text-warm-gray">{nameFigureMiddle}</Label>
               <Checkbox
                 checked={formValues.boardDetails.backPart.figuresBack.figureMiddle.isActive}
-                onChange={(e: boolean) =>
-                  dispatch(setFigureMiddleActiveBackPart({ flag: e, nameFigure: nameFigureMiddle }))
-                }
+                onChange={(e: boolean) => {
+                  console.log('e', e);
+                  dispatch(setFigureMiddleActiveBackPart({ flag: e, nameFigure: nameFigureMiddle }));
+                }}
                 name={'CheckboxFigureTop'}
-                className="group block size-4 ml-2 border border-#b3b2a0 bg-eerie-black shadow-sm  hover:border-#9c9b7c data-[checked]:bg-eerie-black cursor-pointer"
+                className="group block size-4  ml-2 border border-#b3b2a0 bg-eerie-black shadow-sm  hover:border-#9c9b7c data-[checked]:bg-eerie-black cursor-pointer"
               >
                 <svg
                   className="stroke-#b3b2a0 opacity-0 group-data-[checked]:opacity-100"
@@ -121,22 +125,47 @@ export const SelectFiguresBack = ({ formValues, selectedModel, selectOptions }: 
                   <path d="M3 8L6 11L11 3.5" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Checkbox>
+              {/* {!formValues.boardDetails.backPart.figuresBack.figureTop.hasFigure ||
+              !formValues.boardDetails.backPart.figuresBack.figureBottom.hasFigure ? (
+                <Select
+                  disabled={!formValues.boardDetails.backPart.figuresBack.figureMiddle.isActive}
+                  name={'FigureBackMiddle'}
+                  label={colorNameFigureMiddle}
+                  labelContentPosition="justify-center"
+                  options={colorPaletteFront.map((item) => {
+                    return { ...item, title: item.cmyk! };
+                  })}
+                  onChange={(e) => dispatch(setFigureMiddleColorBackPart(e))}
+                  valueTest={{
+                    title: formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure.cmyk!,
+                    bgColor: formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure.bgColor,
+                    value: formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure,
+                  }}
+                />
+              ) : (
+                ''
+              )} */}
             </Field>
-            <Select
-              disabled={!formValues.boardDetails.backPart.figuresBack.figureMiddle.isActive}
-              name={'FigureBackMiddle'}
-              label={colorNameFigureMiddle}
-              labelContentPosition="justify-center"
-              options={colorPaletteFront.map((item) => {
-                return { ...item, title: item.cmyk! };
-              })}
-              onChange={(e) => dispatch(setFigureMiddleColorBackPart(e))}
-              valueTest={{
-                title: formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure.cmyk!,
-                bgColor: formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure.bgColor,
-                value: formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure,
-              }}
-            />
+            {!formValues.boardDetails.backPart.figuresBack.figureTop.hasFigure ||
+            !formValues.boardDetails.backPart.figuresBack.figureBottom.hasFigure ? (
+              <Select
+                disabled={!formValues.boardDetails.backPart.figuresBack.figureMiddle.isActive}
+                name={'FigureBackMiddle'}
+                label={colorNameFigureMiddle}
+                labelContentPosition="justify-center"
+                options={colorPaletteFront.map((item) => {
+                  return { ...item, title: item.cmyk! };
+                })}
+                onChange={(e) => dispatch(setFigureMiddleColorBackPart(e))}
+                valueTest={{
+                  title: formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure.cmyk!,
+                  bgColor: formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure.bgColor,
+                  value: formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure,
+                }}
+              />
+            ) : (
+              ''
+            )}
           </div>
         </div>
       ) : (
@@ -145,7 +174,9 @@ export const SelectFiguresBack = ({ formValues, selectedModel, selectOptions }: 
       {/* //////////////////////////////////////////////////////////////////////////// */}
       {formValues.boardDetails.backPart.figuresBack.figureBottom.hasFigure ? (
         <div className="flex flex-col md:flex-row w-full gap-3 mt-2">
-          <div className="flex flex-col w-full md:w-1/2">
+          <div
+            className={`flex flex-col w-full ${formValues.boardDetails.backPart.figuresBack.figureMiddle.hasFigure || formValues.boardDetails.backPart.figuresBack.figureTop.hasFigure ? 'md:w-1/2' : ''}`}
+          >
             <Field className="flex justify-center items-center md:pl-4 py-1.5 gap-2">
               <Label className="text-nowrap text-base font-medium leading-6 text-warm-gray">{nameFigureBottom}</Label>
               <Checkbox

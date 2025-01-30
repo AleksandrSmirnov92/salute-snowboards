@@ -40,6 +40,47 @@ export const createDataForTilde = (
         ? `CMYK: ${formValues.boardDetails.frontPart.legend.colorLegend.bottom!.colorPallete.cmyk}`
         : 'Нет',
   };
+  // back
+  const colorSlippery = formValues.boardDetails.backPart.colorModelBack.colorOut.isActive
+    ? `CMYK: ${formValues.boardDetails.backPart.colorModelBack.colorOut.color.cmyk}`
+    : 'Нет';
+  let nameBackFigureMiddle = 'Цвет фигуры';
+  if (formValues.boardDetails.backPart.figuresBack.figureMiddle.nameFigure === 'Линия') {
+    nameBackFigureMiddle = 'Цвет линии';
+  }
+  if (formValues.boardDetails.backPart.figuresBack.figureMiddle.nameFigure === 'Звезды') {
+    nameBackFigureMiddle = 'Цвет звезд';
+  }
+  if (formValues.boardDetails.backPart.figuresBack.figureMiddle.nameFigure === 'Молния') {
+    nameBackFigureMiddle = 'Цвет молнии';
+  }
+
+  const backFigureMiddle = formValues.boardDetails.backPart.figuresBack.figureMiddle.isActive
+    ? `CMYK: ${formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure.cmyk}`
+    : 'Нет';
+  console.log(formValues.boardDetails.backPart.legend.colorLegend);
+  const legendBack = {
+    versionPosition: formValues.boardDetails.backPart.legend.pos,
+    top:
+      formValues.boardDetails.backPart.legend.pos !== 'Not selected'
+        ? formValues.boardDetails.backPart.legend.colorLegend.top
+          ? `CMYK: ${formValues.boardDetails.backPart.legend.colorLegend.top?.colorPallete.cmyk}`
+          : 'Нет'
+        : 'Нет',
+    middle:
+      formValues.boardDetails.backPart.legend.pos !== 'Not selected'
+        ? formValues.boardDetails.backPart.legend.colorLegend.middle
+          ? `CMYK: ${formValues.boardDetails.backPart.legend.colorLegend.middle?.colorPallete.cmyk}`
+          : 'Нет'
+        : 'Нет',
+    bottom:
+      formValues.boardDetails.backPart.legend.pos !== 'Not selected'
+        ? formValues.boardDetails.backPart.legend.colorLegend.bottom
+          ? `CMYK: ${formValues.boardDetails.backPart.legend.colorLegend.bottom.colorPallete.cmyk}`
+          : 'Нет'
+        : 'Нет',
+  };
+  const price = formValues.price;
   const result: ISendMessageValue = {
     model,
     modelSize,
@@ -51,6 +92,11 @@ export const createDataForTilde = (
     legend,
     imageUrlFront: imageUrlFront,
     imageUrlBack: imageUrlBack,
+    colorSlippery: colorSlippery,
+    backFigureMiddle: backFigureMiddle,
+    legendBack: legendBack,
+    nameBackFigureMiddle,
+    price: price,
   };
   return result;
 };

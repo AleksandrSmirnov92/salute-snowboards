@@ -58,6 +58,7 @@ export const modelsSnowboards: ISnowboard[] = [
         legentPositions: positionsPixieBack,
       },
       boardLength: boardLengthPixie,
+      price: 49000,
     },
   },
   {
@@ -101,6 +102,7 @@ export const modelsSnowboards: ISnowboard[] = [
         legentPositions: positionsUnderdogBack,
       },
       boardLength: boardLengthUnderdog,
+      price: 49000,
     },
   },
   {
@@ -144,6 +146,7 @@ export const modelsSnowboards: ISnowboard[] = [
         legentPositions: positionsAmFishBack,
       },
       boardLength: boardLengthAmFish,
+      price: 64000,
     },
   },
   {
@@ -187,6 +190,7 @@ export const modelsSnowboards: ISnowboard[] = [
         legentPositions: positionsBcfrBack,
       },
       boardLength: boardLengthBCFR,
+      price: 64000,
     },
   },
   {
@@ -230,6 +234,7 @@ export const modelsSnowboards: ISnowboard[] = [
         legentPositions: positionsUnitBack,
       },
       boardLength: boardLengthUnit,
+      price: 33000,
     },
   },
   {
@@ -273,6 +278,7 @@ export const modelsSnowboards: ISnowboard[] = [
         legentPositions: positionsFaeBack,
       },
       boardLength: boardLengthFae,
+      price: 33000,
     },
   },
 ];

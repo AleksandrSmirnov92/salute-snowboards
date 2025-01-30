@@ -6,8 +6,9 @@ interface IProps {
   colorShapeBack: string;
   legendBack: ILegent;
   modelSize: number | string;
+  isBack: boolean;
 }
-export const BackShapeBcfr = ({ colorShapeBack, legendBack, modelSize }: IProps) => {
+export const BackShapeBcfr = ({ colorShapeBack, legendBack, modelSize, isBack }: IProps) => {
   const scaleBoard = 0.1009;
   const width = 600;
   const height = 600;
@@ -24,6 +25,7 @@ export const BackShapeBcfr = ({ colorShapeBack, legendBack, modelSize }: IProps)
         case 'Version1': {
           return (
             <BackLegendBCFRVersionOne
+              isBack={isBack}
               width={width}
               height={height}
               colorLegend={legendBack}

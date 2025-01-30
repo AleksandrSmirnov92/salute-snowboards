@@ -8,6 +8,7 @@ import {
   setLegendValueFrontPart,
   setLegendValueBackPart,
   setSize,
+  setPriceModel,
 } from '../../../../store/feautures/formValues/form-values-slice';
 import { SelectModel } from './components/select-model';
 import { SelectSize } from './components/select-size';
@@ -19,8 +20,9 @@ import { SelectFiguresBack } from './components/select-figures-back';
 import { SelectLegendsBack } from './components/select-legends-back';
 interface IProps {
   setIsBack: React.Dispatch<React.SetStateAction<boolean>>;
+  setRotation: React.Dispatch<React.SetStateAction<number>>;
 }
-export const Options = ({ setIsBack }: IProps) => {
+export const Options = ({}: IProps) => {
   const dispatch = useAppDispatch();
   const selectOptions = useSelector((state: RootState) => state.selectOptions.snowboards);
   const modelsOptions = useSelector((state: RootState) => state.selectOptions.modelsSnowboards);
@@ -48,9 +50,9 @@ export const Options = ({ setIsBack }: IProps) => {
     dispatch(setModelValue(selectedModel));
     setModelSizes(actualModel.boardDetails.boardLength);
     dispatch(setSize(actualModel.boardDetails.boardLength[0]));
+    dispatch(setPriceModel(actualModel.boardDetails.price));
     setLegendsFront(actualModel.boardDetails.frontPart.legentPositions);
     setLegendsBack(actualModel.boardDetails.backPart.legentPositions);
-    setIsBack(true);
   }, [selectedModel, selectOptions, dispatch]);
 
   useEffect(() => {

@@ -37,13 +37,23 @@ export const BoardBcfrSvg = ({
   );
   const shapeBack = (
     <SnowboardSpecs rotation={rotation}>
-      <BackShapeBcfr legendBack={legendBack} modelSize={modelSize} colorShapeBack={colorShapeBack} />
+      <BackShapeBcfr isBack={isBack} legendBack={legendBack} modelSize={modelSize} colorShapeBack={colorShapeBack} />
+    </SnowboardSpecs>
+  );
+  const shapeFrontForImage = (
+    <SnowboardSpecs rotation={0}>
+      <FrontShapeBcfr colorShapeFront={colorShapeFront} modelSize={modelSize} legend={legend} />
+    </SnowboardSpecs>
+  );
+  const shapeBackForImage = (
+    <SnowboardSpecs rotation={180}>
+      <BackShapeBcfr isBack={isBack} legendBack={legendBack} modelSize={modelSize} colorShapeBack={colorShapeBack} />
     </SnowboardSpecs>
   );
 
   useEffect(() => {
-    setShapeBack(ReactDOMServer.renderToStaticMarkup(shapeBack));
-    setShapeFront(ReactDOMServer.renderToStaticMarkup(shapeFront));
+    setShapeBack(ReactDOMServer.renderToStaticMarkup(shapeBackForImage));
+    setShapeFront(ReactDOMServer.renderToStaticMarkup(shapeFrontForImage));
   }, [formValues]);
 
   return isBack ? shapeFront : shapeBack;

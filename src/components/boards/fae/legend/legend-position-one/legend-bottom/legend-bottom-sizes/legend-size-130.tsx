@@ -1,4 +1,4 @@
-import { IPropsLegendSize } from '../../../../../amf/legend/legend-position-one/legend-middle/legend-middle-sizes/contracts';
+import { IPropsLegendSize } from '../../../../../amf/front-shape-am-fish/legend-front/legend-position-one/legend-middle/legend-middle-sizes/contracts';
 
 export const LegendSize130 = ({ width, height, color }: IPropsLegendSize) => {
   const scaleText = 1.0;

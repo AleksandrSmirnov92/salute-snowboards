@@ -1,18 +1,20 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useContext, useRef, useState } from 'react';
 import { Options } from '../components/options/options';
 import { Button } from '@headlessui/react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import { BoardDisplay } from '../components/board-display/board-display';
+
 export const Main = () => {
   const transformRef = useRef<any>(null);
   const [firstZoomDone, setFirstZoomDone] = useState<Boolean>(false);
   const [currentScale, setCurrentScale] = useState(0);
   const [isBack, setIsBack] = useState(true);
+
   const [rotation, setRotation] = useState(0);
 
   const handleRotate = () => {
     // Активировать вращение
-    setRotation(rotation + 180);
+    setRotation((prev) => prev + 180);
     setTimeout(() => {
       setIsBack((prev) => !prev);
     }, 500);
@@ -102,7 +104,7 @@ export const Main = () => {
       </div>
 
       <div className="relative  w-full md:w-[50%] p-3 h-screen border-l-[1px] border-solid border-warm-gray overflow-hidden">
-        <Options setIsBack={setIsBack} />
+        <Options setRotation={setRotation} setIsBack={setIsBack} />
       </div>
     </div>
   );

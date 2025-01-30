@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../../store/hooks/hooks';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useAppSelector } from '../../../../store/hooks/hooks';
 import { IInitialState } from '../../../../store/feautures/formValues/form-values-slice';
 import { ISendMessageValue, ModelsSnowboards } from '../../../../types/types';
 import { createDataForTilde } from '../../../../utils/creator-data-for-tilda';
@@ -10,10 +10,6 @@ import { BoardUnitSvg } from '../../../../components/boards/unit/board-unit-svg'
 import { BoardBcfrSvg } from '../../../../components/boards/bcfr/board-bcfr-svg';
 import { BoardFaeSvg } from '../../../../components/boards/fae/board-fae-svg';
 import { serializeSVGG } from '../../../../utils/serialize-svg copy';
-import { getS } from '../../../../utils/getS';
-import ReactDOMServer from 'react-dom/server';
-import { serializeSVG } from '../../../../utils/serialize-svg';
-import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store/store';
 
 interface IProps {
@@ -29,9 +25,9 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
       case ModelsSnowboards.Pixie:
         return (
           <BoardPixieSvg
+            isBack={isBack}
             setShapeFront={setShapeFront}
             setShapeBack={setShapeBack}
-            isBack={isBack}
             rotation={rotation}
             isFigureTopActive={value.boardDetails.frontPart.figuresFront.figureTop.isActive}
             figureTopColor={value.boardDetails.frontPart.figuresFront.figureTop.colorFigure.hex}
@@ -55,7 +51,7 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
             rotation={rotation}
             isFigureTopActive={value.boardDetails.frontPart.figuresFront.figureTop.isActive}
             figureTopColor={value.boardDetails.frontPart.figuresFront.figureTop.colorFigure.hex}
-            figureBottomActive={value.boardDetails.frontPart.figuresFront.figureBottom.isActive}
+            isFigureBottomActive={value.boardDetails.frontPart.figuresFront.figureBottom.isActive}
             figureBottomColor={value.boardDetails.frontPart.figuresFront.figureBottom.colorFigure.hex}
             colorShapeFront={value.boardDetails.frontPart.colorModelFront.colorOut.color.hex!}
             colorShapeBack={value.boardDetails.backPart.colorModelBack.colorOut.color.hex!}
@@ -159,7 +155,7 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
 
   const result = getSnowboard(formValues);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // const s = getS({
     //   model: formValues.model.title,
     //   rotation: rotation,
@@ -176,12 +172,11 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
     //   edgingColor: formValues.boardDetails.frontPart.colorModelFront.colorEdging.color.hex,
     //   colorShapeOut: formValues.boardDetails.frontPart.colorModelFront.colorOut.color.hex!,
     //   colorShapeInner: formValues.boardDetails.frontPart.colorModelFront.colorIn.color.hex!,
+    //   legendBack: formValues.boardDetails.backPart.legend,
+    //   isBackFigureMiddleActive: formValues.boardDetails.backPart.figuresBack.figureMiddle.isActive,
+    //   backFigureMiddleColor: formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure.hex,
     // });
-
     if (shapeBack && shapeFront) {
-      // const dataUrlFront = serializeSVGG(s.frontSnowboard, formValues.model.title);
-      // const dataUrlBack = serializeSVGG(s.backSnowboard, formValues.model.title);
-
       const dataUrlFront = serializeSVGG(shapeFront, formValues.model.title);
       const dataUrlBack = serializeSVGG(shapeBack, formValues.model.title);
       console.log('dataUrlFront', dataUrlFront);
@@ -191,6 +186,5 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
       sendMessageToParent('updateForm', values);
     }
   }, [shapeBack, shapeFront]);
-
   return <>{result}</>;
 };

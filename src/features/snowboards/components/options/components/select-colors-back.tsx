@@ -30,13 +30,12 @@ export const SelectColorsBack = ({
     <>
       <Select
         name={'ColorsModelBack'}
-        label={`${'Базовый цвет скользяка'}`}
+        label={`${'Цвет скользяка'}`}
         labelContentPosition={'justify-start'}
         options={colorPaletteBack.map((item) => {
           return { ...item, title: item.cmyk! };
         })}
         onChange={(e: IColorPallete) => {
-          console.log(formValues.boardDetails.backPart.colorModelBack.colorOut.color.bgColor);
           setModelColorsOutBack(e.bgColor);
           dispatch(updateOuterColorFrontBack(e));
         }}

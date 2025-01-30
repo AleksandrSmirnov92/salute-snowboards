@@ -57,7 +57,7 @@ export const FrontShapeFae = ({
         <g transform={`translate(${translateX}, ${translateY}) scale(${scaleBoard})`}>
           <path
             fill={'url(#colorShapeOutFae)'}
-            stroke="black"
+            stroke="#black"
             strokeWidth={strokeWidthBoard}
             d="M816.43,2097.62c7.5,382,31.07,789.59,61.33,1170.29c1.43,43.4,1.21,88.75-0.84,132.13
     c-2.05,40.86-9.17,81.61-21.73,120.56c-13.6,42.24-32.77,82.84-52.71,122.4c-17.58,33.62-36.02,67.57-59.97,97.15

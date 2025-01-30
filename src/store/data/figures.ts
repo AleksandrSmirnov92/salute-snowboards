@@ -3,8 +3,8 @@ import { colorPaletteFront as colorPalette } from './color-palette';
 
 export const hasStraightLines: IFigures = {
   figureTop: {
-    nameFigure: 'Верхний стрингер',
-    colorLabel: 'Цвет верхнего стрингера',
+    nameFigure: 'Стрингер ↑',
+    colorLabel: '',
     hasFigure: true,
     isActive: false,
     colorFigure: colorPalette[1],
@@ -17,8 +17,8 @@ export const hasStraightLines: IFigures = {
     colorFigure: colorPalette[5],
   },
   figureBottom: {
-    nameFigure: 'Нижний стрингер',
-    colorLabel: 'Цвет нижнего стрингера',
+    nameFigure: 'Стрингер ↓',
+    colorLabel: '',
     hasFigure: true,
     isActive: false,
     colorFigure: colorPalette[1],
@@ -26,8 +26,8 @@ export const hasStraightLines: IFigures = {
 };
 export const hasStars: IFigures = {
   figureTop: {
-    nameFigure: 'Звезды вверх',
-    colorLabel: 'Цвет звезд вверх',
+    nameFigure: 'Звезды ↑',
+    colorLabel: '',
     hasFigure: true,
     isActive: false,
     colorFigure: colorPalette[11],
@@ -40,8 +40,8 @@ export const hasStars: IFigures = {
     colorFigure: colorPalette[5],
   },
   figureBottom: {
-    nameFigure: 'Звезды низ',
-    colorLabel: 'Цвет звезд низ',
+    nameFigure: 'Звезды ↓',
+    colorLabel: '',
     hasFigure: true,
     isActive: false,
     colorFigure: colorPalette[11],
@@ -56,8 +56,8 @@ export const hasStarsBack: IFigures = {
     colorFigure: colorPalette[11],
   },
   figureMiddle: {
-    nameFigure: 'Вертикальные звезды',
-    colorLabel: 'Цвет вертикальных звезд',
+    nameFigure: 'Звезды',
+    colorLabel: '',
     hasFigure: true,
     isActive: false,
     colorFigure: colorPalette[5],
@@ -72,8 +72,8 @@ export const hasStarsBack: IFigures = {
 };
 export const hasLightning: IFigures = {
   figureTop: {
-    nameFigure: 'Молния вверх',
-    colorLabel: 'Цвет молнии вверх',
+    nameFigure: 'Молния ↑',
+    colorLabel: '',
     hasFigure: true,
     isActive: false,
     colorFigure: colorPalette[9],
@@ -86,8 +86,8 @@ export const hasLightning: IFigures = {
     colorFigure: colorPalette[5],
   },
   figureBottom: {
-    nameFigure: 'Молния низ',
-    colorLabel: 'Цвет молнии низ',
+    nameFigure: 'Молния ↓',
+    colorLabel: '',
     hasFigure: true,
     isActive: false,
     colorFigure: colorPalette[9],
@@ -102,8 +102,8 @@ export const hasLightningBack: IFigures = {
     colorFigure: colorPalette[9],
   },
   figureMiddle: {
-    nameFigure: 'Вертикальная молния',
-    colorLabel: 'Цвет вертикальной молнии',
+    nameFigure: 'Молния',
+    colorLabel: '',
     hasFigure: true,
     isActive: false,
     colorFigure: colorPalette[5],
@@ -148,8 +148,8 @@ export const hasStraightLinesBack: IFigures = {
     colorFigure: colorPalette[5],
   },
   figureMiddle: {
-    nameFigure: 'Вертикальная линия',
-    colorLabel: 'Цвет вертикальной линии',
+    nameFigure: 'Линия',
+    colorLabel: '',
     hasFigure: true,
     isActive: false,
     colorFigure: colorPalette[5],

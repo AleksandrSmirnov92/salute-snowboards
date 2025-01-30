@@ -21,7 +21,7 @@ export const SelectLegendsBack = ({ legends, formValues, modelColorOut, modelCol
     <>
       <Select
         name={'LegendPosition'}
-        label={'Легенда cкользяк'}
+        label={'Вариант cкользяка'}
         labelContentPosition={'justify-start'}
         options={legends.map((item) => {
           return {

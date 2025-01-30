@@ -70,35 +70,42 @@ export const FrontShapeUnit = ({
     c13.27,66.76,11.07,136.33,9.83,204.08C842.42,1158.88,812.86,1637.89,816.43,2097.62"
           />
         </g>
-        <g transform={`translate(${translateX}, ${translateY}) scale(${scaleBoard})`}>
-          <path
-            fill={'url(#colorShapeInnerUnit)'}
-            stroke={edgingColor}
-            strokeWidth={strokeWidthBoard}
-            d="M768.79,2093.26c6.41,367.31,26.55,759.23,52.4,1125.28c1.22,41.73,1.04,85.33-0.72,127.05
-    c-1.75,39.28-7.83,78.47-18.57,115.92c-11.62,40.61-28,79.65-45.04,117.69c-15.02,32.33-30.78,64.97-51.25,93.41
-    c-21.32,29.57-53.49,45.3-84.52,58.15c-101.61,41.23-233.06,32.99-324.92-33.3c-43.03-31.81-92.6-154.73-112.33-211.07
-    c-19.48-55.76-27.1-115.83-27.39-175.52c-0.63-30.03-0.52-62.34,0.38-92.35c24.57-349.34,44.5-726.32,51.43-1076.75
-    c8.98-474.54-26.49-965.16-52.22-1438.31c-1.19-117.16,7.78-184.2,54.95-291.2c14-32.34,29.17-64.7,47.02-94.59
-    c9.09-15.06,19.06-29.87,31.8-41.28c19.83-17.69,43.55-28.94,67.13-38.7c52.47-21.33,109.11-28.48,164.63-23.74
-    c54.33,4.73,119.79,24.27,164.36,60.4c22.35,19.42,36.96,47.54,51.32,74.36c32.03,64.49,62.04,132.2,75.55,204.97
-    c11.34,64.19,9.46,131.09,8.4,196.23C791,1190.63,765.74,1651.22,768.79,2093.26"
+        {colorShapeOut !== colorShapeInner ? (
+          <g transform={`translate(${translateX}, ${translateY}) scale(${scaleBoard})`}>
+            <path
+              fill={'url(#colorShapeInnerUnit)'}
+              stroke={edgingColor}
+              strokeWidth={strokeWidthBoard}
+              d="M768.79,2093.26c6.41,367.31,26.55,759.23,52.4,1125.28c1.22,41.73,1.04,85.33-0.72,127.05
+          c-1.75,39.28-7.83,78.47-18.57,115.92c-11.62,40.61-28,79.65-45.04,117.69c-15.02,32.33-30.78,64.97-51.25,93.41
+          c-21.32,29.57-53.49,45.3-84.52,58.15c-101.61,41.23-233.06,32.99-324.92-33.3c-43.03-31.81-92.6-154.73-112.33-211.07
+          c-19.48-55.76-27.1-115.83-27.39-175.52c-0.63-30.03-0.52-62.34,0.38-92.35c24.57-349.34,44.5-726.32,51.43-1076.75
+          c8.98-474.54-26.49-965.16-52.22-1438.31c-1.19-117.16,7.78-184.2,54.95-291.2c14-32.34,29.17-64.7,47.02-94.59
+          c9.09-15.06,19.06-29.87,31.8-41.28c19.83-17.69,43.55-28.94,67.13-38.7c52.47-21.33,109.11-28.48,164.63-23.74
+          c54.33,4.73,119.79,24.27,164.36,60.4c22.35,19.42,36.96,47.54,51.32,74.36c32.03,64.49,62.04,132.2,75.55,204.97
+          c11.34,64.19,9.46,131.09,8.4,196.23C791,1190.63,765.74,1651.22,768.79,2093.26"
+            />
+          </g>
+        ) : (
+          ''
+        )}
+
+        <g>
+          <SnowboardInserts
+            color="black"
+            translateCircleX={179}
+            translateCircleY={65}
+            translateCircle2Y={210}
+            numberOfRows={4}
+            numberOfColumns={2}
+            viewBoxWidth={viewBoxWidth}
+            viewBoxHeight={viewBoxHeight}
+            powMode={false}
           />
+          {isFigureTopActive && <LightningTop width={width} height={height} color={figureTopColor} />}
+          {isFigureBottomActive && <LightningBottom width={width} height={height} color={figureBottomColor} />}
+          {currentLegend()}
         </g>
-        <SnowboardInserts
-          color="black"
-          translateCircleX={179}
-          translateCircleY={65}
-          translateCircle2Y={210}
-          numberOfRows={4}
-          numberOfColumns={2}
-          viewBoxWidth={viewBoxWidth}
-          viewBoxHeight={viewBoxHeight}
-          powMode={false}
-        />
-        {isFigureTopActive && <LightningTop width={width} height={height} color={figureTopColor} />}
-        {isFigureBottomActive && <LightningBottom width={width} height={height} color={figureBottomColor} />}
-        {currentLegend()}
       </g>
       <LinearGradientFront
         id={'colorShapeOutUnit'}

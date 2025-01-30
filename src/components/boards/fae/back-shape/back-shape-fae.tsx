@@ -1,7 +1,7 @@
 import { ILegent } from '../../../../types/types';
 import { LinearGradientBack } from '../../../liner-gradiend-back/liner-gradien-back';
 import { BackLegendFaeVersionOne } from './back-legend-position-one/legend-back';
-import { VerticalStars } from './vertical-stars/vertical-lightning';
+import { VerticalStars } from './vertical-stars/vertical-stars';
 
 interface IProps {
   colorShapeBack: string;

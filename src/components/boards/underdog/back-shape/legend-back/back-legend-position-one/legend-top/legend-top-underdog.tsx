@@ -9,6 +9,7 @@ export const BackLegendTopUnderdog = ({ color, width, height }: IPropsLegendTop)
   const positionLegendMiddleSX = 4000;
   const positionLegentMiddleSY = -1400;
   const colorLegend = color;
+  4000;
   return (
     <svg
       version="1.1"

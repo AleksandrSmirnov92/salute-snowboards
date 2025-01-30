@@ -9,7 +9,6 @@ export const LegendSize148 = ({ color, width, height }: IPropsLegendBottom) => {
   const colorTop = color;
   const positionLegendTopX = 2485;
   const positionLegentTopY = 500;
-
   return (
     <svg
       version="1.1"

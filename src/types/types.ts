@@ -44,6 +44,7 @@ export interface ISnowboardDetails {
     legentPositions: ILegent[];
   };
   boardLength: IModelSize[];
+  price: number;
 }
 export interface IModelSize {
   id: number;
@@ -127,4 +128,14 @@ export interface ISendMessageValue {
   };
   imageUrlFront: string;
   imageUrlBack: string;
+  colorSlippery: string;
+  backFigureMiddle: string;
+  legendBack: {
+    versionPosition: string;
+    top: string;
+    middle: string;
+    bottom: string;
+  };
+  nameBackFigureMiddle: string;
+  price: number;
 }

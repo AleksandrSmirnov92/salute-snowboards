@@ -73,10 +73,35 @@ export const BoardUnitSvg = ({
       />
     </SnowboardSpecs>
   );
-
+  const shapeFrontForImage = (
+    <SnowboardSpecs rotation={0}>
+      <FrontShapeUnit
+        legend={legend}
+        modelSize={modelSize}
+        colorShapeInner={colorShapeInner}
+        colorShapeOut={colorShapeOut}
+        figureBottomColor={figureBottomColor}
+        figureTopColor={figureTopColor}
+        isFigureBottomActive={isFigureBottomActive}
+        isFigureTopActive={isFigureTopActive}
+        edgingColor={edgingColor}
+      />
+    </SnowboardSpecs>
+  );
+  const shapeBackForImage = (
+    <SnowboardSpecs rotation={180}>
+      <BackShapeUnit
+        isBackFigureMiddleActive={isBackFigureMiddleActive}
+        backFigureMiddleColor={backFigureMiddleColor}
+        modelSize={modelSize}
+        legendBack={legendBack}
+        colorShapeBack={colorShapeBack}
+      />
+    </SnowboardSpecs>
+  );
   useEffect(() => {
-    setShapeBack(ReactDOMServer.renderToStaticMarkup(shapeBack));
-    setShapeFront(ReactDOMServer.renderToStaticMarkup(shapeFront));
+    setShapeBack(ReactDOMServer.renderToStaticMarkup(shapeBackForImage));
+    setShapeFront(ReactDOMServer.renderToStaticMarkup(shapeFrontForImage));
   }, [formValues]);
 
   return isBack ? shapeFront : shapeBack;

@@ -1,5 +1,5 @@
 interface IProps {
-  rotation: number;
+  rotation?: number;
   children: React.ReactNode;
 }
 export const SnowboardSpecs = ({ rotation, children }: IProps) => {
@@ -15,9 +15,10 @@ export const SnowboardSpecs = ({ rotation, children }: IProps) => {
       viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
       preserveAspectRatio="xMidYMid slice"
       style={{
-        transform: `rotateY(${rotation}deg)`, // Применяем стиль с углом
+        transform: `rotateY(${rotation ? rotation : 0}deg)`, // Применяем стиль с углом
         transition: 'transform 1s ease-in-out', // Плавная анимация
         transformStyle: 'preserve-3d', // Сохраняем 3D-преобразования
+        perspective: '1000px',
       }}
     >
       {children}

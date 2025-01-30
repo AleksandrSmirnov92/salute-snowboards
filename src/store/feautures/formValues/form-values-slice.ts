@@ -97,11 +97,22 @@ const initialState: IInitialState = {
             positionColor: 'Color legend Top',
             colorPallete: colorPaletteFront[1],
           },
+          middle: {
+            name: 'Цвет по центру',
+            positionColor: 'Color legend middle',
+            colorPallete: colorPaletteFront[1],
+          },
+          bottom: {
+            name: 'Цвет низ',
+            positionColor: 'Color legend Bottom',
+            colorPallete: colorPaletteFront[1],
+          },
         },
       },
     },
   },
   boardLength: boardLengthBCFR[1],
+  price: 64000,
 };
 const selectedFormValues = createSlice({
   name: 'form',
@@ -208,6 +219,9 @@ const selectedFormValues = createSlice({
     setLegendBottomColorBackPart(state, action: PayloadAction<IColorPallete>) {
       state.boardDetails.backPart.legend.colorLegend.bottom!.colorPallete = action.payload;
     },
+    setPriceModel(state, action: PayloadAction<number>) {
+      state.price = action.payload;
+    },
   },
 });
 export const {
@@ -243,6 +257,7 @@ export const {
   setLegendTopColorBackPart,
   setLegendMiddleColorBackPart,
   setLegendBottomColorBackPart,
+  setPriceModel,
 } = selectedFormValues.actions;
 export default selectedFormValues.reducer;
 
@@ -278,7 +293,8 @@ export type SelectedFormValuesActionCreator =
   | ReturnType<typeof setLegendValueBackPart>
   | ReturnType<typeof setLegendTopColorBackPart>
   | ReturnType<typeof setLegendMiddleColorBackPart>
-  | ReturnType<typeof setLegendBottomColorBackPart>;
+  | ReturnType<typeof setLegendBottomColorBackPart>
+  | ReturnType<typeof setPriceModel>;
 export interface IInitialState {
   model: {
     id: number;
@@ -322,21 +338,6 @@ export interface IInitialState {
       legend: ILegend;
     };
   };
-  // colorModelFront: {
-  //   colorOut: {
-  //     isActive: boolean;
-  //     color: IColorPallete;
-  //   };
-  //   colorIn: {
-  //     isActive: boolean;
-  //     color: IColorPallete;
-  //   };
-  //   colorEdging: {
-  //     isActive: boolean;
-  //     color: IColorPallete;
-  //   };
-  // };
-  // figures: IFigures;
-  // legend: ILegent;
   boardLength: IModelSize;
+  price: number;
 }

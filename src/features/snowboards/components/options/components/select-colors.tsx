@@ -98,7 +98,7 @@ export const SelectColors = ({
     <>
       <Select
         name={'ColorsModel'}
-        label={`${modelColorInnerToActive ? `Внешний цвет` : 'Базовый цвет'}`}
+        label={`${modelColorInnerToActive ? `Внешний цвет` : 'Цвет'}`}
         labelContentPosition={'justify-start'}
         options={colorPaletteFront.map((item) => {
           return { ...item, title: item.cmyk! };
