@@ -20,7 +20,6 @@ import { SelectFiguresBack } from './components/select-figures-back';
 import { SelectLegendsBack } from './components/select-legends-back';
 interface IProps {
   setIsBack: React.Dispatch<React.SetStateAction<boolean>>;
-  setRotation: React.Dispatch<React.SetStateAction<number>>;
 }
 export const Options = ({}: IProps) => {
   const dispatch = useAppDispatch();

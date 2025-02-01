@@ -14,7 +14,7 @@ export const SnowboardSpecs = ({ children, isActive }: IProps) => {
       height={'100%'}
       className={`w-full ${isActive ? s.rotateAnimation : ''}`}
       viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-      preserveAspectRatio="xMidYMin slice"
+      preserveAspectRatio="xMidYMid slice"
     >
       {children}
     </svg>

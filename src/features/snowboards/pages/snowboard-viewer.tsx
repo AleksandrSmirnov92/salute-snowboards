@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Options } from '../components/options/options';
 import { Button } from '@headlessui/react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
@@ -10,16 +10,33 @@ export const Main = () => {
   const [currentScale, setCurrentScale] = useState(0);
   const [isBack, setIsBack] = useState(true);
   const [activeBack, setActiveBack] = useState(false);
-  const [rotation, setRotation] = useState(0);
+  const [queue, setQueue] = useState(0); // Очередь анимаций
+
+  const isAnimating = useRef(false); // Флаг активности анимации
+
+  const startAnimation = () => {
+    if (queue > 0 && !isAnimating.current) {
+      isAnimating.current = true; // Блокируем запуск новой анимации
+      setActiveBack(true);
+
+      setTimeout(() => {
+        setIsBack((prev) => !prev);
+        setActiveBack(false);
+        isAnimating.current = false; // Разблокируем для следующей анимации
+        setQueue((prev) => prev - 1); // Уменьшаем очередь
+      }, 565);
+    }
+  };
+  useEffect(() => {
+    if (queue > 0) {
+      startAnimation(); // Запускаем анимацию, если в очереди что-то есть
+    }
+  }, [queue]);
 
   const handleRotate = () => {
-    setActiveBack(true);
-    setRotation((prev) => prev + 180);
-    setTimeout(() => {
-      setIsBack((prev) => !prev);
-      setActiveBack(false);
-    }, 500);
+    setQueue((prev) => prev + 1); // Добавляем в очередь
   };
+
   const handleZoomIn = useCallback(() => {
     if (transformRef.current) {
       transformRef.current.zoomIn();
@@ -50,7 +67,7 @@ export const Main = () => {
             minScale={1}
           >
             <TransformComponent wrapperStyle={{ height: '100%', overflow: 'hidden' }} contentStyle={{ height: '100%' }}>
-              <BoardDisplay activeBack={activeBack} isBack={isBack} rotation={rotation} />
+              <BoardDisplay activeBack={activeBack} isBack={isBack} />
             </TransformComponent>
           </TransformWrapper>
         </div>
@@ -104,7 +121,7 @@ export const Main = () => {
       </div>
 
       <div className="relative  w-full md:w-[50%] p-3 h-screen border-l-[1px] border-solid border-warm-gray overflow-hidden">
-        <Options setRotation={setRotation} setIsBack={setIsBack} />
+        <Options setIsBack={setIsBack} />
       </div>
     </div>
   );

@@ -8,5 +8,5 @@
 }
 
 .rotateAnimation {
-  animation: rotateY 1s linear;
+  animation: rotateY 1.11s ease-in-out;
 }

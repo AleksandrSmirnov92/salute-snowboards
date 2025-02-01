@@ -14,7 +14,6 @@ import { RootState } from '../../../../store/store';
 
 interface IProps {
   isBack: boolean;
-  rotation: number;
   activeBack: boolean;
 }
 export const BoardDisplay = ({ isBack, activeBack }: IProps) => {
