@@ -21,10 +21,12 @@ export const Main = () => {
 
       setTimeout(() => {
         setIsBack((prev) => !prev);
+      }, 600);
+      setTimeout(() => {
         setActiveBack(false);
         isAnimating.current = false; // Разблокируем для следующей анимации
         setQueue((prev) => prev - 1); // Уменьшаем очередь
-      }, 555);
+      }, 1200);
     }
   };
   useEffect(() => {

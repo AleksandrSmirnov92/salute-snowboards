@@ -47,13 +47,4 @@ export const BoardBcfrSvg = ({
   }, [formValues]);
 
   return isBack ? shapeFront : shapeBack;
-  // return (
-  //   <SnowboardSpecs isActive={activeBack}>
-  //     {isBack ? (
-  //       <FrontShapeBcfr colorShapeFront={colorShapeFront} modelSize={modelSize} legend={legend} />
-  //     ) : (
-  //       <BackShapeBcfr legendBack={legendBack} modelSize={modelSize} colorShapeBack={colorShapeBack} />
-  //     )}
-  //   </SnowboardSpecs>
-  // );
 };

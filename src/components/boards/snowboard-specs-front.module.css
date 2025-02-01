@@ -1,12 +1,5 @@
-@keyframes rotateY {
-  0% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(180deg);
-  }
-}
-
 .rotateAnimation {
-  animation: rotateY 1.11s ease-in-out;
+  transform: scale(-1, 1) rotateY(180deg);
+  transition: transform 1.2s ease-in-out;
+  will-change: transform;
 }

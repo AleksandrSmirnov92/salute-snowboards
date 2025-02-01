@@ -43,7 +43,6 @@ export const FrontShapeBcfr = ({ legend, colorShapeFront, modelSize }: IProps) =
       <g transform={`translate(${translateX}, ${translateY}) scale(${scaleBoard}) rotate(${90})`}>
         <polyline
           fill={'url(#colorShapeFrontBCFR)'}
-          //   fill={colorShapeFront}
           stroke="#black"
           strokeWidth={strokeWidthBoard}
           points="2408.1,114.9 2298.6,112.1 2054.9,104.1 1811.4,93.7 1567.9,80.8 1324.7,65.5 1081.5,47.8
@@ -125,20 +124,20 @@ export const FrontShapeBcfr = ({ legend, colorShapeFront, modelSize }: IProps) =
     	2921.1,109.8 2691.6,114.9 	"
         />
       </g>
-
-      <SnowboardInserts
-        color="black"
-        translateCircleX={180}
-        translateCircleY={55}
-        translateCircle2Y={225}
-        numberOfRows={5}
-        numberOfColumns={2}
-        viewBoxWidth={viewBoxWidth}
-        viewBoxHeight={viewBoxHeight}
-        powMode={true}
-      />
-      {currentLegend()}
-
+      <g transform={`translate(${0}, ${0})`}>
+        <SnowboardInserts
+          color="black"
+          translateCircleX={180}
+          translateCircleY={55}
+          translateCircle2Y={225}
+          numberOfRows={5}
+          numberOfColumns={2}
+          viewBoxWidth={viewBoxWidth}
+          viewBoxHeight={viewBoxHeight}
+          powMode={true}
+        />
+        {currentLegend()}
+      </g>
       <LinearGradientFront
         id={'colorShapeFrontBCFR'}
         colorShapeFront={colorShapeFront}
