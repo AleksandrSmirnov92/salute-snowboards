@@ -8,7 +8,7 @@ import {
   setLegendMiddleColorBackPart,
   setLegendBottomColorBackPart,
 } from '../../../../../store/feautures/formValues/form-values-slice';
-import { colorPaletteBack, colorPaletteFront } from '../../../../../store/data/color-palette';
+import { colorPaletteBack } from '../../../../../store/data/color-palette';
 interface IProps {
   legends: ILegent[];
   formValues: IInitialState;
