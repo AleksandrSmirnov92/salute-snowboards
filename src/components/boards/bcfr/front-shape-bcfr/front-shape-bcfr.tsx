@@ -125,20 +125,20 @@ export const FrontShapeBcfr = ({ legend, colorShapeFront, modelSize }: IProps) =
     	2921.1,109.8 2691.6,114.9 	"
         />
       </g>
-      <g transform={`translate(${0}, ${0})`}>
-        <SnowboardInserts
-          color="black"
-          translateCircleX={180}
-          translateCircleY={55}
-          translateCircle2Y={225}
-          numberOfRows={5}
-          numberOfColumns={2}
-          viewBoxWidth={viewBoxWidth}
-          viewBoxHeight={viewBoxHeight}
-          powMode={true}
-        />
-        {currentLegend()}
-      </g>
+
+      <SnowboardInserts
+        color="black"
+        translateCircleX={180}
+        translateCircleY={55}
+        translateCircle2Y={225}
+        numberOfRows={5}
+        numberOfColumns={2}
+        viewBoxWidth={viewBoxWidth}
+        viewBoxHeight={viewBoxHeight}
+        powMode={true}
+      />
+      {currentLegend()}
+
       <LinearGradientFront
         id={'colorShapeFrontBCFR'}
         colorShapeFront={colorShapeFront}

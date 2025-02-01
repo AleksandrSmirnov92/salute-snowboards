@@ -26,6 +26,7 @@ interface IProps {
   legendBack: ILegent;
   isBackFigureMiddleActive: boolean;
   backFigureMiddleColor: string;
+  activeBack: boolean;
 }
 
 export const BoardFaeSvg = ({
@@ -46,10 +47,11 @@ export const BoardFaeSvg = ({
   legendBack,
   isBackFigureMiddleActive,
   backFigureMiddleColor,
+  activeBack,
 }: IProps) => {
   const formValues = useAppSelector((state: RootState) => state.selectedValuesForm);
   const shapeFront = (
-    <SnowboardSpecs rotation={rotation}>
+    <SnowboardSpecs isActive={activeBack}>
       <FrontShapeFae
         legend={legend}
         modelSize={modelSize}
@@ -64,33 +66,7 @@ export const BoardFaeSvg = ({
     </SnowboardSpecs>
   );
   const shapeBack = (
-    <SnowboardSpecs rotation={rotation}>
-      <BackShapeFae
-        isBackFigureMiddleActive={isBackFigureMiddleActive}
-        backFigureMiddleColor={backFigureMiddleColor}
-        modelSize={modelSize}
-        legendBack={legendBack}
-        colorShapeBack={colorShapeBack}
-      />
-    </SnowboardSpecs>
-  );
-  const shapeFrontForImage = (
-    <SnowboardSpecs rotation={0}>
-      <FrontShapeFae
-        legend={legend}
-        modelSize={modelSize}
-        colorShapeInner={colorShapeInner}
-        colorShapeOut={colorShapeOut}
-        figureBottomColor={figureBottomColor}
-        figureTopColor={figureTopColor}
-        isFigureBottomActive={isFigureBottomActive}
-        isFigureTopActive={isFigureTopActive}
-        edgingColor={edgingColor}
-      />
-    </SnowboardSpecs>
-  );
-  const shapeBackForImage = (
-    <SnowboardSpecs rotation={180}>
+    <SnowboardSpecs isActive={activeBack}>
       <BackShapeFae
         isBackFigureMiddleActive={isBackFigureMiddleActive}
         backFigureMiddleColor={backFigureMiddleColor}
@@ -101,8 +77,8 @@ export const BoardFaeSvg = ({
     </SnowboardSpecs>
   );
   useEffect(() => {
-    setShapeBack(ReactDOMServer.renderToStaticMarkup(shapeBackForImage));
-    setShapeFront(ReactDOMServer.renderToStaticMarkup(shapeFrontForImage));
+    setShapeBack(ReactDOMServer.renderToStaticMarkup(shapeBack));
+    setShapeFront(ReactDOMServer.renderToStaticMarkup(shapeFront));
   }, [formValues]);
 
   return isBack ? shapeFront : shapeBack;

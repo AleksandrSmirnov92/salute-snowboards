@@ -6,8 +6,7 @@ interface IPropsLegendTop {
 export const BackLegendBottom = ({ color, width, height }: IPropsLegendTop) => {
   const scaleText = 1.0;
   const scaleS = 0.07;
-  // const positionLegendMiddleSX = isBack ? 4750 : 3770;
-  const positionLegendMiddleSX = 3770;
+  const positionLegendMiddleSX = 4750;
   const positionLegentMiddleSY = 4400;
   const colorMiddle = color;
 
@@ -24,7 +23,7 @@ export const BackLegendBottom = ({ color, width, height }: IPropsLegendTop) => {
       <g transform={`scale(${scaleS})`}>
         <path
           // Буква S
-          transform={`matrix(${scaleText} 0 0 ${scaleText} ${positionLegendMiddleSX}, ${positionLegentMiddleSY})`}
+          transform={`matrix(${-scaleText} 0 0 ${scaleText} ${positionLegendMiddleSX}, ${positionLegentMiddleSY})`}
           d="M505.98,2308.24h-13.73v-80.68c0-2.88-1.18-4.32-3.4-4.18c-2.23,0-3.27,1.44-3.27,4.18v79.9
       c0,6.67,1.96,11.5,5.88,14.64l5.09,4.05c3.4,2.75,5.88,5.49,7.32,8.24c1.44,2.88,2.09,7.2,2.09,12.95v101.99
       c0,11.11-5.49,16.61-16.61,16.61c-11.64,0-17.4-5.49-17.4-16.61v-96.11h13.6v96.11c0,3,1.18,4.58,3.53,4.58

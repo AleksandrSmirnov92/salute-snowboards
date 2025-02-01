@@ -15,8 +15,9 @@ import { RootState } from '../../../../store/store';
 interface IProps {
   isBack: boolean;
   rotation: number;
+  activeBack: boolean;
 }
-export const BoardDisplay = ({ isBack, rotation }: IProps) => {
+export const BoardDisplay = ({ isBack, rotation, activeBack }: IProps) => {
   const formValues = useAppSelector((state: RootState) => state.selectedValuesForm);
   const [shapeFront, setShapeFront] = useState('');
   const [shapeBack, setShapeBack] = useState('');
@@ -28,7 +29,7 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
             isBack={isBack}
             setShapeFront={setShapeFront}
             setShapeBack={setShapeBack}
-            rotation={rotation}
+            activeBack={activeBack}
             isFigureTopActive={value.boardDetails.frontPart.figuresFront.figureTop.isActive}
             figureTopColor={value.boardDetails.frontPart.figuresFront.figureTop.colorFigure.hex}
             isFigureBottomActive={value.boardDetails.frontPart.figuresFront.figureBottom.isActive}
@@ -48,7 +49,7 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
             setShapeFront={setShapeFront}
             setShapeBack={setShapeBack}
             isBack={isBack}
-            rotation={rotation}
+            activeBack={activeBack}
             isFigureTopActive={value.boardDetails.frontPart.figuresFront.figureTop.isActive}
             figureTopColor={value.boardDetails.frontPart.figuresFront.figureTop.colorFigure.hex}
             isFigureBottomActive={value.boardDetails.frontPart.figuresFront.figureBottom.isActive}
@@ -65,9 +66,9 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
       case ModelsSnowboards.AMFish:
         return (
           <BoardAmFishSvg
+            activeBack={activeBack}
             setShapeFront={setShapeFront}
             setShapeBack={setShapeBack}
-            rotation={rotation}
             isBack={isBack}
             colorShapeFront={value.boardDetails.frontPart.colorModelFront.colorOut.color.hex!}
             isFigureBottomActive={value.boardDetails.frontPart.figuresFront.figureBottom.isActive}
@@ -86,9 +87,9 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
       case ModelsSnowboards.BCFR:
         return (
           <BoardBcfrSvg
+            activeBack={activeBack}
             setShapeFront={setShapeFront}
             setShapeBack={setShapeBack}
-            rotation={rotation}
             isBack={isBack}
             colorShapeFront={value.boardDetails.frontPart.colorModelFront.colorOut.color.hex!}
             legend={value.boardDetails.frontPart.legend}
@@ -100,9 +101,9 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
       case ModelsSnowboards.Unit: {
         return (
           <BoardUnitSvg
+            activeBack={activeBack}
             setShapeFront={setShapeFront}
             setShapeBack={setShapeBack}
-            rotation={rotation}
             isBack={isBack}
             isFigureTopActive={value.boardDetails.frontPart.figuresFront.figureTop.isActive}
             isFigureBottomActive={value.boardDetails.frontPart.figuresFront.figureBottom.isActive}
@@ -124,6 +125,7 @@ export const BoardDisplay = ({ isBack, rotation }: IProps) => {
       case ModelsSnowboards.Fae: {
         return (
           <BoardFaeSvg
+            activeBack={activeBack}
             setShapeFront={setShapeFront}
             setShapeBack={setShapeBack}
             rotation={rotation}

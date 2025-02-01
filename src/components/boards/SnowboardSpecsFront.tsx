@@ -1,8 +1,9 @@
+import s from './snowboard-specs-front.module.css';
 interface IProps {
-  rotation?: number;
   children: React.ReactNode;
+  isActive?: boolean;
 }
-export const SnowboardSpecs = ({ rotation, children }: IProps) => {
+export const SnowboardSpecs = ({ children, isActive }: IProps) => {
   const viewBoxWidth = 600;
   const viewBoxHeight = 600;
   return (
@@ -11,14 +12,9 @@ export const SnowboardSpecs = ({ rotation, children }: IProps) => {
       xmlns="http://www.w3.org/2000/svg"
       width={'100%'}
       height={'100%'}
-      className={`w-full`}
+      className={`w-full ${isActive ? s.rotateAnimation : ''}`}
       viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-      preserveAspectRatio="xMidYMid slice"
-      shape-rendering="crispEdges"
-      style={{
-        transform: `rotateY(${rotation ? rotation : 0}deg)`, // Применяем стиль с углом
-        transition: 'transform 1s ease-in-out', // Плавная анимация
-      }}
+      preserveAspectRatio="xMidYMin slice"
     >
       {children}
     </svg>

@@ -12,48 +12,39 @@ interface IProps {
   colorShapeBack: string;
   legend: ILegent;
   modelSize: number | string;
-  rotation: number;
   isBack: boolean;
   setShapeFront: React.Dispatch<React.SetStateAction<string>>;
   setShapeBack: React.Dispatch<React.SetStateAction<string>>;
   legendBack: ILegent;
+  activeBack: boolean;
 }
 export const BoardBcfrSvg = ({
   colorShapeFront,
   legend,
   modelSize,
-  rotation,
   isBack,
   colorShapeBack,
   setShapeFront,
   setShapeBack,
   legendBack,
+  activeBack,
 }: IProps) => {
   const formValues = useAppSelector((state: RootState) => state.selectedValuesForm);
-  const shapeFrontForImage = (
-    <SnowboardSpecs rotation={0}>
+  const shapeFront = (
+    <SnowboardSpecs isActive={activeBack}>
       <FrontShapeBcfr colorShapeFront={colorShapeFront} modelSize={modelSize} legend={legend} />
     </SnowboardSpecs>
   );
-  const shapeBackForImage = (
-    <SnowboardSpecs rotation={180}>
+  const shapeBack = (
+    <SnowboardSpecs isActive={activeBack}>
       <BackShapeBcfr legendBack={legendBack} modelSize={modelSize} colorShapeBack={colorShapeBack} />
     </SnowboardSpecs>
   );
 
   useEffect(() => {
-    setShapeBack(ReactDOMServer.renderToStaticMarkup(shapeBackForImage));
-    setShapeFront(ReactDOMServer.renderToStaticMarkup(shapeFrontForImage));
+    setShapeBack(ReactDOMServer.renderToStaticMarkup(shapeBack));
+    setShapeFront(ReactDOMServer.renderToStaticMarkup(shapeFront));
   }, [formValues]);
 
-  // return isBack ? shapeFront : shapeBack;
-  return (
-    <SnowboardSpecs rotation={rotation}>
-      {isBack ? (
-        <FrontShapeBcfr colorShapeFront={colorShapeFront} modelSize={modelSize} legend={legend} />
-      ) : (
-        <BackShapeBcfr legendBack={legendBack} modelSize={modelSize} colorShapeBack={colorShapeBack} />
-      )}
-    </SnowboardSpecs>
-  );
+  return isBack ? shapeFront : shapeBack;
 };

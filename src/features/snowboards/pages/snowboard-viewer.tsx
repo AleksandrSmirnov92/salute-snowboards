@@ -9,17 +9,17 @@ export const Main = () => {
   const [firstZoomDone, setFirstZoomDone] = useState<Boolean>(false);
   const [currentScale, setCurrentScale] = useState(0);
   const [isBack, setIsBack] = useState(true);
-
+  const [activeBack, setActiveBack] = useState(false);
   const [rotation, setRotation] = useState(0);
 
   const handleRotate = () => {
-    // Активировать вращение
+    setActiveBack(true);
     setRotation((prev) => prev + 180);
     setTimeout(() => {
       setIsBack((prev) => !prev);
+      setActiveBack(false);
     }, 500);
   };
-
   const handleZoomIn = useCallback(() => {
     if (transformRef.current) {
       transformRef.current.zoomIn();
@@ -50,7 +50,7 @@ export const Main = () => {
             minScale={1}
           >
             <TransformComponent wrapperStyle={{ height: '100%', overflow: 'hidden' }} contentStyle={{ height: '100%' }}>
-              <BoardDisplay isBack={isBack} rotation={rotation} />
+              <BoardDisplay activeBack={activeBack} isBack={isBack} rotation={rotation} />
             </TransformComponent>
           </TransformWrapper>
         </div>

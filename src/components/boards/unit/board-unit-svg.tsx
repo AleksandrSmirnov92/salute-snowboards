@@ -17,7 +17,6 @@ interface IProps {
   figureBottomColor: string;
   edgingColor: string;
   modelSize: number | string;
-  rotation: number;
   isBack: boolean;
   colorShapeBack: string;
   setShapeFront: React.Dispatch<React.SetStateAction<string>>;
@@ -25,6 +24,7 @@ interface IProps {
   legendBack: ILegent;
   isBackFigureMiddleActive: boolean;
   backFigureMiddleColor: string;
+  activeBack: boolean;
 }
 
 export const BoardUnitSvg = ({
@@ -37,7 +37,6 @@ export const BoardUnitSvg = ({
   figureBottomColor,
   edgingColor,
   modelSize,
-  rotation,
   isBack,
   colorShapeBack,
   setShapeFront,
@@ -45,10 +44,11 @@ export const BoardUnitSvg = ({
   isBackFigureMiddleActive,
   backFigureMiddleColor,
   legendBack,
+  activeBack,
 }: IProps) => {
   const formValues = useAppSelector((state: RootState) => state.selectedValuesForm);
   const shapeFront = (
-    <SnowboardSpecs rotation={rotation}>
+    <SnowboardSpecs isActive={activeBack}>
       <FrontShapeUnit
         legend={legend}
         modelSize={modelSize}
@@ -63,7 +63,7 @@ export const BoardUnitSvg = ({
     </SnowboardSpecs>
   );
   const shapeBack = (
-    <SnowboardSpecs rotation={rotation}>
+    <SnowboardSpecs isActive={activeBack}>
       <BackShapeUnit
         isBackFigureMiddleActive={isBackFigureMiddleActive}
         backFigureMiddleColor={backFigureMiddleColor}
@@ -73,35 +73,10 @@ export const BoardUnitSvg = ({
       />
     </SnowboardSpecs>
   );
-  const shapeFrontForImage = (
-    <SnowboardSpecs rotation={0}>
-      <FrontShapeUnit
-        legend={legend}
-        modelSize={modelSize}
-        colorShapeInner={colorShapeInner}
-        colorShapeOut={colorShapeOut}
-        figureBottomColor={figureBottomColor}
-        figureTopColor={figureTopColor}
-        isFigureBottomActive={isFigureBottomActive}
-        isFigureTopActive={isFigureTopActive}
-        edgingColor={edgingColor}
-      />
-    </SnowboardSpecs>
-  );
-  const shapeBackForImage = (
-    <SnowboardSpecs rotation={180}>
-      <BackShapeUnit
-        isBackFigureMiddleActive={isBackFigureMiddleActive}
-        backFigureMiddleColor={backFigureMiddleColor}
-        modelSize={modelSize}
-        legendBack={legendBack}
-        colorShapeBack={colorShapeBack}
-      />
-    </SnowboardSpecs>
-  );
+
   useEffect(() => {
-    setShapeBack(ReactDOMServer.renderToStaticMarkup(shapeBackForImage));
-    setShapeFront(ReactDOMServer.renderToStaticMarkup(shapeFrontForImage));
+    setShapeBack(ReactDOMServer.renderToStaticMarkup(shapeBack));
+    setShapeFront(ReactDOMServer.renderToStaticMarkup(shapeFront));
   }, [formValues]);
 
   return isBack ? shapeFront : shapeBack;

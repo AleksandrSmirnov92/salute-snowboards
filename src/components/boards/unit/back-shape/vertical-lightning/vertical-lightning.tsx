@@ -5,7 +5,7 @@ interface IPropsVertivalLightning {
 }
 export const VerticalLightning = ({ color, width, height }: IPropsVertivalLightning) => {
   const scale = 0.08;
-  const translateX = 285;
+  const translateX = 288;
   const translateY = 185;
   const rotate = 90;
   return (
