@@ -8,7 +8,7 @@ import {
   setLegendMiddleColorBackPart,
   setLegendBottomColorBackPart,
 } from '../../../../../store/feautures/formValues/form-values-slice';
-import { colorPaletteFront } from '../../../../../store/data/color-palette';
+import { colorPaletteBack, colorPaletteFront } from '../../../../../store/data/color-palette';
 interface IProps {
   legends: ILegent[];
   formValues: IInitialState;
@@ -45,7 +45,7 @@ export const SelectLegendsBack = ({ legends, formValues, modelColorOut, modelCol
             name={'ColorLegendTop'}
             label={'Цвет вверх'}
             labelContentPosition={'justify-start'}
-            options={colorPaletteFront.map((item) => {
+            options={colorPaletteBack.map((item) => {
               return { ...item, title: item.cmyk! };
             })}
             onChange={(e) => dispatch(setLegendTopColorBackPart(e))}
@@ -66,7 +66,7 @@ export const SelectLegendsBack = ({ legends, formValues, modelColorOut, modelCol
             disabled={formValues.boardDetails.backPart.legend.pos === 'Not selected'}
             label={'Цвет по центру '}
             labelContentPosition={'justify-start'}
-            options={colorPaletteFront.map((item) => {
+            options={colorPaletteBack.map((item) => {
               return { ...item, title: item.cmyk! };
             })}
             onChange={(e) => dispatch(setLegendMiddleColorBackPart(e))}
@@ -87,7 +87,7 @@ export const SelectLegendsBack = ({ legends, formValues, modelColorOut, modelCol
             disabled={formValues.boardDetails.backPart.legend.pos === 'Not selected'}
             label={'Цвет низ'}
             labelContentPosition={'justify-start'}
-            options={colorPaletteFront.map((item) => {
+            options={colorPaletteBack.map((item) => {
               return { ...item, title: item.cmyk! };
             })}
             onChange={(e) => dispatch(setLegendBottomColorBackPart(e))}

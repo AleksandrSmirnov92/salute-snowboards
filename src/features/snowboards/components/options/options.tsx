@@ -119,13 +119,13 @@ export const Options = ({}: IProps) => {
             modelColorOutBack={modelColorOutBack}
             setModelColorsOutBack={setModelColorsOutBack}
           />
-          <SelectFiguresBack selectOptions={selectOptions} selectedModel={selectedModel} formValues={formValues} />
           <SelectLegendsBack
             legends={legendsBack}
             formValues={formValues}
             modelColorOut={modelColorOutBack}
             modelColorInner={modelColorInnerBack}
           />
+          <SelectFiguresBack selectOptions={selectOptions} selectedModel={selectedModel} formValues={formValues} />
         </>
       </form>
     </div>

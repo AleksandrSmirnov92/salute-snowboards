@@ -17,7 +17,7 @@ interface IProps {
   rotation: number;
   activeBack: boolean;
 }
-export const BoardDisplay = ({ isBack, rotation, activeBack }: IProps) => {
+export const BoardDisplay = ({ isBack, activeBack }: IProps) => {
   const formValues = useAppSelector((state: RootState) => state.selectedValuesForm);
   const [shapeFront, setShapeFront] = useState('');
   const [shapeBack, setShapeBack] = useState('');

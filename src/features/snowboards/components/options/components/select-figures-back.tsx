@@ -15,7 +15,7 @@ import {
   setFigureBottomActiveBackPart,
   setFigureBottomColorBackPart,
 } from '../../../../../store/feautures/formValues/form-values-slice';
-import { colorPaletteFront } from '../../../../../store/data/color-palette';
+import { colorPaletteBack, colorPaletteFront } from '../../../../../store/data/color-palette';
 interface IProps {
   formValues: IInitialState;
   selectedModel: ISelectOptions;
@@ -85,7 +85,7 @@ export const SelectFiguresBack = ({ formValues, selectedModel, selectOptions }: 
               name={'FigureTop'}
               label={colorNameFigureTop}
               labelContentPosition="justify-center"
-              options={colorPaletteFront.map((item) => {
+              options={colorPaletteBack.map((item) => {
                 return { ...item, title: item.cmyk! };
               })}
               onChange={(e) => dispatch(setFigureTopColorBackPart(e))}
@@ -125,26 +125,6 @@ export const SelectFiguresBack = ({ formValues, selectedModel, selectOptions }: 
                   <path d="M3 8L6 11L11 3.5" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Checkbox>
-              {/* {!formValues.boardDetails.backPart.figuresBack.figureTop.hasFigure ||
-              !formValues.boardDetails.backPart.figuresBack.figureBottom.hasFigure ? (
-                <Select
-                  disabled={!formValues.boardDetails.backPart.figuresBack.figureMiddle.isActive}
-                  name={'FigureBackMiddle'}
-                  label={colorNameFigureMiddle}
-                  labelContentPosition="justify-center"
-                  options={colorPaletteFront.map((item) => {
-                    return { ...item, title: item.cmyk! };
-                  })}
-                  onChange={(e) => dispatch(setFigureMiddleColorBackPart(e))}
-                  valueTest={{
-                    title: formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure.cmyk!,
-                    bgColor: formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure.bgColor,
-                    value: formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure,
-                  }}
-                />
-              ) : (
-                ''
-              )} */}
             </Field>
             {!formValues.boardDetails.backPart.figuresBack.figureTop.hasFigure ||
             !formValues.boardDetails.backPart.figuresBack.figureBottom.hasFigure ? (
@@ -153,7 +133,7 @@ export const SelectFiguresBack = ({ formValues, selectedModel, selectOptions }: 
                 name={'FigureBackMiddle'}
                 label={colorNameFigureMiddle}
                 labelContentPosition="justify-center"
-                options={colorPaletteFront.map((item) => {
+                options={colorPaletteBack.map((item) => {
                   return { ...item, title: item.cmyk! };
                 })}
                 onChange={(e) => dispatch(setFigureMiddleColorBackPart(e))}
@@ -201,7 +181,7 @@ export const SelectFiguresBack = ({ formValues, selectedModel, selectOptions }: 
               name={'FigureTop'}
               label={colorNameFigureBottom}
               labelContentPosition="justify-center"
-              options={colorPaletteFront.map((item) => {
+              options={colorPaletteBack.map((item) => {
                 return { ...item, title: item.cmyk! };
               })}
               onChange={(e) => dispatch(setFigureBottomColorBackPart(e))}
