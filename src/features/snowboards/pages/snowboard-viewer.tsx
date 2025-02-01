@@ -21,7 +21,7 @@ export const Main = () => {
 
       setTimeout(() => {
         setIsBack((prev) => !prev);
-      }, 600);
+      }, 590);
       setTimeout(() => {
         setActiveBack(false);
         isAnimating.current = false; // Разблокируем для следующей анимации

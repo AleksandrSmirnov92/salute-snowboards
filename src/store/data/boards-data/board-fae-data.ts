@@ -2,30 +2,30 @@ import { ILegent, IModelSize } from '../../../types/types';
 import { colorPaletteFront } from '../color-palette';
 
 export const positionsFae: ILegent[] = [
+  // {
+  //   id: 1,
+  //   pos: 'Not selected',
+  //   title: 'Не выбранно',
+  //   colorLegend: {
+  //     top: {
+  //       name: 'Цвет вверх',
+  //       positionColor: 'Color legend Top',
+  //       colorPallete: colorPaletteFront[11],
+  //     },
+  //     middle: {
+  //       name: 'Цвет по центру',
+  //       positionColor: 'Color legend middle',
+  //       colorPallete: colorPaletteFront[11],
+  //     },
+  //     bottom: {
+  //       name: 'Цвет низ',
+  //       positionColor: 'Color legend Bottom',
+  //       colorPallete: colorPaletteFront[11],
+  //     },
+  //   },
+  // },
   {
     id: 1,
-    pos: 'Not selected',
-    title: 'Не выбранно',
-    colorLegend: {
-      top: {
-        name: 'Цвет вверх',
-        positionColor: 'Color legend Top',
-        colorPallete: colorPaletteFront[11],
-      },
-      middle: {
-        name: 'Цвет по центру',
-        positionColor: 'Color legend middle',
-        colorPallete: colorPaletteFront[11],
-      },
-      bottom: {
-        name: 'Цвет низ',
-        positionColor: 'Color legend Bottom',
-        colorPallete: colorPaletteFront[11],
-      },
-    },
-  },
-  {
-    id: 2,
     pos: 'Version1',
     title: 'Вариант 1',
     colorLegend: {
@@ -49,25 +49,25 @@ export const positionsFae: ILegent[] = [
 ];
 
 export const positionsFaeBack: ILegent[] = [
+  // {
+  //   id: 1,
+  //   pos: 'Not selected',
+  //   title: 'Не выбранно',
+  //   colorLegend: {
+  //     top: {
+  //       name: 'Цвет вверх',
+  //       positionColor: 'Color legend Top',
+  //       colorPallete: colorPaletteFront[1],
+  //     },
+  //     bottom: {
+  //       name: 'Цвет низа',
+  //       positionColor: 'Color legend Bottom',
+  //       colorPallete: colorPaletteFront[1],
+  //     },
+  //   },
+  // },
   {
     id: 1,
-    pos: 'Not selected',
-    title: 'Не выбранно',
-    colorLegend: {
-      top: {
-        name: 'Цвет вверх',
-        positionColor: 'Color legend Top',
-        colorPallete: colorPaletteFront[1],
-      },
-      bottom: {
-        name: 'Цвет низа',
-        positionColor: 'Color legend Bottom',
-        colorPallete: colorPaletteFront[1],
-      },
-    },
-  },
-  {
-    id: 2,
     pos: 'Version1',
     title: 'Вариант 1',
     colorLegend: {
