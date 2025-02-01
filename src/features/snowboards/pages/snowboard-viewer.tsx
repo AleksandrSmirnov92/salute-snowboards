@@ -24,7 +24,7 @@ export const Main = () => {
         setActiveBack(false);
         isAnimating.current = false; // Разблокируем для следующей анимации
         setQueue((prev) => prev - 1); // Уменьшаем очередь
-      }, 565);
+      }, 555);
     }
   };
   useEffect(() => {
