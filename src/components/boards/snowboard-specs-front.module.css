@@ -1,5 +1,5 @@
 .rotateAnimation {
   transform: scale(-1, 1) rotateY(180deg);
-  transition: transform 1.2s ease-in-out;
+  transition: transform 1.19s ease-in-out;
   will-change: transform;
 }
