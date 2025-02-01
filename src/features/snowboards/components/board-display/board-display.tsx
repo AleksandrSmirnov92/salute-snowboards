@@ -128,7 +128,6 @@ export const BoardDisplay = ({ isBack, rotation, activeBack }: IProps) => {
             activeBack={activeBack}
             setShapeFront={setShapeFront}
             setShapeBack={setShapeBack}
-            rotation={rotation}
             isBack={isBack}
             isFigureTopActive={value.boardDetails.frontPart.figuresFront.figureTop.isActive}
             isFigureBottomActive={value.boardDetails.frontPart.figuresFront.figureBottom.isActive}

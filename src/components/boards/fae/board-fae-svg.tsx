@@ -18,7 +18,6 @@ interface IProps {
   figureBottomColor: string;
   edgingColor: string;
   modelSize: number | string;
-  rotation: number;
   isBack: boolean;
   colorShapeBack: string;
   setShapeFront: React.Dispatch<React.SetStateAction<string>>;
@@ -39,7 +38,6 @@ export const BoardFaeSvg = ({
   figureBottomColor,
   edgingColor,
   modelSize,
-  rotation,
   isBack,
   colorShapeBack,
   setShapeFront,
