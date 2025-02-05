@@ -149,6 +149,11 @@ export const BoardDisplay = ({ isBack, activeBack }: IProps) => {
     }
   };
   const sendMessageToParent = (action: string, value: ISendMessageValue) => {
+    if (!document.referrer.includes('tilda.cc')) {
+      console.warn('Запрещенная попытка отправки сообщения');
+      return;
+    }
+
     const data = { action: action, value: value };
     window.parent.postMessage(data, 'https://salutmfg.co/constructorultramegasalutconstructor');
   };
@@ -156,31 +161,11 @@ export const BoardDisplay = ({ isBack, activeBack }: IProps) => {
   const result = getSnowboard(formValues);
 
   useLayoutEffect(() => {
-    // const s = getS({
-    //   model: formValues.model.title,
-    //   rotation: rotation,
-    //   svgRefFront: svgRefFront,
-    //   svgRefBack: svgRefBack,
-    //   isFigureTopActive: formValues.boardDetails.frontPart.figuresFront.figureTop.isActive,
-    //   figureTopColor: formValues.boardDetails.frontPart.figuresFront.figureTop.colorFigure.hex,
-    //   isFigureBottomActive: formValues.boardDetails.frontPart.figuresFront.figureBottom.isActive,
-    //   figureBottomColor: formValues.boardDetails.frontPart.figuresFront.figureBottom.colorFigure.hex,
-    //   colorShapeFront: formValues.boardDetails.frontPart.colorModelFront.colorOut.color.hex!,
-    //   colorShapeBack: formValues.boardDetails.backPart.colorModelBack.colorOut.color.hex!,
-    //   legend: formValues.boardDetails.frontPart.legend,
-    //   modelSize: formValues.boardLength.size,
-    //   edgingColor: formValues.boardDetails.frontPart.colorModelFront.colorEdging.color.hex,
-    //   colorShapeOut: formValues.boardDetails.frontPart.colorModelFront.colorOut.color.hex!,
-    //   colorShapeInner: formValues.boardDetails.frontPart.colorModelFront.colorIn.color.hex!,
-    //   legendBack: formValues.boardDetails.backPart.legend,
-    //   isBackFigureMiddleActive: formValues.boardDetails.backPart.figuresBack.figureMiddle.isActive,
-    //   backFigureMiddleColor: formValues.boardDetails.backPart.figuresBack.figureMiddle.colorFigure.hex,
-    // });
     if (shapeBack && shapeFront) {
       const dataUrlFront = serializeSVGG(shapeFront, formValues.model.title);
       const dataUrlBack = serializeSVGG(shapeBack, formValues.model.title);
-      console.log('dataUrlFront', dataUrlFront);
-      console.log('dataUrlBack', dataUrlBack);
+      // console.log('dataUrlFront', dataUrlFront);
+      // console.log('dataUrlBack', dataUrlBack);
 
       const values: ISendMessageValue = createDataForTilde(formValues, dataUrlFront, dataUrlBack);
       sendMessageToParent('updateForm', values);

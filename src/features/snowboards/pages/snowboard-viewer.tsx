@@ -14,26 +14,28 @@ export const Main = () => {
 
   const isAnimating = useRef(false); // Флаг активности анимации
 
-  const startAnimation = () => {
+  const toggleBack = useCallback(() => {
+    setIsBack((prev) => !prev);
+  }, []);
+
+  const startAnimation = useCallback(() => {
     if (queue > 0 && !isAnimating.current) {
       isAnimating.current = true; // Блокируем запуск новой анимации
       setActiveBack(true);
-
-      setTimeout(() => {
-        setIsBack((prev) => !prev);
-      }, 590);
+      setTimeout(toggleBack, 570);
       setTimeout(() => {
         setActiveBack(false);
         isAnimating.current = false; // Разблокируем для следующей анимации
         setQueue((prev) => prev - 1); // Уменьшаем очередь
       }, 1200);
     }
-  };
+  }, [queue, toggleBack]);
+
   useEffect(() => {
     if (queue > 0) {
       startAnimation(); // Запускаем анимацию, если в очереди что-то есть
     }
-  }, [queue]);
+  }, [queue, startAnimation]);
 
   const handleRotate = () => {
     setQueue((prev) => prev + 1); // Добавляем в очередь
