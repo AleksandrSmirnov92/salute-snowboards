@@ -149,11 +149,6 @@ export const BoardDisplay = ({ isBack, activeBack }: IProps) => {
     }
   };
   const sendMessageToParent = (action: string, value: ISendMessageValue) => {
-    if (!document.referrer.includes('tilda.cc')) {
-      console.warn('Запрещенная попытка отправки сообщения');
-      return;
-    }
-
     const data = { action: action, value: value };
     window.parent.postMessage(data, 'https://salutmfg.co/constructorultramegasalutconstructor');
   };
