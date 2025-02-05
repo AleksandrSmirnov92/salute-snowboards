@@ -6,7 +6,7 @@ const App = () => {
   const [accessAllowed, setAccessAllowed] = useState(false);
 
   useEffect(() => {
-    if (document.referrer.indexOf('salutmfg.co/constructorultramegasalutconstructor') !== -1) {
+    if (document.referrer.indexOf('salutmfg.co') !== -1) {
       setAccessAllowed(true); // Разрешаем доступ
     }
   }, []);
