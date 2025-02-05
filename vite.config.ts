@@ -9,7 +9,7 @@ export default defineConfig({
     },
   },
   plugins: [react()],
-  base: 'salute-snowboards',
+  base: '/salute-snowboards/',
   build: {
     outDir: 'dist',
     chunkSizeWarningLimit: 2000, // Размер в КБ (по умолчанию 500)
