@@ -12,6 +12,6 @@ export default defineConfig({
   base: 'salute-snowboards',
   build: {
     outDir: 'dist',
-    chunkSizeWarningLimit: 1000, // Размер в КБ (по умолчанию 500)
+    chunkSizeWarningLimit: 2000, // Размер в КБ (по умолчанию 500)
   },
 });
