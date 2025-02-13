@@ -109,7 +109,7 @@ const Select = ({
 
               {open && (
                 <div
-                  className="absolute z-10 max-h-56  w-full overflow-y-auto rounded-md bg-eerie-black py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                  className="absolute z-10 max-h-56 w-full overflow-y-auto rounded-md bg-#19262d py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                   style={{
                     top: `${dropdownPosition.top}px`,
                     height: `${optionsHeight}px`,

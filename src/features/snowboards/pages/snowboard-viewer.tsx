@@ -11,7 +11,9 @@ export const Main = () => {
   const [isBack, setIsBack] = useState(true);
   const [activeBack, setActiveBack] = useState(false);
   const [queue, setQueue] = useState(0); // Очередь анимаций
-
+  const [activeBtnIn, setActiveBtnIn] = useState(false);
+  const [activeBtnOut, setActiveBtnOut] = useState(false);
+  const [activeBtnZoom, setActiveBtnZoom] = useState(false);
   const isAnimating = useRef(false); // Флаг активности анимации
 
   const toggleBack = useCallback(() => {
@@ -38,17 +40,26 @@ export const Main = () => {
   }, [queue, startAnimation]);
 
   const handleRotate = () => {
+    setActiveBtnZoom(true);
     setQueue((prev) => prev + 1); // Добавляем в очередь
+    setTimeout(() => {
+      setActiveBtnZoom(false);
+    }, 100);
   };
 
   const handleZoomIn = useCallback(() => {
+    setActiveBtnIn(true);
     if (transformRef.current) {
       transformRef.current.zoomIn();
       setFirstZoomDone(true);
     }
+    setTimeout(() => {
+      setActiveBtnIn(false);
+    }, 100);
   }, []);
 
   const handleZoomOut = () => {
+    setActiveBtnOut(true);
     if (transformRef.current) {
       transformRef.current.zoomOut();
       if (currentScale === 1) {
@@ -56,12 +67,15 @@ export const Main = () => {
         transformRef.current.resetTransform(); // Сброс масштаба и положения
       }
     }
+    setTimeout(() => {
+      setActiveBtnOut(false);
+    }, 100);
   };
 
   return (
-    <div className="flex justify-between overflow-hidden">
-      <div className="flex w-[66%] md:w-[50%]  h-screen justify-center mb-2 relative">
-        <div className="w-full h-full  min-w-[180px] overflow-hidden flex align-center justify-center ">
+    <div className="flex justify-between">
+      <div className="flex  w-[66%] md:w-[50%]  h-screen justify-center mb-2 relative">
+        <div className="w-full h-full min-w-[160px]  flex align-center justify-center ">
           <TransformWrapper
             ref={transformRef}
             limitToBounds={true} // Отключить перемещение до первого зума
@@ -77,7 +91,7 @@ export const Main = () => {
         </div>
         <div className="absolute flex flex-col transform -translate-y-1/2  text-warm-gray top-1/2 right-2">
           <Button
-            className="border border-warm-gray mb-2"
+            className={`border border-warm-gray mb-2 duration-200 ${activeBtnIn ? ' opacity-20 ' : ''} `}
             onClick={() => {
               handleZoomIn();
             }}
@@ -94,7 +108,7 @@ export const Main = () => {
             </svg>
           </Button>
           <Button
-            className="border border-warm-gray mb-2"
+            className={`border border-warm-gray mb-2 ${activeBtnOut ? 'opacity-20 ' : ''}`}
             onClick={() => {
               handleZoomOut();
             }}
@@ -112,7 +126,7 @@ export const Main = () => {
           </Button>
 
           <Button
-            className="border border-warm-gray "
+            className={`border border-warm-gray ${activeBtnZoom ? 'opacity-20 ' : ''}`}
             onClick={() => {
               handleRotate();
             }}

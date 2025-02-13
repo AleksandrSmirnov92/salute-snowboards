@@ -73,7 +73,7 @@ export const Options = ({}: IProps) => {
   }, [selectedModel, selectOptions, dispatch]);
 
   return (
-    <div className="relative h-full overflow-y-auto overflow-x-hidden scroll-options">
+    <div className="relative min-w-max h-full overflow-y-auto overflow-x-hidden scroll-options">
       <div className="bg-eerie-black h-12 mb-7 mt-3 md:pl-4 flex justify-center md:justify-start items-center w-full">
         <span className="text-warm-gray text-lg">Детали доски</span>
       </div>
