@@ -75,7 +75,7 @@ export const Main = () => {
   return (
     <div className="flex justify-between">
       <div className="flex  w-[66%] md:w-[50%]  h-screen justify-center mb-2 relative">
-        <div className="w-full h-full min-w-[160px]  flex align-center justify-center ">
+        <div className="w-full h-full min-w-[180px]  flex align-center justify-center ">
           <TransformWrapper
             ref={transformRef}
             limitToBounds={true} // Отключить перемещение до первого зума
