@@ -2,7 +2,6 @@
   "name": "salutesnowboards",
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/AleksandrSmirnov92/salute-snowboards",
   "scripts": {
     "dev": "vite",
     "predeploy": "npm run build",
