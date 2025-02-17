@@ -1,5 +1,5 @@
 import { Button } from '@headlessui/react';
-import { SnowboardIcon } from '../../../../../assets/icons/snowboard-icon';
+import { SnowboardIcon } from '../../../../../icons/snowboard-icon';
 import { randomSnowboard } from '../../../../../store/feautures/formValues/form-values-slice';
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks/hooks';
 import { randomazer } from '../../../../../utils/random-snowboard';
