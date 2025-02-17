@@ -10,14 +10,15 @@ import {
   setSize,
   setPriceModel,
 } from '../../../../store/feautures/formValues/form-values-slice';
-import { SelectModel } from './components/select-model';
-import { SelectSize } from './components/select-size';
-import { SelectColors } from './components/select-colors';
-import { SelectFigures } from './components/select-figures';
-import { SelectLegends } from './components/select-legends';
-import { SelectColorsBack } from './components/select-colors-back';
-import { SelectFiguresBack } from './components/select-figures-back';
-import { SelectLegendsBack } from './components/select-legends-back';
+import { SelectModel } from './components-select/select-model';
+import { SelectSize } from './components-select/select-size';
+import { SelectColors } from './components-select/select-colors';
+import { SelectFigures } from './components-select/select-figures';
+import { SelectLegends } from './components-select/select-legends';
+import { SelectColorsBack } from './components-select/select-colors-back';
+import { SelectFiguresBack } from './components-select/select-figures-back';
+import { SelectLegendsBack } from './components-select/select-legends-back';
+import { OptionsHeader } from './header/options-header';
 interface IProps {
   setIsBack: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -74,9 +75,7 @@ export const Options = ({}: IProps) => {
 
   return (
     <div className="relative min-w-max h-full overflow-y-auto overflow-x-hidden scroll-options">
-      <div className="bg-eerie-black h-12 mb-7 mt-3 md:pl-4 flex justify-center md:justify-start items-center w-full">
-        <span className="text-warm-gray text-lg">Детали доски</span>
-      </div>
+      <OptionsHeader />
       <form className="relative">
         <>
           {/* Опции передней части доски */}

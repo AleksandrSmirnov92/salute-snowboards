@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState } from 'react';
-import { useAppSelector } from '../../../../store/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks/hooks';
 import { IInitialState } from '../../../../store/feautures/formValues/form-values-slice';
 import { ISendMessageValue, ModelsSnowboards } from '../../../../types/types';
 import { createDataForTilde } from '../../../../utils/creator-data-for-tilda';
@@ -11,12 +11,13 @@ import { BoardBcfrSvg } from '../../../../components/boards/bcfr/board-bcfr-svg'
 import { BoardFaeSvg } from '../../../../components/boards/fae/board-fae-svg';
 import { serializeSVGG } from '../../../../utils/serialize-svg copy';
 import { RootState } from '../../../../store/store';
-
+import { setImageBackShape, setImageFrontShape } from '../../../../store/feautures/formValues/form-values-slice';
 interface IProps {
   isBack: boolean;
   activeBack: boolean;
 }
 export const BoardDisplay = ({ isBack, activeBack }: IProps) => {
+  const dispatch = useAppDispatch();
   const formValues = useAppSelector((state: RootState) => state.selectedValuesForm);
   const [shapeFront, setShapeFront] = useState('');
   const [shapeBack, setShapeBack] = useState('');
@@ -159,6 +160,8 @@ export const BoardDisplay = ({ isBack, activeBack }: IProps) => {
     if (shapeBack && shapeFront) {
       const dataUrlFront = serializeSVGG(shapeFront, formValues.model.title);
       const dataUrlBack = serializeSVGG(shapeBack, formValues.model.title);
+      dispatch(setImageBackShape(dataUrlBack));
+      dispatch(setImageFrontShape(dataUrlFront));
       // console.log('dataUrlFront', dataUrlFront);
       // console.log('dataUrlBack', dataUrlBack);
 

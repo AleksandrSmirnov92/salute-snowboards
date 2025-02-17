@@ -11,6 +11,7 @@ import { colorPaletteFront } from '../../data/color-palette';
 import { boardLengthBCFR } from '../../data/boards-data/board-bcfr-data';
 import { hasNotFigure } from '../../data/figures';
 import { IColorPallete } from '../../../types/color-pallete';
+import { IRandomSnowboards } from '../../../utils/random-snowboard';
 
 const defaultColorFront = {
   id: 1,
@@ -113,6 +114,8 @@ const initialState: IInitialState = {
   },
   boardLength: boardLengthBCFR[1],
   price: 64000,
+  imageFrontShape: '',
+  imageBackShape: '',
 };
 const selectedFormValues = createSlice({
   name: 'form',
@@ -222,6 +225,49 @@ const selectedFormValues = createSlice({
     setPriceModel(state, action: PayloadAction<number>) {
       state.price = action.payload;
     },
+    randomSnowboard(state, action: PayloadAction<IRandomSnowboards>) {
+      state.boardDetails.frontPart.colorModelFront.colorOut.color = action.payload.colorOut;
+      state.boardDetails.frontPart.colorModelFront.colorIn.color = action.payload.colorIn;
+      state.boardDetails.frontPart.colorModelFront.colorEdging.color = action.payload.colorEdging;
+      state.boardDetails.frontPart.figuresFront.figureTop.isActive = action.payload.figureTopActive;
+      if (action.payload.figureTopActive) {
+        state.boardDetails.frontPart.figuresFront.figureTop.colorFigure = action.payload.frigureTopColor;
+      }
+      state.boardDetails.frontPart.figuresFront.figureMiddle.isActive = action.payload.figureMiddleActive;
+      if (action.payload.figureMiddleActive) {
+        state.boardDetails.frontPart.figuresFront.figureMiddle.colorFigure = action.payload.frigureMiddleColor;
+      }
+      state.boardDetails.frontPart.figuresFront.figureBottom.isActive = action.payload.figureBottomActive;
+      if (action.payload.figureBottomActive) {
+        state.boardDetails.frontPart.figuresFront.figureBottom.colorFigure = action.payload.frigureBottomColor;
+      }
+      state.boardDetails.frontPart.legend.colorLegend.top!.colorPallete = action.payload.legendTopColor;
+      state.boardDetails.frontPart.legend.colorLegend.middle!.colorPallete = action.payload.legendMiddleColor;
+      state.boardDetails.frontPart.legend.colorLegend.bottom!.colorPallete = action.payload.legendBottomColor;
+      // Back
+      state.boardDetails.backPart.colorModelBack.colorOut.color = action.payload.colorBack;
+
+      state.boardDetails.backPart.figuresBack.figureTop.isActive = action.payload.figureTopActiveBack;
+      if (action.payload.figureTopActiveBack) {
+        state.boardDetails.backPart.figuresBack.figureTop.colorFigure = action.payload.figureTopColorBack;
+      }
+      state.boardDetails.backPart.figuresBack.figureMiddle.isActive = action.payload.figureMiddleActiveBack;
+      if (action.payload.figureMiddleActiveBack) {
+        state.boardDetails.backPart.figuresBack.figureMiddle.colorFigure = action.payload.figureMiddleColorBack;
+      }
+      state.boardDetails.backPart.figuresBack.figureBottom.isActive = action.payload.figureBottomActiveBack;
+      if (action.payload.figureBottomActiveBack) {
+        state.boardDetails.backPart.figuresBack.figureTop.colorFigure = action.payload.figureBottomColorBack;
+      }
+      state.boardDetails.backPart.legend.colorLegend.top!.colorPallete = action.payload.legendTopColorBack;
+      state.boardDetails.backPart.legend.colorLegend.bottom!.colorPallete = action.payload.legendBottomColorBack;
+    },
+    setImageFrontShape(state, action: PayloadAction<string>) {
+      state.imageFrontShape = action.payload;
+    },
+    setImageBackShape(state, action: PayloadAction<string>) {
+      state.imageBackShape = action.payload;
+    },
   },
 });
 export const {
@@ -258,6 +304,9 @@ export const {
   setLegendMiddleColorBackPart,
   setLegendBottomColorBackPart,
   setPriceModel,
+  randomSnowboard,
+  setImageFrontShape,
+  setImageBackShape,
 } = selectedFormValues.actions;
 export default selectedFormValues.reducer;
 
@@ -294,7 +343,11 @@ export type SelectedFormValuesActionCreator =
   | ReturnType<typeof setLegendTopColorBackPart>
   | ReturnType<typeof setLegendMiddleColorBackPart>
   | ReturnType<typeof setLegendBottomColorBackPart>
-  | ReturnType<typeof setPriceModel>;
+  | ReturnType<typeof setPriceModel>
+  | ReturnType<typeof randomSnowboard>
+  | ReturnType<typeof setImageFrontShape>
+  | ReturnType<typeof setImageBackShape>
+  | ReturnType<typeof randomSnowboard>;
 export interface IInitialState {
   model: {
     id: number;
@@ -340,4 +393,6 @@ export interface IInitialState {
   };
   boardLength: IModelSize;
   price: number;
+  imageFrontShape: string;
+  imageBackShape: string;
 }
